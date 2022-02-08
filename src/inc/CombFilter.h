@@ -40,7 +40,7 @@ public:
 class CCombFilterIIR : public CCombFilterBase
 {
 public:
-    CCombFilterIIR (int iMaxDelayLengthInFrames, int iNumChannels);
+    CCombFilterIIR (int iMaxDelayLengthInFrames, int iNumChannels):CCombFilterBase(iMaxDelayLengthInFrames, iNumChannels) {};
     virtual ~CCombFilterIIR (){};
 
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) override;

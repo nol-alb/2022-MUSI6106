@@ -56,16 +56,24 @@ const char*  CCombFilterIf::getBuildDate ()
 
 Error_t CCombFilterIf::create (CCombFilterIf*& pCCombFilter)
 {
+    pCCombFilter = new CCombFilterIf();
     return Error_t::kNoError;
 }
 
 Error_t CCombFilterIf::destroy (CCombFilterIf*& pCCombFilter)
 {
+    pCCombFilter->reset();
+    delete pCCombFilter;
+    pCCombFilter=nullptr;
+    
     return Error_t::kNoError;
 }
 
 Error_t CCombFilterIf::init (CombFilterType_t eFilterType, float fMaxDelayLengthInS, float fSampleRateInHz, int iNumChannels)
 {
+    m_fSampleRate=fSampleRateInHz;
+    int delaylength = (int)(fMaxDelayLengthInS*fSampleRateInHz);
+    if
     return Error_t::kNoError;
 }
 
