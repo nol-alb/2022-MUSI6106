@@ -142,7 +142,7 @@ public:
     */
     int getLength() const
     {
-        return -1;
+        return m_iBuffLength;
     }
 private:
     CRingBuffer();

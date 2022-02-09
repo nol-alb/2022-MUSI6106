@@ -8,6 +8,10 @@
 #include "Util.h"
 
 #include "CombFilterIf.h"
+#include "CombFilter.h"
+
+// Check for m)bIsInitialized state in each function?
+
 
 static const char*  kCMyProjectBuildDate = __DATE__;
 
@@ -73,26 +77,69 @@ Error_t CCombFilterIf::init (CombFilterType_t eFilterType, float fMaxDelayLength
 {
     m_fSampleRate=fSampleRateInHz;
     int delaylength = (int)(fMaxDelayLengthInS*fSampleRateInHz);
-    if
+    if (eFilterType == kCombFIR)
+    {
+        m_pCCombFilter  = (new CCombFilterFir (delaylength, iNumChannels));
+    }
+    else if (eFilterType == kCombIIR)
+    {
+        m_pCCombFilter  = (new CCombFilterIir (delaylength, iNumChannels));
+    }
+    m_bIsInitialized=true;
+    
     return Error_t::kNoError;
 }
 
 Error_t CCombFilterIf::reset ()
 {
+    delete m_pCCombFilter;
+    m_pCCombFilter      = 0;
+
+    m_fSampleRate       = 0;
+    m_bIsInitialized    = false;
     return Error_t::kNoError;
 }
 
 Error_t CCombFilterIf::process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {
+    m_pCCombFilter->process(ppfInputBuffer, ppfOutputBuffer, iNumberOfFrames);
     return Error_t::kNoError;
 }
 
 Error_t CCombFilterIf::setParam (FilterParam_t eParam, float fParamValue)
 {
+    switch(eParam){
+        case kParamGain:
+            m_pCCombFilter->setGain(fParamValue);
+            break;
+        
+        case kParamDelay:
+            m_pCCombFilter->setDelay(fParamValue*m_fSampleRate);
+            
+            break;
+            
+        case kNumFilterParams:
+            //don't know what to do
+            break;
+    }
     return Error_t::kNoError;
 }
 
 float CCombFilterIf::getParam (FilterParam_t eParam) const
 {
-    return 0;
+    switch(eParam){
+        case kParamGain:
+            return m_pCCombFilter->getGain();
+            break;
+        
+        case kParamDelay:
+            return m_pCCombFilter->getDelay();
+            
+            break;
+            
+        case kNumFilterParams:
+            //don't know what to do
+            break;
+    }
+    
 }

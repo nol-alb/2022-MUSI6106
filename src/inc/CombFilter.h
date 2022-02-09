@@ -8,6 +8,8 @@
 #ifndef CombFilter_h
 #define CombFilter_h
 #include "ErrorDef.h"
+#include "RingBuffer.h"
+
 // Base class definition for CombFilter FIR AND IIR (Brief definitions keep the implementation hidden)
 class CCombFilterBase
 {
@@ -19,6 +21,13 @@ public:
     // use :: to use the enums from CCombFilterIf
     Error_t setParam (CCombFilterIf::FilterParam_t eParam, float fParamValue);
     float   getParam (CCombFilterIf::FilterParam_t eParam) const;
+    Error_t resetComb();
+    Error_t setGain(float gain);
+    float getGain();
+    Error_t setDelay(int DelayLengthinSamples);
+    int getDelay();
+    
+
     // process needs to be called withuot an object, make virtual
     virtual Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
 //Add members only accessed in the class definition or member classes ex:FIRFILTER,IIRFILTER
@@ -26,22 +35,26 @@ protected:
     CRingBuffer<float>  **m_ppCRingBuffer;
     int     m_iNumChannels;
 };
-//Making a child class from CCombFilterBase for FIR
 
-class CCombFilterFIR : public CCombFilterBase
+//Making a child class from CCombFilterBase for FIR
+class CCombFilterFir : public CCombFilterBase
 {
-    //make constructor and destructor
+    //    //make constructor and destructor
 public:
-    CCombFilterFIR(int iMaxDelayLengthInFrames, int iNumChannels):CCombFilterBase(iMaxDelayLengthInFrames, iNumChannels) {};
-    virtual ~CCombFilterFIR();
+    CCombFilterFir (int iMaxDelayInFrames, int iNumChannels):CCombFilterBase(iMaxDelayInFrames, iNumChannels){};
+    virtual ~CCombFilterFir (){};
+
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) override;
 };
-//Similar child classs for IIR filter
-class CCombFilterIIR : public CCombFilterBase
+
+/*! \brief IIR comb filter implementation
+*/
+////Similar child classs for IIR filter
+class CCombFilterIir : public CCombFilterBase
 {
 public:
-    CCombFilterIIR (int iMaxDelayLengthInFrames, int iNumChannels):CCombFilterBase(iMaxDelayLengthInFrames, iNumChannels) {};
-    virtual ~CCombFilterIIR (){};
+    CCombFilterIir (int iMaxDelayInFrames, int iNumChannels);
+    virtual ~CCombFilterIir (){};
 
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) override;
 };
