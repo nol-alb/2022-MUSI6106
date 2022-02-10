@@ -61,8 +61,11 @@ int CCombFilterBase::getDelay()
     
 }
 
+
 Error_t CCombFilterBase::resetComb()
 {
+    m_DelayLengthIns=0;
+    m_gain=0;
     
     return Error_t::kNoError;
 }

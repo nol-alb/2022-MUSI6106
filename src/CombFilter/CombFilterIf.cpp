@@ -102,12 +102,16 @@ Error_t CCombFilterIf::reset ()
 
 Error_t CCombFilterIf::process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {
+    if(!m_bIsInitialized)
+        return Error_t::kNotInitializedError;
     m_pCCombFilter->process(ppfInputBuffer, ppfOutputBuffer, iNumberOfFrames);
     return Error_t::kNoError;
 }
 
 Error_t CCombFilterIf::setParam (FilterParam_t eParam, float fParamValue)
 {
+    if(!m_bIsInitialized)
+        return Error_t::kNotInitializedError;
     switch(eParam){
         case kParamGain:
             m_pCCombFilter->setGain(fParamValue);
@@ -127,6 +131,7 @@ Error_t CCombFilterIf::setParam (FilterParam_t eParam, float fParamValue)
 
 float CCombFilterIf::getParam (FilterParam_t eParam) const
 {
+
     switch(eParam){
         case kParamGain:
             return m_pCCombFilter->getGain();
