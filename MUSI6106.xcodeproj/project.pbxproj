@@ -9,7 +9,7 @@
 /* Begin PBXAggregateTarget section */
 		442D26D30949463F8DF8E029 /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 788E8EB9211A4885B87AF45C /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = 3138D29DFB944E33A7796B13 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
 				BA38E5081C283D1544A9C069 /* Generate CMakeFiles/ZERO_CHECK */,
 			);
@@ -20,16 +20,16 @@
 		};
 		A7A98379EF5F4E19A1EE8B68 /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 65544CC728834AF8A726E664 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = 666BC5A52CB74998AF934969 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
 				3FFE57695DA2D97C8DFD3857 /* Generate CMakeFiles/ALL_BUILD */,
 			);
 			dependencies = (
-				3F9312C9057848E68515D4B1 /* PBXTargetDependency */,
-				539B2A0D470F49F7AF1E5033 /* PBXTargetDependency */,
-				572232DEFC494515AF7B7358 /* PBXTargetDependency */,
-				D556B3A284AC43389DECCEB6 /* PBXTargetDependency */,
-				79DD1BD6BCB14BA7B59AB0FA /* PBXTargetDependency */,
+				626F5F7591EE478185EE046C /* PBXTargetDependency */,
+				924735ABC5184ECA8D5E82D2 /* PBXTargetDependency */,
+				624F686EECE5434BAA408FF0 /* PBXTargetDependency */,
+				E22A9499E8824736B3588595 /* PBXTargetDependency */,
+				1997FF5A4AAD436FB9904DBC /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
@@ -37,252 +37,252 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		02BCE68C25CF4F658239BD6F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */ = {isa = PBXBuildFile; fileRef = 935CEA0C3DF8474A9757FDA1 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */; };
-		036880A46A734D52B5870C53 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXBuildFile; fileRef = F877DF5411FD429DBC33868A /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */; };
-		0476C43414ED46F58B44B496 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */ = {isa = PBXBuildFile; fileRef = 687C90E505BA4CA1A96B7B9A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */; };
-		0A809E7B7F4F46DFA542631A /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = FFE59FF11DEE4E3C95CA8CFB /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */; };
-		0E20A9D4BC314C3D9D5B38BE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.h */ = {isa = PBXBuildFile; fileRef = 82D21DB9E5A9461DBFCABACF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.h */; };
-		12163D2A11994BC4B3EA2D16 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */ = {isa = PBXBuildFile; fileRef = 1391C0B188D54CB4B026050B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */; };
-		1318E7E62AF34519A68BB9B1 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */ = {isa = PBXBuildFile; fileRef = FFA8400DE1834D7F950446C5 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */; };
-		17DAB605CB734AC2A55FDF7C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */ = {isa = PBXBuildFile; fileRef = 7D10DFA35DF24759BD4C390C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */; };
-		2AC6C2844BC54A3EAE814C52 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */ = {isa = PBXBuildFile; fileRef = AC9A46D0EEA945E2B16A303E /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */; };
-		2CDC278BC881424A98F94E27 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */ = {isa = PBXBuildFile; fileRef = 11F1CC00FA1249C0838CABFF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */; };
-		3011581E5B064062821814F9 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXBuildFile; fileRef = 5F7F8B247F4A4934AC80DFE6 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */; };
-		3C61D17FF3B147D287718C10 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXBuildFile; fileRef = EA93139296304EE0942D0737 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */; };
-		4831DF90D43C4E25B3BB1F2B /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXBuildFile; fileRef = 4EFAD343ADF0479383C93939 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */; };
-		4FBCB22DF85D4437AB341AC4 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.h */ = {isa = PBXBuildFile; fileRef = 36CD900E4E3342B98A3948BD /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.h */; };
-		52086FDB061947F2918D60F7 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */ = {isa = PBXBuildFile; fileRef = 6E22029FC6FE4F5E9F2425C6 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */; };
-		56D292E0B3844A2083F87A27 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */ = {isa = PBXBuildFile; fileRef = 5E7B09D1F83D46F19CD495F4 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */; };
-		574306EDB260486EAAB13455 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.h */ = {isa = PBXBuildFile; fileRef = A15277823EC7498CB8CB9E0E /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.h */; };
-		579840AAF18F4D9E96831977 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXBuildFile; fileRef = 95877AD352F5423E92E3225E /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */; };
-		5A3B43B34BEA4CA697EF688A /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXBuildFile; fileRef = 268EEE7231A04E4793443BFA /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */; };
-		5BD476827F6742C4A9ED9EEF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */ = {isa = PBXBuildFile; fileRef = A265D274647E452F992A4705 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */; };
-		60E2B47EA4C84650B4E6AB42 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXBuildFile; fileRef = 5FD1CBCB218F480E8CDC91E2 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */; };
-		62970F007F7845E19D708C0C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */ = {isa = PBXBuildFile; fileRef = EA3A3AB6316E43BAB2496392 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */; };
-		675D8560E79047289E9645A9 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXBuildFile; fileRef = 85D4393209C542458FE59ABA /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */; };
-		70CDAB4D3CD249EEB4161605 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */ = {isa = PBXBuildFile; fileRef = 2FF7CF393A01402E8DA7F4C7 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */; };
-		72FE5E02FCEB4CBC80B7FB42 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXBuildFile; fileRef = 110B1D8E27E44A45ADADB184 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */; };
-		79C6D8E9256944B8875982D2 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib.h */ = {isa = PBXBuildFile; fileRef = 62F357F4EEB94B4AB0115DEE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib.h */; };
-		8E87F0E1ED904461A1AACC06 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */ = {isa = PBXBuildFile; fileRef = 25ED9B622FB143E7AD6ED640 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */; };
-		91A31B191D31419ABB94C9F1 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXBuildFile; fileRef = 3B1A6CBE73FB480BB15A4C54 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */; };
-		92C93BF0968C47C38293B91A /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = D3572DD628BB47FAAC71BC51 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */; };
-		991799CD9CEA4A5080AEEBBA /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */ = {isa = PBXBuildFile; fileRef = E83417E7977E4BAD83BCCB10 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */; };
-		9B64E95440734F6197F203F4 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */ = {isa = PBXBuildFile; fileRef = 9F622046E1F24B5BBEE80C69 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */; };
-		A438ACB54E5A455B8A86630A /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 97732657E1534892B2423967 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CMakeLists.txt */; };
-		A92B754A6E0E47DD9E4172D4 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */ = {isa = PBXBuildFile; fileRef = 5279FE5A2B5B4FBD9EFEBA64 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */; };
-		A9C3A280CCDE479CA373CBC6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */ = {isa = PBXBuildFile; fileRef = 3207C70047DD474F845056CF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */; };
-		AF314A27138B41138EDAE3C1 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = D4BBD1105D7E4870B5194F24 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */; };
-		B461048D17F94B888D629613 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXBuildFile; fileRef = 105E03B654CC4D378AEB1F67 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */; };
-		B97FC04A74F34F5980EF94F8 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXBuildFile; fileRef = 193BB26DF05C4083B77F54D0 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */; };
-		CAD88054E11248459CDF8E90 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */ = {isa = PBXBuildFile; fileRef = 8F10A634E227491299306B03 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */; };
-		D13D4AD65F2A446EAB0BC145 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */ = {isa = PBXBuildFile; fileRef = D4F3D4B21F0C44FDACC0F8DB /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */; };
-		E032107DD81740EBA1A80E3A /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */ = {isa = PBXBuildFile; fileRef = 80F453F2E8074354826B4BBA /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */; };
-		E51D3BA807DA4901A54B3B3A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.h */ = {isa = PBXBuildFile; fileRef = 03442DC8006B4F4FA282CA7D /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.h */; };
-		F0A47982B9484C28BF4183D8 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/mus-config.h */ = {isa = PBXBuildFile; fileRef = 65BD84FB096E4EDA80CBE283 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/mus-config.h */; };
-		F6EC29E161DC46E9B4D64539 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/unix-config.h */ = {isa = PBXBuildFile; fileRef = F38C6D2FD57C48DEBD72150C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/unix-config.h */; };
-		F919ECCD711044B294B08EF4 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.h */ = {isa = PBXBuildFile; fileRef = 98EDEF38543D43D7934BCD46 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.h */; };
+		0288C3CE2BD74FFEAC04F820 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */ = {isa = PBXBuildFile; fileRef = 35B843BA72ED43FD9E695948 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */; };
+		08B803C134D648A282045CD6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */ = {isa = PBXBuildFile; fileRef = 73E417CA907C46B197F238A6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */; };
+		09ED79EBC06A41FF8C248A96 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.h */ = {isa = PBXBuildFile; fileRef = E02314BC2C084885B4D21C79 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.h */; };
+		0B65FC9328854D45B531C444 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXBuildFile; fileRef = 78337998615549A78D592B49 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */; };
+		1065A8D28840488289DABCD3 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */ = {isa = PBXBuildFile; fileRef = 0CAD29516AF647BBACB45957 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */; };
+		10A3DC326D2E460290419B0F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 45E146E32A9244669AB1C7CE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */; };
+		12C78ED38EE14EC0B7761263 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */ = {isa = PBXBuildFile; fileRef = 196A6C89B777430489658D57 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */; };
+		1617431C8F7B446D8F7AFD27 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/mus-config.h */ = {isa = PBXBuildFile; fileRef = B5021E1E18C74292B73DD47F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/mus-config.h */; };
+		19AEB7EC3FDA446A9C170069 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */ = {isa = PBXBuildFile; fileRef = E1AA6D2649764874AF95FB5F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */; };
+		201E163BC5714F8DBDC4FE01 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */ = {isa = PBXBuildFile; fileRef = 08BFBE058F1D47E9867D00D8 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */; };
+		253D33BC74024B15BAD02BCA /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/unix-config.h */ = {isa = PBXBuildFile; fileRef = BC6FA460F4584F519ED54F1A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/unix-config.h */; };
+		4ADBD274E71F4301A2E510DF /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */ = {isa = PBXBuildFile; fileRef = E5C73DD94F034650B3C27D9A /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */; };
+		57B28671502443C5B391D989 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */ = {isa = PBXBuildFile; fileRef = 7A28811597AD4568BCD4103D /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */; };
+		636FC327FF074A6DBB29F134 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */ = {isa = PBXBuildFile; fileRef = A112B49060FC4D3582DABD60 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */; };
+		641F89FF09C043D1A7235CE0 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib.h */ = {isa = PBXBuildFile; fileRef = F0D848E8A47E43D1967EDC76 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib.h */; };
+		6767E90C1D964654A8956A91 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.h */ = {isa = PBXBuildFile; fileRef = 0DBAFC0553F24F93B5E0CAF0 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.h */; };
+		6E90730D46ED4FACA8FD09B9 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXBuildFile; fileRef = EE8F4D156F6943A78A1500EE /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */; };
+		6E9F35BCB69648168EFD4414 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */ = {isa = PBXBuildFile; fileRef = 70063409836347F185840E74 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */; };
+		78CAA6D5AD384EDDB8D98573 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */ = {isa = PBXBuildFile; fileRef = 95BF7A15E70B4385878F5A5B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */; };
+		793F7AF46BBF4F089F0F914A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */ = {isa = PBXBuildFile; fileRef = F7FF5736C39848D694804FC4 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */; };
+		8C4B34A7CDAF4C17AB45B99F /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXBuildFile; fileRef = C731021F70E444BC9A4E14F1 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */; };
+		900E5D15F0D34BF5A03BC402 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.h */ = {isa = PBXBuildFile; fileRef = B0027C67364B4CE7963A4F54 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.h */; };
+		92E9779AAE1C49C88683640C /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */ = {isa = PBXBuildFile; fileRef = ED38B525BB994DBABF655A4E /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */; };
+		9BFE6DAD07C24CF3BC0CBEFC /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.h */ = {isa = PBXBuildFile; fileRef = EB672CD662C54C30B5F69A4B /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.h */; };
+		A03429DC84FA410F922B986A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */ = {isa = PBXBuildFile; fileRef = 2B41C79B8E1E4BF19919BD77 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */; };
+		A0CD8D4A001E49D9BEF75ECD /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXBuildFile; fileRef = C4A1DB017F304BDA97F52599 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */; };
+		B7FFC070E5B8433EBB742EF3 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXBuildFile; fileRef = CF82AB04A1224642A86AEDD5 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */; };
+		BBA6ED5A6EF048DD9659E77C /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXBuildFile; fileRef = 325B35FE8EF3449F84214E54 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */; };
+		C6040E2ECEA44349B08EF26B /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = F68D961ABB0B4EF986A6AF4D /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */; };
+		C6AE2C40EFD24F89B8B2FBC5 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */ = {isa = PBXBuildFile; fileRef = F9C8B48F9E2444E9993C44E6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */; };
+		C9CCF2A244DE4C99BBE6D582 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 0AC3983B60ED4BDE93AEC035 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CMakeLists.txt */; };
+		CA825C24F19343489BFBC06F /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = B3989CA92861444CBC583181 /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */; };
+		CEB857B4B8A145BEAA6599BD /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXBuildFile; fileRef = 30D7458782114E439538971E /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */; };
+		CFCC3C1D86F94E15B5C8C363 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */ = {isa = PBXBuildFile; fileRef = 0CC4E4825891414E9DDF181E /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */; };
+		D15202F780DC46F8AEDCF4C0 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */ = {isa = PBXBuildFile; fileRef = A31C1E0190B144DF817739EC /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */; };
+		D314A9A934954E7991C91701 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXBuildFile; fileRef = 70F48739EDFE46DDBF1659D1 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */; };
+		D6A11EEE236F45488E369BFA /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */ = {isa = PBXBuildFile; fileRef = 03AC45CAC71C49B89D0A026C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */; };
+		DC428E7D96E54445B344871F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */ = {isa = PBXBuildFile; fileRef = 12EC41480FFE4DC0883CBBA2 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */; };
+		E2BE0D6C25B44ED3BF1B5D0E /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXBuildFile; fileRef = 4F071EEADAEB4DAD8E01987F /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */; };
+		E529ABE053304CC5966C36CE /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXBuildFile; fileRef = 5F26C6508C4642C399CD19FA /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */; };
+		EB8BE0F8A95F4B4EB2FFC11E /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXBuildFile; fileRef = 9983DA209F9E4EFB80B489EF /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */; };
+		ECF3571AD7294F419008AFF7 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXBuildFile; fileRef = 31273EE3319D44A69DEB71C4 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */; };
+		F629D54D346C458B84C917B9 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.h */ = {isa = PBXBuildFile; fileRef = 3EA83180C0ED4180AAC118AE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.h */; };
+		FDFCB070782244629EF0C709 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */ = {isa = PBXBuildFile; fileRef = 9422EB67213E4697A88BD493 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-		7A3976FD33084C8995F4304E /* Release */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Release;
-		};
-		CA22740B17D849178C4DFECF /* MinSizeRel */ = {
+		6C9003EC24224BC096758EC2 /* MinSizeRel */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = MinSizeRel;
 		};
-		DAD5D057E9FF46AFA626FF07 /* RelWithDebInfo */ = {
+		774B0E5B1A184B6192326A10 /* RelWithDebInfo */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = RelWithDebInfo;
 		};
-		EECB73207944430ABA7AFE71 /* Debug */ = {
+		7CCB7F78CA504AAC98644547 /* Debug */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = Debug;
 		};
+		FFCA4F5970F74A13B788FFFD /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-		1DAB603236FA4A66809A11C8 /* PBXContainerItemProxy */ = {
+		2B02722744854B6C8D6F71F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B229989088E428D9129A5E7;
+			remoteInfo = sndlib;
+		};
+		2BFFC50F3B3F48889CBA9E9A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 442D26D30949463F8DF8E029;
 			remoteInfo = ZERO_CHECK;
 		};
-		261D23C0C3364454921B4172 /* PBXContainerItemProxy */ = {
+		3378582090B74A61B22A264F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CDB1D792E1D4C08BBD5C302;
+			remoteInfo = CombFilter;
+		};
+		44750D9822C0450CB57A0932 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 442D26D30949463F8DF8E029;
+			remoteInfo = ZERO_CHECK;
+		};
+		6FCD0E01067345CEBA752D58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7CAE451FF12E407D8D0AFA8B;
 			remoteInfo = AudioFileIO;
 		};
-		5309E9297D04421EA43BC828 /* PBXContainerItemProxy */ = {
+		8475F1DA0BA74D998281B963 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 442D26D30949463F8DF8E029;
-			remoteInfo = ZERO_CHECK;
+			remoteGlobalIDString = 2CDB1D792E1D4C08BBD5C302;
+			remoteInfo = CombFilter;
 		};
-		56328A356B324E46B190EFD5 /* PBXContainerItemProxy */ = {
+		9A80A2A99E764D1CA1C6F448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B229989088E428D9129A5E7;
+			remoteInfo = sndlib;
+		};
+		9A819BDA9DF84E91BA365F28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B229989088E428D9129A5E7;
+			remoteInfo = sndlib;
+		};
+		A2BACFF041D542A7A57948A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A1EF3D7ED06A477EA8B9D403;
 			remoteInfo = MUSI6106Exec;
 		};
-		60F8DDA273CF4CC7BCEDC2E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B229989088E428D9129A5E7;
-			remoteInfo = sndlib;
-		};
-		6FAA297A915C4B9195ED50DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B229989088E428D9129A5E7;
-			remoteInfo = sndlib;
-		};
-		88633F690AC84055ABE1EF5B /* PBXContainerItemProxy */ = {
+		B6D94B92109D44848B4C75CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 442D26D30949463F8DF8E029;
 			remoteInfo = ZERO_CHECK;
 		};
-		B2ACC742003A49E5A4022AF8 /* PBXContainerItemProxy */ = {
+		BAD6138F4DCD465BA33BC73B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 442D26D30949463F8DF8E029;
+			remoteInfo = ZERO_CHECK;
+		};
+		F679B0CD59274994B6519CAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 442D26D30949463F8DF8E029;
+			remoteInfo = ZERO_CHECK;
+		};
+		FCA58167957E4AC08778025F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7CAE451FF12E407D8D0AFA8B;
 			remoteInfo = AudioFileIO;
 		};
-		B3A12F3163194AE4A09E85B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B229989088E428D9129A5E7;
-			remoteInfo = sndlib;
-		};
-		B689A053AC054852AC158A59 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 442D26D30949463F8DF8E029;
-			remoteInfo = ZERO_CHECK;
-		};
-		E153BD752E8840208E5E1E0A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 442D26D30949463F8DF8E029;
-			remoteInfo = ZERO_CHECK;
-		};
-		E3718DF80D6A406BA110752D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CDB1D792E1D4C08BBD5C302;
-			remoteInfo = CombFilter;
-		};
-		E5AED77BB41F4573B51A01DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 606B6805DD754B25B9F8336F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CDB1D792E1D4C08BBD5C302;
-			remoteInfo = CombFilter;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03442DC8006B4F4FA282CA7D /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = clm.h; path = 3rdparty/sndlib/clm.h; sourceTree = SOURCE_ROOT; };
-		105E03B654CC4D378AEB1F67 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilterIf.h; path = src/inc/CombFilterIf.h; sourceTree = SOURCE_ROOT; };
-		110B1D8E27E44A45ADADB184 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilter.h; path = src/inc/CombFilter.h; sourceTree = SOURCE_ROOT; };
-		11F1CC00FA1249C0838CABFF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = xen.c; path = 3rdparty/sndlib/xen.c; sourceTree = SOURCE_ROOT; };
-		1391C0B188D54CB4B026050B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = audio.c; path = 3rdparty/sndlib/audio.c; sourceTree = SOURCE_ROOT; };
-		193BB26DF05C4083B77F54D0 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFileIf.h; path = src/inc/AudioFileIf.h; sourceTree = SOURCE_ROOT; };
-		25ED9B622FB143E7AD6ED640 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AudioFileIf.cpp; path = src/AudioFileIO/AudioFileIf.cpp; sourceTree = SOURCE_ROOT; };
-		268EEE7231A04E4793443BFA /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilterIf.h; path = src/inc/CombFilterIf.h; sourceTree = SOURCE_ROOT; };
-		2FF7CF393A01402E8DA7F4C7 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "sndlib-strings.h"; path = "3rdparty/sndlib/sndlib-strings.h"; sourceTree = SOURCE_ROOT; };
-		3207C70047DD474F845056CF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = io.c; path = 3rdparty/sndlib/io.c; sourceTree = SOURCE_ROOT; };
-		36CD900E4E3342B98A3948BD /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFile.h; path = src/AudioFileIO/AudioFile.h; sourceTree = SOURCE_ROOT; };
-		3B1A6CBE73FB480BB15A4C54 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilter.h; path = src/inc/CombFilter.h; sourceTree = SOURCE_ROOT; };
-		47ECDA31B68840F3B6792BEB /* /Users/noelalben/github/2022-MUSI6106/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		490011CFCD144E2BB34E27F2 /* MUSI6106Exec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = MUSI6106Exec; sourceTree = BUILT_PRODUCTS_DIR; };
-		4EFAD343ADF0479383C93939 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Util.h; path = src/inc/Util.h; sourceTree = SOURCE_ROOT; };
-		5279FE5A2B5B4FBD9EFEBA64 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = sound.c; path = 3rdparty/sndlib/sound.c; sourceTree = SOURCE_ROOT; };
-		5E7B09D1F83D46F19CD495F4 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CombFilterIf.cpp; path = src/CombFilter/CombFilterIf.cpp; sourceTree = SOURCE_ROOT; };
-		5F7F8B247F4A4934AC80DFE6 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Util.h; path = src/inc/Util.h; sourceTree = SOURCE_ROOT; };
-		5FD1CBCB218F480E8CDC91E2 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFileIf.h; path = src/inc/AudioFileIf.h; sourceTree = SOURCE_ROOT; };
-		62F357F4EEB94B4AB0115DEE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sndlib.h; path = 3rdparty/sndlib/sndlib.h; sourceTree = SOURCE_ROOT; };
-		65BD84FB096E4EDA80CBE283 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/mus-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "mus-config.h"; path = "3rdparty/sndlib/mus-config.h"; sourceTree = SOURCE_ROOT; };
-		687C90E505BA4CA1A96B7B9A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = sndlib2xen.c; path = 3rdparty/sndlib/sndlib2xen.c; sourceTree = SOURCE_ROOT; };
-		6E22029FC6FE4F5E9F2425C6 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AudioFile.cpp; path = src/AudioFileIO/AudioFile.cpp; sourceTree = SOURCE_ROOT; };
-		7D10DFA35DF24759BD4C390C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = clm.c; path = 3rdparty/sndlib/clm.c; sourceTree = SOURCE_ROOT; };
-		7E4F1939A53848449F4A3353 /* CombFilter */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCombFilter.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		80F453F2E8074354826B4BBA /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MUSI6106Exec.cpp; path = src/MUSI6106Exec/MUSI6106Exec.cpp; sourceTree = SOURCE_ROOT; };
-		82D21DB9E5A9461DBFCABACF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = xen.h; path = 3rdparty/sndlib/xen.h; sourceTree = SOURCE_ROOT; };
-		85D4393209C542458FE59ABA /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Vector.h; path = src/inc/Vector.h; sourceTree = SOURCE_ROOT; };
-		8F10A634E227491299306B03 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = vct.c; path = 3rdparty/sndlib/vct.c; sourceTree = SOURCE_ROOT; };
-		935CEA0C3DF8474A9757FDA1 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = _sndlib.h; path = 3rdparty/sndlib/_sndlib.h; sourceTree = SOURCE_ROOT; };
-		9435DBAA33DD4E86860102CF /* sndlib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libsndlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		95877AD352F5423E92E3225E /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RingBuffer.h; path = src/inc/RingBuffer.h; sourceTree = SOURCE_ROOT; };
-		97732657E1534892B2423967 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/CombFilter/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		98EDEF38543D43D7934BCD46 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = vct.h; path = 3rdparty/sndlib/vct.h; sourceTree = SOURCE_ROOT; };
-		9F622046E1F24B5BBEE80C69 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sndlib2xen.h; path = 3rdparty/sndlib/sndlib2xen.h; sourceTree = SOURCE_ROOT; };
-		A15277823EC7498CB8CB9E0E /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = s7.h; path = 3rdparty/sndlib/s7.h; sourceTree = SOURCE_ROOT; };
-		A265D274647E452F992A4705 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = clm2xen.h; path = 3rdparty/sndlib/clm2xen.h; sourceTree = SOURCE_ROOT; };
-		AC9A46D0EEA945E2B16A303E /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CombFilter.cpp; path = src/CombFilter/CombFilter.cpp; sourceTree = SOURCE_ROOT; };
-		D3572DD628BB47FAAC71BC51 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/AudioFileIO/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		D4BBD1105D7E4870B5194F24 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = 3rdparty/sndlib/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		D4F3D4B21F0C44FDACC0F8DB /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = clm2xen.c; path = 3rdparty/sndlib/clm2xen.c; sourceTree = SOURCE_ROOT; };
-		E83417E7977E4BAD83BCCB10 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = s7.c; path = 3rdparty/sndlib/s7.c; sourceTree = SOURCE_ROOT; };
-		EA3A3AB6316E43BAB2496392 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "clm-strings.h"; path = "3rdparty/sndlib/clm-strings.h"; sourceTree = SOURCE_ROOT; };
-		EA93139296304EE0942D0737 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RingBuffer.h; path = src/inc/RingBuffer.h; sourceTree = SOURCE_ROOT; };
-		F38C6D2FD57C48DEBD72150C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/unix-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "unix-config.h"; path = "3rdparty/sndlib/unix-config.h"; sourceTree = SOURCE_ROOT; };
-		F877DF5411FD429DBC33868A /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Vector.h; path = src/inc/Vector.h; sourceTree = SOURCE_ROOT; };
-		FA387A7B43E14890851513C6 /* AudioFileIO */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAudioFileIO.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFA8400DE1834D7F950446C5 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = headers.c; path = 3rdparty/sndlib/headers.c; sourceTree = SOURCE_ROOT; };
-		FFE59FF11DEE4E3C95CA8CFB /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/MUSI6106Exec/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		03AC45CAC71C49B89D0A026C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = clm2xen.h; path = 3rdparty/sndlib/clm2xen.h; sourceTree = SOURCE_ROOT; };
+		08BFBE058F1D47E9867D00D8 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = sound.c; path = 3rdparty/sndlib/sound.c; sourceTree = SOURCE_ROOT; };
+		0AC3983B60ED4BDE93AEC035 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/CombFilter/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		0CAD29516AF647BBACB45957 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = headers.c; path = 3rdparty/sndlib/headers.c; sourceTree = SOURCE_ROOT; };
+		0CC4E4825891414E9DDF181E /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "clm-strings.h"; path = "3rdparty/sndlib/clm-strings.h"; sourceTree = SOURCE_ROOT; };
+		0DBAFC0553F24F93B5E0CAF0 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = s7.h; path = 3rdparty/sndlib/s7.h; sourceTree = SOURCE_ROOT; };
+		12EC41480FFE4DC0883CBBA2 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = sndlib2xen.c; path = 3rdparty/sndlib/sndlib2xen.c; sourceTree = SOURCE_ROOT; };
+		15C2360F454D4D88BFA74234 /* /Users/noelalben/github/2022-MUSI6106/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		196A6C89B777430489658D57 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = clm2xen.c; path = 3rdparty/sndlib/clm2xen.c; sourceTree = SOURCE_ROOT; };
+		221F548CF8FB466EB4F68518 /* MUSI6106Exec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = MUSI6106Exec; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B41C79B8E1E4BF19919BD77 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = xen.c; path = 3rdparty/sndlib/xen.c; sourceTree = SOURCE_ROOT; };
+		30D7458782114E439538971E /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RingBuffer.h; path = src/inc/RingBuffer.h; sourceTree = SOURCE_ROOT; };
+		31273EE3319D44A69DEB71C4 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilter.h; path = src/inc/CombFilter.h; sourceTree = SOURCE_ROOT; };
+		325B35FE8EF3449F84214E54 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFileIf.h; path = src/inc/AudioFileIf.h; sourceTree = SOURCE_ROOT; };
+		35B843BA72ED43FD9E695948 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = io.c; path = 3rdparty/sndlib/io.c; sourceTree = SOURCE_ROOT; };
+		3EA83180C0ED4180AAC118AE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = clm.h; path = 3rdparty/sndlib/clm.h; sourceTree = SOURCE_ROOT; };
+		45E146E32A9244669AB1C7CE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = 3rdparty/sndlib/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		4F071EEADAEB4DAD8E01987F /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Util.h; path = src/inc/Util.h; sourceTree = SOURCE_ROOT; };
+		5F26C6508C4642C399CD19FA /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilter.h; path = src/inc/CombFilter.h; sourceTree = SOURCE_ROOT; };
+		70063409836347F185840E74 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = clm.c; path = 3rdparty/sndlib/clm.c; sourceTree = SOURCE_ROOT; };
+		70F48739EDFE46DDBF1659D1 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Util.h; path = src/inc/Util.h; sourceTree = SOURCE_ROOT; };
+		73E417CA907C46B197F238A6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = s7.c; path = 3rdparty/sndlib/s7.c; sourceTree = SOURCE_ROOT; };
+		78337998615549A78D592B49 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RingBuffer.h; path = src/inc/RingBuffer.h; sourceTree = SOURCE_ROOT; };
+		7A28811597AD4568BCD4103D /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sndlib2xen.h; path = 3rdparty/sndlib/sndlib2xen.h; sourceTree = SOURCE_ROOT; };
+		9422EB67213E4697A88BD493 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AudioFile.cpp; path = src/AudioFileIO/AudioFile.cpp; sourceTree = SOURCE_ROOT; };
+		95BF7A15E70B4385878F5A5B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = vct.c; path = 3rdparty/sndlib/vct.c; sourceTree = SOURCE_ROOT; };
+		9983DA209F9E4EFB80B489EF /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilterIf.h; path = src/inc/CombFilterIf.h; sourceTree = SOURCE_ROOT; };
+		A112B49060FC4D3582DABD60 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CombFilterIf.cpp; path = src/CombFilter/CombFilterIf.cpp; sourceTree = SOURCE_ROOT; };
+		A31C1E0190B144DF817739EC /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CombFilter.cpp; path = src/CombFilter/CombFilter.cpp; sourceTree = SOURCE_ROOT; };
+		B0027C67364B4CE7963A4F54 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = xen.h; path = 3rdparty/sndlib/xen.h; sourceTree = SOURCE_ROOT; };
+		B3989CA92861444CBC583181 /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/MUSI6106Exec/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		B5021E1E18C74292B73DD47F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/mus-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "mus-config.h"; path = "3rdparty/sndlib/mus-config.h"; sourceTree = SOURCE_ROOT; };
+		B8714790B4B542D49629D2D5 /* sndlib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libsndlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC6FA460F4584F519ED54F1A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/unix-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "unix-config.h"; path = "3rdparty/sndlib/unix-config.h"; sourceTree = SOURCE_ROOT; };
+		C4A1DB017F304BDA97F52599 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Vector.h; path = src/inc/Vector.h; sourceTree = SOURCE_ROOT; };
+		C731021F70E444BC9A4E14F1 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilterIf.h; path = src/inc/CombFilterIf.h; sourceTree = SOURCE_ROOT; };
+		CF82AB04A1224642A86AEDD5 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFileIf.h; path = src/inc/AudioFileIf.h; sourceTree = SOURCE_ROOT; };
+		E02314BC2C084885B4D21C79 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = vct.h; path = 3rdparty/sndlib/vct.h; sourceTree = SOURCE_ROOT; };
+		E1AA6D2649764874AF95FB5F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "sndlib-strings.h"; path = "3rdparty/sndlib/sndlib-strings.h"; sourceTree = SOURCE_ROOT; };
+		E5C73DD94F034650B3C27D9A /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MUSI6106Exec.cpp; path = src/MUSI6106Exec/MUSI6106Exec.cpp; sourceTree = SOURCE_ROOT; };
+		E8827C5C914149309443E99F /* CombFilter */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCombFilter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB672CD662C54C30B5F69A4B /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFile.h; path = src/AudioFileIO/AudioFile.h; sourceTree = SOURCE_ROOT; };
+		ED38B525BB994DBABF655A4E /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AudioFileIf.cpp; path = src/AudioFileIO/AudioFileIf.cpp; sourceTree = SOURCE_ROOT; };
+		EE8F4D156F6943A78A1500EE /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Vector.h; path = src/inc/Vector.h; sourceTree = SOURCE_ROOT; };
+		EE929ED68D404380957B8298 /* AudioFileIO */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAudioFileIO.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0D848E8A47E43D1967EDC76 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sndlib.h; path = 3rdparty/sndlib/sndlib.h; sourceTree = SOURCE_ROOT; };
+		F68D961ABB0B4EF986A6AF4D /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/AudioFileIO/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		F7FF5736C39848D694804FC4 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = _sndlib.h; path = 3rdparty/sndlib/_sndlib.h; sourceTree = SOURCE_ROOT; };
+		F9C8B48F9E2444E9993C44E6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = audio.c; path = 3rdparty/sndlib/audio.c; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0B931CC959984919BAE3555D /* Frameworks */ = {
+		135FD51AB8B64B8E85578407 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3EB723E6A5344F71A147FFED /* Frameworks */ = {
+		5DE7F2603C9D4A3CB30C7C56 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C70BD81F810B428DBC1F41D2 /* Frameworks */ = {
+		B3E4AA9BE5164BF3AFA50E58 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F4479334CA1D407D943140CF /* Frameworks */ = {
+		F97A4FD4D3D94EC4AAB3FF20 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -292,185 +292,185 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		09CB2563D08243C399442422 /* Products */ = {
+		06C5ABA901A44B3BBC9EBE5F /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				FA387A7B43E14890851513C6 /* AudioFileIO */,
-				7E4F1939A53848449F4A3353 /* CombFilter */,
-				490011CFCD144E2BB34E27F2 /* MUSI6106Exec */,
-				9435DBAA33DD4E86860102CF /* sndlib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		0EAF0B23C0EC419C9AF26D20 /* Source Files */ = {
-			isa = PBXGroup;
-			children = (
-				80F453F2E8074354826B4BBA /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */,
+				A31C1E0190B144DF817739EC /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */,
+				A112B49060FC4D3582DABD60 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */,
 			);
 			name = "Source Files";
 			sourceTree = "<group>";
 		};
-		36156D1DD66D4A26B2DCEB2E /* CMake Rules */ = {
+		10DC763649804DD8A33885B1 /* MUSI6106Exec */ = {
 			isa = PBXGroup;
 			children = (
+				E8B6C9B0CA3E4BFDBA78AEF8 /* Source Files */,
+				84EBBAC8FA8E4EE786013F16 /* Header Files */,
+				B3989CA92861444CBC583181 /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */,
 			);
-			name = "CMake Rules";
+			name = MUSI6106Exec;
 			sourceTree = "<group>";
 		};
-		41A51D4B1CDA40018459BD97 /* Header Files */ = {
+		236D1D0F28F844BC92D1DE62 /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
-				935CEA0C3DF8474A9757FDA1 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */,
-				EA3A3AB6316E43BAB2496392 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */,
-				03442DC8006B4F4FA282CA7D /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.h */,
-				A265D274647E452F992A4705 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */,
-				65BD84FB096E4EDA80CBE283 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/mus-config.h */,
-				A15277823EC7498CB8CB9E0E /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.h */,
-				2FF7CF393A01402E8DA7F4C7 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */,
-				62F357F4EEB94B4AB0115DEE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib.h */,
-				9F622046E1F24B5BBEE80C69 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */,
-				F38C6D2FD57C48DEBD72150C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/unix-config.h */,
-				98EDEF38543D43D7934BCD46 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.h */,
-				82D21DB9E5A9461DBFCABACF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.h */,
-			);
-			name = "Header Files";
-			sourceTree = "<group>";
-		};
-		45C7616AE6094F2BB53AB9A6 /* Header Files */ = {
-			isa = PBXGroup;
-			children = (
-				36CD900E4E3342B98A3948BD /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.h */,
+				F7FF5736C39848D694804FC4 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */,
+				0CC4E4825891414E9DDF181E /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */,
+				3EA83180C0ED4180AAC118AE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.h */,
+				03AC45CAC71C49B89D0A026C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */,
+				B5021E1E18C74292B73DD47F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/mus-config.h */,
+				0DBAFC0553F24F93B5E0CAF0 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.h */,
+				E1AA6D2649764874AF95FB5F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */,
+				F0D848E8A47E43D1967EDC76 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib.h */,
+				7A28811597AD4568BCD4103D /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */,
+				BC6FA460F4584F519ED54F1A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/unix-config.h */,
+				E02314BC2C084885B4D21C79 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.h */,
+				B0027C67364B4CE7963A4F54 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.h */,
 			);
 			name = "Header Files";
 			sourceTree = "<group>";
 		};
-		4DF54C3DC7AD499685B35F32 /* Source Files */ = {
+		5C89A5AF026F4831A1A5536E /* ALL_BUILD */ = {
 			isa = PBXGroup;
 			children = (
-				6E22029FC6FE4F5E9F2425C6 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */,
-				25ED9B622FB143E7AD6ED640 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */,
+				D82BD5AEE9454BF8ABB6909C /* CMake Rules */,
+				15C2360F454D4D88BFA74234 /* /Users/noelalben/github/2022-MUSI6106/CMakeLists.txt */,
 			);
-			name = "Source Files";
+			name = ALL_BUILD;
 			sourceTree = "<group>";
 		};
-		65D1DC7D8E0746C9BDFF3948 /* Frameworks */ = {
+		6ECF972C35074FFABB1A7207 /* sndlib */ = {
+			isa = PBXGroup;
+			children = (
+				F3D410AF5D7F40FF9FD03404 /* Source Files */,
+				236D1D0F28F844BC92D1DE62 /* Header Files */,
+				45E146E32A9244669AB1C7CE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */,
+			);
+			name = sndlib;
+			sourceTree = "<group>";
+		};
+		836E26FD5FC5477EAE9782FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		86F2565BB01D488B9949471C /* MUSI6106Exec */ = {
+		84DAB47AC43E4E569FEAEAAB = {
 			isa = PBXGroup;
 			children = (
-				0EAF0B23C0EC419C9AF26D20 /* Source Files */,
-				E06ACC2207344E4E97D1303B /* Header Files */,
-				FFE59FF11DEE4E3C95CA8CFB /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */,
-			);
-			name = MUSI6106Exec;
-			sourceTree = "<group>";
-		};
-		B16ABC31A61D41799F558447 /* Source Files */ = {
-			isa = PBXGroup;
-			children = (
-				AC9A46D0EEA945E2B16A303E /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */,
-				5E7B09D1F83D46F19CD495F4 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */,
-			);
-			name = "Source Files";
-			sourceTree = "<group>";
-		};
-		B964C7E5BF174FE6AC8C38A6 = {
-			isa = PBXGroup;
-			children = (
-				BCED95A704EE49E5B15F4F87 /* ALL_BUILD */,
-				86F2565BB01D488B9949471C /* MUSI6106Exec */,
-				C03BC3F9AEB74C3C883FF0D3 /* AudioFileIO */,
-				DFCDF07DDAAA426DBBF42960 /* sndlib */,
-				E07DAB467E274BB9BEC494A0 /* CombFilter */,
-				09CB2563D08243C399442422 /* Products */,
-				65D1DC7D8E0746C9BDFF3948 /* Frameworks */,
+				5C89A5AF026F4831A1A5536E /* ALL_BUILD */,
+				10DC763649804DD8A33885B1 /* MUSI6106Exec */,
+				CE8B142751F044C08CB71788 /* AudioFileIO */,
+				6ECF972C35074FFABB1A7207 /* sndlib */,
+				B149773C7E384A029638255C /* CombFilter */,
+				EB57A3F8CD354E7C92114145 /* Products */,
+				836E26FD5FC5477EAE9782FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		BCED95A704EE49E5B15F4F87 /* ALL_BUILD */ = {
+		84EBBAC8FA8E4EE786013F16 /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
-				36156D1DD66D4A26B2DCEB2E /* CMake Rules */,
-				47ECDA31B68840F3B6792BEB /* /Users/noelalben/github/2022-MUSI6106/CMakeLists.txt */,
-			);
-			name = ALL_BUILD;
-			sourceTree = "<group>";
-		};
-		C03BC3F9AEB74C3C883FF0D3 /* AudioFileIO */ = {
-			isa = PBXGroup;
-			children = (
-				4DF54C3DC7AD499685B35F32 /* Source Files */,
-				45C7616AE6094F2BB53AB9A6 /* Header Files */,
-				D3572DD628BB47FAAC71BC51 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */,
-			);
-			name = AudioFileIO;
-			sourceTree = "<group>";
-		};
-		C8BF08A3F6404767A8E4001C /* Header Files */ = {
-			isa = PBXGroup;
-			children = (
-				5FD1CBCB218F480E8CDC91E2 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */,
-				110B1D8E27E44A45ADADB184 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */,
-				105E03B654CC4D378AEB1F67 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */,
-				EA93139296304EE0942D0737 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */,
-				4EFAD343ADF0479383C93939 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */,
-				85D4393209C542458FE59ABA /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */,
+				CF82AB04A1224642A86AEDD5 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */,
+				5F26C6508C4642C399CD19FA /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */,
+				C731021F70E444BC9A4E14F1 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */,
+				30D7458782114E439538971E /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */,
+				70F48739EDFE46DDBF1659D1 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */,
+				EE8F4D156F6943A78A1500EE /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */,
 			);
 			name = "Header Files";
 			sourceTree = "<group>";
 		};
-		DFCDF07DDAAA426DBBF42960 /* sndlib */ = {
+		9CEC3F300B874FA0B20E99DE /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
-				EB734C17A08C4313AB5F4887 /* Source Files */,
-				41A51D4B1CDA40018459BD97 /* Header Files */,
-				D4BBD1105D7E4870B5194F24 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */,
-			);
-			name = sndlib;
-			sourceTree = "<group>";
-		};
-		E06ACC2207344E4E97D1303B /* Header Files */ = {
-			isa = PBXGroup;
-			children = (
-				193BB26DF05C4083B77F54D0 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */,
-				3B1A6CBE73FB480BB15A4C54 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */,
-				268EEE7231A04E4793443BFA /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */,
-				95877AD352F5423E92E3225E /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */,
-				5F7F8B247F4A4934AC80DFE6 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */,
-				F877DF5411FD429DBC33868A /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */,
+				EB672CD662C54C30B5F69A4B /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.h */,
 			);
 			name = "Header Files";
 			sourceTree = "<group>";
 		};
-		E07DAB467E274BB9BEC494A0 /* CombFilter */ = {
+		B149773C7E384A029638255C /* CombFilter */ = {
 			isa = PBXGroup;
 			children = (
-				B16ABC31A61D41799F558447 /* Source Files */,
-				C8BF08A3F6404767A8E4001C /* Header Files */,
-				97732657E1534892B2423967 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CMakeLists.txt */,
+				06C5ABA901A44B3BBC9EBE5F /* Source Files */,
+				F2C979FBE6A9498FB01E4EC6 /* Header Files */,
+				0AC3983B60ED4BDE93AEC035 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CMakeLists.txt */,
 			);
 			name = CombFilter;
 			sourceTree = "<group>";
 		};
-		EB734C17A08C4313AB5F4887 /* Source Files */ = {
+		BA9FB8C00CEB4C72A8CBFB75 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				1391C0B188D54CB4B026050B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */,
-				7D10DFA35DF24759BD4C390C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */,
-				D4F3D4B21F0C44FDACC0F8DB /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */,
-				FFA8400DE1834D7F950446C5 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */,
-				3207C70047DD474F845056CF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */,
-				E83417E7977E4BAD83BCCB10 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */,
-				687C90E505BA4CA1A96B7B9A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */,
-				5279FE5A2B5B4FBD9EFEBA64 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */,
-				8F10A634E227491299306B03 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */,
-				11F1CC00FA1249C0838CABFF /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */,
+				9422EB67213E4697A88BD493 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */,
+				ED38B525BB994DBABF655A4E /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		CE8B142751F044C08CB71788 /* AudioFileIO */ = {
+			isa = PBXGroup;
+			children = (
+				BA9FB8C00CEB4C72A8CBFB75 /* Source Files */,
+				9CEC3F300B874FA0B20E99DE /* Header Files */,
+				F68D961ABB0B4EF986A6AF4D /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */,
+			);
+			name = AudioFileIO;
+			sourceTree = "<group>";
+		};
+		D82BD5AEE9454BF8ABB6909C /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		E8B6C9B0CA3E4BFDBA78AEF8 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5C73DD94F034650B3C27D9A /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		EB57A3F8CD354E7C92114145 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EE929ED68D404380957B8298 /* AudioFileIO */,
+				E8827C5C914149309443E99F /* CombFilter */,
+				221F548CF8FB466EB4F68518 /* MUSI6106Exec */,
+				B8714790B4B542D49629D2D5 /* sndlib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2C979FBE6A9498FB01E4EC6 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				325B35FE8EF3449F84214E54 /* /Users/noelalben/github/2022-MUSI6106/src/inc/AudioFileIf.h */,
+				31273EE3319D44A69DEB71C4 /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilter.h */,
+				9983DA209F9E4EFB80B489EF /* /Users/noelalben/github/2022-MUSI6106/src/inc/CombFilterIf.h */,
+				78337998615549A78D592B49 /* /Users/noelalben/github/2022-MUSI6106/src/inc/RingBuffer.h */,
+				4F071EEADAEB4DAD8E01987F /* /Users/noelalben/github/2022-MUSI6106/src/inc/Util.h */,
+				C4A1DB017F304BDA97F52599 /* /Users/noelalben/github/2022-MUSI6106/src/inc/Vector.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		F3D410AF5D7F40FF9FD03404 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9C8B48F9E2444E9993C44E6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */,
+				70063409836347F185840E74 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */,
+				196A6C89B777430489658D57 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */,
+				0CAD29516AF647BBACB45957 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */,
+				35B843BA72ED43FD9E695948 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */,
+				73E417CA907C46B197F238A6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */,
+				12EC41480FFE4DC0883CBBA2 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */,
+				08BFBE058F1D47E9867D00D8 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */,
+				95BF7A15E70B4385878F5A5B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */,
+				2B41C79B8E1E4BF19919BD77 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */,
 			);
 			name = "Source Files";
 			sourceTree = "<group>";
@@ -480,74 +480,74 @@
 /* Begin PBXNativeTarget section */
 		2B229989088E428D9129A5E7 /* sndlib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FFDA1933DBFD4A399B54D2E2 /* Build configuration list for PBXNativeTarget "sndlib" */;
+			buildConfigurationList = 2228855F485648768D7247B5 /* Build configuration list for PBXNativeTarget "sndlib" */;
 			buildPhases = (
-				9D2441C4A7474DA8A5F9D225 /* Sources */,
-				3EB723E6A5344F71A147FFED /* Frameworks */,
+				CDF4443A3AC24CBBBD9EA886 /* Sources */,
+				135FD51AB8B64B8E85578407 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F141AF5521A142E485ECA1D6 /* PBXTargetDependency */,
+				C3F3837A8027424AA25A2E20 /* PBXTargetDependency */,
 			);
 			name = sndlib;
 			productName = sndlib;
-			productReference = 9435DBAA33DD4E86860102CF /* sndlib */;
+			productReference = B8714790B4B542D49629D2D5 /* sndlib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		2CDB1D792E1D4C08BBD5C302 /* CombFilter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C54CA0B3B5DB4950BEFA4C2B /* Build configuration list for PBXNativeTarget "CombFilter" */;
+			buildConfigurationList = F72DEE08051C4027B6EB825B /* Build configuration list for PBXNativeTarget "CombFilter" */;
 			buildPhases = (
-				4F4E58AB12F74750AD286515 /* Sources */,
-				C70BD81F810B428DBC1F41D2 /* Frameworks */,
+				964D18B40D1540D89AF7EA7A /* Sources */,
+				5DE7F2603C9D4A3CB30C7C56 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C114037AAB4C49DEB48462B5 /* PBXTargetDependency */,
+				DB0A0D7E772B4E3D9818A334 /* PBXTargetDependency */,
 			);
 			name = CombFilter;
 			productName = CombFilter;
-			productReference = 7E4F1939A53848449F4A3353 /* CombFilter */;
+			productReference = E8827C5C914149309443E99F /* CombFilter */;
 			productType = "com.apple.product-type.library.static";
 		};
 		7CAE451FF12E407D8D0AFA8B /* AudioFileIO */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4789E558689E461883F6A1F4 /* Build configuration list for PBXNativeTarget "AudioFileIO" */;
+			buildConfigurationList = D9C94EE2D3AC4FF2887CC113 /* Build configuration list for PBXNativeTarget "AudioFileIO" */;
 			buildPhases = (
-				4197DA953F9E45578454CD4D /* Sources */,
-				0B931CC959984919BAE3555D /* Frameworks */,
+				4F093395ED134DC7BE36EF09 /* Sources */,
+				B3E4AA9BE5164BF3AFA50E58 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F08E40B6FCC2420680163639 /* PBXTargetDependency */,
-				F68E21EB11594CD19135D9C4 /* PBXTargetDependency */,
+				0140CC8F84434AF1A1DD2779 /* PBXTargetDependency */,
+				4C8CED316B644691AA1782DD /* PBXTargetDependency */,
 			);
 			name = AudioFileIO;
 			productName = AudioFileIO;
-			productReference = FA387A7B43E14890851513C6 /* AudioFileIO */;
+			productReference = EE929ED68D404380957B8298 /* AudioFileIO */;
 			productType = "com.apple.product-type.library.static";
 		};
 		A1EF3D7ED06A477EA8B9D403 /* MUSI6106Exec */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BE6875E4495744CDB0044C9B /* Build configuration list for PBXNativeTarget "MUSI6106Exec" */;
+			buildConfigurationList = 14E56D10DB5642659AA328B6 /* Build configuration list for PBXNativeTarget "MUSI6106Exec" */;
 			buildPhases = (
-				6B73025DEEAE483AB78E7519 /* Sources */,
-				F4479334CA1D407D943140CF /* Frameworks */,
+				C0C2AFC2AEAA4C87AD2A7009 /* Sources */,
+				F97A4FD4D3D94EC4AAB3FF20 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				65B5F1239CDD454D92F4C2B9 /* PBXTargetDependency */,
-				F5475C9D71B54F08B5B5EEFA /* PBXTargetDependency */,
-				D16A7AACB6944C92929DE670 /* PBXTargetDependency */,
-				532CA03E01504887AE6BF14F /* PBXTargetDependency */,
+				D4E09F9D5B4D4664AF120F3D /* PBXTargetDependency */,
+				A5BC6A27F23A4211842F7662 /* PBXTargetDependency */,
+				14AD67FEDD9F4934B0A0EA57 /* PBXTargetDependency */,
+				561F9A403302430AB4E95778 /* PBXTargetDependency */,
 			);
 			name = MUSI6106Exec;
 			productName = MUSI6106Exec;
-			productReference = 490011CFCD144E2BB34E27F2 /* MUSI6106Exec */;
+			productReference = 221F548CF8FB466EB4F68518 /* MUSI6106Exec */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -559,18 +559,18 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1320;
 			};
-			buildConfigurationList = 27F58EC037014AD9A7574037 /* Build configuration list for PBXProject "MUSI6106" */;
+			buildConfigurationList = 8A30AA2F92B84FCEB3E5C5AE /* Build configuration list for PBXProject "MUSI6106" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				EECB73207944430ABA7AFE71 /* Debug */,
-				7A3976FD33084C8995F4304E /* Release */,
-				CA22740B17D849178C4DFECF /* MinSizeRel */,
-				DAD5D057E9FF46AFA626FF07 /* RelWithDebInfo */,
+				7CCB7F78CA504AAC98644547 /* Debug */,
+				FFCA4F5970F74A13B788FFFD /* Release */,
+				6C9003EC24224BC096758EC2 /* MinSizeRel */,
+				774B0E5B1A184B6192326A10 /* RelWithDebInfo */,
 			);
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
-			mainGroup = B964C7E5BF174FE6AC8C38A6;
+			mainGroup = 84DAB47AC43E4E569FEAEAAB;
 			projectDirPath = .;
 			projectRoot = "";
 			targets = (
@@ -684,212 +684,121 @@ fi
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4197DA953F9E45578454CD4D /* Sources */ = {
+		4F093395ED134DC7BE36EF09 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52086FDB061947F2918D60F7 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */,
-				8E87F0E1ED904461A1AACC06 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */,
+				FDFCB070782244629EF0C709 /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */,
+				92E9779AAE1C49C88683640C /* /Users/noelalben/github/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4F4E58AB12F74750AD286515 /* Sources */ = {
+		964D18B40D1540D89AF7EA7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AC6C2844BC54A3EAE814C52 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */,
-				56D292E0B3844A2083F87A27 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */,
+				D15202F780DC46F8AEDCF4C0 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilter.cpp */,
+				636FC327FF074A6DBB29F134 /* /Users/noelalben/github/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6B73025DEEAE483AB78E7519 /* Sources */ = {
+		C0C2AFC2AEAA4C87AD2A7009 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E032107DD81740EBA1A80E3A /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */,
+				4ADBD274E71F4301A2E510DF /* /Users/noelalben/github/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9D2441C4A7474DA8A5F9D225 /* Sources */ = {
+		CDF4443A3AC24CBBBD9EA886 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12163D2A11994BC4B3EA2D16 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */,
-				17DAB605CB734AC2A55FDF7C /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */,
-				D13D4AD65F2A446EAB0BC145 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */,
-				1318E7E62AF34519A68BB9B1 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */,
-				A9C3A280CCDE479CA373CBC6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */,
-				991799CD9CEA4A5080AEEBBA /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */,
-				0476C43414ED46F58B44B496 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */,
-				A92B754A6E0E47DD9E4172D4 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */,
-				CAD88054E11248459CDF8E90 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */,
-				2CDC278BC881424A98F94E27 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */,
+				C6AE2C40EFD24F89B8B2FBC5 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/audio.c */,
+				6E9F35BCB69648168EFD4414 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm.c */,
+				12C78ED38EE14EC0B7761263 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */,
+				1065A8D28840488289DABCD3 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/headers.c */,
+				0288C3CE2BD74FFEAC04F820 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/io.c */,
+				08B803C134D648A282045CD6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/s7.c */,
+				DC428E7D96E54445B344871F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */,
+				201E163BC5714F8DBDC4FE01 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/sound.c */,
+				78CAA6D5AD384EDDB8D98573 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/vct.c */,
+				A03429DC84FA410F922B986A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib/xen.c */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3F9312C9057848E68515D4B1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2B229989088E428D9129A5E7 /* sndlib */;
-			targetProxy = 6FAA297A915C4B9195ED50DD /* PBXContainerItemProxy */;
-		};
-		532CA03E01504887AE6BF14F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7CAE451FF12E407D8D0AFA8B /* AudioFileIO */;
-			targetProxy = 261D23C0C3364454921B4172 /* PBXContainerItemProxy */;
-		};
-		539B2A0D470F49F7AF1E5033 /* PBXTargetDependency */ = {
+		0140CC8F84434AF1A1DD2779 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
-			targetProxy = 88633F690AC84055ABE1EF5B /* PBXContainerItemProxy */;
+			targetProxy = F679B0CD59274994B6519CAD /* PBXContainerItemProxy */;
 		};
-		572232DEFC494515AF7B7358 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2CDB1D792E1D4C08BBD5C302 /* CombFilter */;
-			targetProxy = E3718DF80D6A406BA110752D /* PBXContainerItemProxy */;
-		};
-		65B5F1239CDD454D92F4C2B9 /* PBXTargetDependency */ = {
+		14AD67FEDD9F4934B0A0EA57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2B229989088E428D9129A5E7 /* sndlib */;
-			targetProxy = 60F8DDA273CF4CC7BCEDC2E9 /* PBXContainerItemProxy */;
+			targetProxy = 2B02722744854B6C8D6F71F3 /* PBXContainerItemProxy */;
 		};
-		79DD1BD6BCB14BA7B59AB0FA /* PBXTargetDependency */ = {
+		1997FF5A4AAD436FB9904DBC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7CAE451FF12E407D8D0AFA8B /* AudioFileIO */;
-			targetProxy = B2ACC742003A49E5A4022AF8 /* PBXContainerItemProxy */;
+			targetProxy = FCA58167957E4AC08778025F /* PBXContainerItemProxy */;
 		};
-		C114037AAB4C49DEB48462B5 /* PBXTargetDependency */ = {
+		4C8CED316B644691AA1782DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
-			targetProxy = B689A053AC054852AC158A59 /* PBXContainerItemProxy */;
+			target = 2B229989088E428D9129A5E7 /* sndlib */;
+			targetProxy = 9A80A2A99E764D1CA1C6F448 /* PBXContainerItemProxy */;
 		};
-		D16A7AACB6944C92929DE670 /* PBXTargetDependency */ = {
+		561F9A403302430AB4E95778 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2CDB1D792E1D4C08BBD5C302 /* CombFilter */;
-			targetProxy = E5AED77BB41F4573B51A01DF /* PBXContainerItemProxy */;
+			target = 7CAE451FF12E407D8D0AFA8B /* AudioFileIO */;
+			targetProxy = 6FCD0E01067345CEBA752D58 /* PBXContainerItemProxy */;
 		};
-		D556B3A284AC43389DECCEB6 /* PBXTargetDependency */ = {
+		624F686EECE5434BAA408FF0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1EF3D7ED06A477EA8B9D403 /* MUSI6106Exec */;
-			targetProxy = 56328A356B324E46B190EFD5 /* PBXContainerItemProxy */;
+			targetProxy = A2BACFF041D542A7A57948A2 /* PBXContainerItemProxy */;
 		};
-		F08E40B6FCC2420680163639 /* PBXTargetDependency */ = {
+		626F5F7591EE478185EE046C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
+			targetProxy = B6D94B92109D44848B4C75CD /* PBXContainerItemProxy */;
+		};
+		924735ABC5184ECA8D5E82D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CDB1D792E1D4C08BBD5C302 /* CombFilter */;
+			targetProxy = 3378582090B74A61B22A264F /* PBXContainerItemProxy */;
+		};
+		A5BC6A27F23A4211842F7662 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CDB1D792E1D4C08BBD5C302 /* CombFilter */;
+			targetProxy = 8475F1DA0BA74D998281B963 /* PBXContainerItemProxy */;
+		};
+		C3F3837A8027424AA25A2E20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
+			targetProxy = BAD6138F4DCD465BA33BC73B /* PBXContainerItemProxy */;
+		};
+		D4E09F9D5B4D4664AF120F3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
+			targetProxy = 44750D9822C0450CB57A0932 /* PBXContainerItemProxy */;
+		};
+		DB0A0D7E772B4E3D9818A334 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
+			targetProxy = 2BFFC50F3B3F48889CBA9E9A /* PBXContainerItemProxy */;
+		};
+		E22A9499E8824736B3588595 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2B229989088E428D9129A5E7 /* sndlib */;
-			targetProxy = B3A12F3163194AE4A09E85B9 /* PBXContainerItemProxy */;
-		};
-		F141AF5521A142E485ECA1D6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
-			targetProxy = 1DAB603236FA4A66809A11C8 /* PBXContainerItemProxy */;
-		};
-		F5475C9D71B54F08B5B5EEFA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
-			targetProxy = 5309E9297D04421EA43BC828 /* PBXContainerItemProxy */;
-		};
-		F68E21EB11594CD19135D9C4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 442D26D30949463F8DF8E029 /* ZERO_CHECK */;
-			targetProxy = E153BD752E8840208E5E1E0A /* PBXContainerItemProxy */;
+			targetProxy = 9A819BDA9DF84E91BA365F28 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		04FD05C6DD6A482CABD6ADF3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/bin/Release";
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
-				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","/Users/noelalben/github/2022-MUSI6106/lib/Release/libAudioFileIO.a","/Users/noelalben/github/2022-MUSI6106/lib/Release/libCombFilter.a","/Users/noelalben/github/2022-MUSI6106/lib/Release/libsndlib.a","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MUSI6106Exec;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/MUSI6106Exec";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		0C4AE64F56DC4C5698FE62F0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/build";
-			};
-			name = Debug;
-		};
-		0DE2AAE90CAB48EF9C9FE129 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/bin/relwithdebinfo";
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
-				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo/libAudioFileIO.a","/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo/libCombFilter.a","/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo/libsndlib.a","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MUSI6106Exec;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/MUSI6106Exec";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		1412D2D54A9A49C5A87F3A8E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Debug";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = ("   -w ","$(inherited)");
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = sndlib;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO/sndlib";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		29D830BEC3204E70AB6E057B /* MinSizeRel */ = {
+		00CCD442D4E14CEB855E529D /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -909,124 +818,27 @@ fi
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = MinSizeRel;
+			name = RelWithDebInfo;
 		};
-		4294F24CE33B452A90DDA1C7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		4D2F66A2A9BA4F7E949F7736 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Debug";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "   ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = CombFilter;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/CombFilter";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		5CB50EF7FAD34163BA285830 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/MinSizeRel";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = ("    -DNDEBUG -w ","$(inherited)");
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = sndlib;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO/sndlib";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		65F35285CBC941D78847C089 /* RelWithDebInfo */ = {
+		0B2E870743F846AA812C4CC8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
 				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/build";
 			};
-			name = RelWithDebInfo;
+			name = Release;
 		};
-		6DF75019A5CE48768EE564F4 /* Debug */ = {
+		0EF5C090DF5B403E82FED1D7 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Debug";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "   ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = AudioFileIO;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/build";
 			};
-			name = Debug;
+			name = MinSizeRel;
 		};
-		76B0CB2820DB47DEBA9285AE /* RelWithDebInfo */ = {
+		0F33446D8F6648828EAD5F2F /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -1054,51 +866,112 @@ fi
 			};
 			name = RelWithDebInfo;
 		};
-		7BAB4E0AE9BB4A41BE0C529C /* RelWithDebInfo */ = {
+		18C541562BE444319A9E2E3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
 				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Debug";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
 				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "   ";
+				OTHER_LIBTOOLFLAGS = ("");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
+				PRODUCT_NAME = AudioFileIO;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		7BE60A35E051408A959B7F07 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
 			name = Debug;
 		};
-		8B3189DB634F416DA649ADBD /* MinSizeRel */ = {
+		3180D539C4FF49F3AD75E5E7 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		39F20AE561FF408F9FC08E27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/bin/Release";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","/Users/noelalben/github/2022-MUSI6106/lib/Release/libAudioFileIO.a","/Users/noelalben/github/2022-MUSI6106/lib/Release/libCombFilter.a","/Users/noelalben/github/2022-MUSI6106/lib/Release/libsndlib.a","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/MUSI6106Exec";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		488BC8726587458E9EDF06B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Release";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		643F5AB2768841CA93BFE25F /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -1125,231 +998,62 @@ fi
 			};
 			name = MinSizeRel;
 		};
-		A100F975888348838B230774 /* Debug */ = {
+		6466C6B2D2E2428B932EFAA7 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
 				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/bin/relwithdebinfo";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo/libAudioFileIO.a","/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo/libCombFilter.a","/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo/libsndlib.a","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/MUSI6106Exec";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		764CD21B68134D0E96AB3BEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Debug";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
 				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_CFLAGS = ("   -w ","$(inherited)");
+				OTHER_LIBTOOLFLAGS = ("");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
+				PRODUCT_NAME = sndlib;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO/sndlib";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
 			name = Debug;
 		};
-		A24041424A8F4C77B46F72C4 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = AudioFileIO;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		A2CF277290DA4E96B0CFF29A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Release";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = CombFilter;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/CombFilter";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		A405DF97838C4FCCA2B1E021 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/MinSizeRel";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = AudioFileIO;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		A639397F09824466889DA709 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = CombFilter;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/CombFilter";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		A7B6662596EB4B35B80C4504 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/MinSizeRel";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = CombFilter;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/CombFilter";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		C488D00ABDB741958B6D102F /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		C6B06A1E5C7E42A5B0F1DD3E /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/build";
-			};
-			name = MinSizeRel;
-		};
-		D8054618EA0C4F1D89EE92F9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		DA6C1144A8CB4ADDBE701CD1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/build";
-			};
-			name = Release;
-		};
-		E1B6BEA30D614465BACF2D1A /* Release */ = {
+		8277CA1491EA4F81B0A65750 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -1377,7 +1081,135 @@ fi
 			};
 			name = Release;
 		};
-		EAD94BB5D5EB4D1186C0DDDF /* Debug */ = {
+		962060F8773242C6B5354C76 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/MinSizeRel";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CombFilter;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/CombFilter";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		A3041AA934D441B8A4ED8CD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		AC47D583A792473C8172591F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		AEA7FA43EA604D72B89C8422 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Debug";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "   ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CombFilter;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/CombFilter";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		B1FC1F7B121F4F5C9B1704AC /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CombFilter;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/CombFilter";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		B2062F57E2B440E2B2909BA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -1404,7 +1236,72 @@ fi
 			};
 			name = Debug;
 		};
-		F035E3D5FD104525AE0DAE64 /* RelWithDebInfo */ = {
+		B3CF60C9E2E840DF8C515F12 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/build";
+			};
+			name = RelWithDebInfo;
+		};
+		B6F534A157F44EC6AF838D9B /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/MinSizeRel";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		C022A789C48147E0A5B99149 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		C0CA63B6D1CE43D298C6E21B /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -1426,7 +1323,88 @@ fi
 			};
 			name = RelWithDebInfo;
 		};
-		F6D65EEFA57E49AA9CB9FBDD /* Release */ = {
+		CB4D16C2F936485EA78FE876 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		CFC5474394E04346ADF45B41 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/MinSizeRel";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("    -DNDEBUG -w ","$(inherited)");
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO/sndlib";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		EA42691AB7784275ABF69303 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		EDD550B981D74995A04B083A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/build";
+			};
+			name = Debug;
+		};
+		F312EE697DFD496EBEC2C825 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -1439,97 +1417,119 @@ fi
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","/Users/noelalben/github/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/inc","/Users/noelalben/github/2022-MUSI6106/src/inc","$(inherited)");
 				INSTALL_PATH = "";
 				LIBRARY_STYLE = STATIC;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
 				OTHER_LIBTOOLFLAGS = ("");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = AudioFileIO;
+				PRODUCT_NAME = CombFilter;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/AudioFileIO";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/CombFilter";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
 			name = Release;
 		};
+		FE8DFD51F4474F35801FBEBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		27F58EC037014AD9A7574037 /* Build configuration list for PBXProject "MUSI6106" */ = {
+		14E56D10DB5642659AA328B6 /* Build configuration list for PBXNativeTarget "MUSI6106Exec" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0C4AE64F56DC4C5698FE62F0 /* Debug */,
-				DA6C1144A8CB4ADDBE701CD1 /* Release */,
-				C6B06A1E5C7E42A5B0F1DD3E /* MinSizeRel */,
-				65F35285CBC941D78847C089 /* RelWithDebInfo */,
+				B2062F57E2B440E2B2909BA8 /* Debug */,
+				39F20AE561FF408F9FC08E27 /* Release */,
+				643F5AB2768841CA93BFE25F /* MinSizeRel */,
+				6466C6B2D2E2428B932EFAA7 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		4789E558689E461883F6A1F4 /* Build configuration list for PBXNativeTarget "AudioFileIO" */ = {
+		2228855F485648768D7247B5 /* Build configuration list for PBXNativeTarget "sndlib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6DF75019A5CE48768EE564F4 /* Debug */,
-				F6D65EEFA57E49AA9CB9FBDD /* Release */,
-				A405DF97838C4FCCA2B1E021 /* MinSizeRel */,
-				A24041424A8F4C77B46F72C4 /* RelWithDebInfo */,
+				764CD21B68134D0E96AB3BEB /* Debug */,
+				8277CA1491EA4F81B0A65750 /* Release */,
+				CFC5474394E04346ADF45B41 /* MinSizeRel */,
+				0F33446D8F6648828EAD5F2F /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		65544CC728834AF8A726E664 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		3138D29DFB944E33A7796B13 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7BE60A35E051408A959B7F07 /* Debug */,
-				4294F24CE33B452A90DDA1C7 /* Release */,
-				29D830BEC3204E70AB6E057B /* MinSizeRel */,
-				7BAB4E0AE9BB4A41BE0C529C /* RelWithDebInfo */,
+				CB4D16C2F936485EA78FE876 /* Debug */,
+				AC47D583A792473C8172591F /* Release */,
+				EA42691AB7784275ABF69303 /* MinSizeRel */,
+				C0CA63B6D1CE43D298C6E21B /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		788E8EB9211A4885B87AF45C /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		666BC5A52CB74998AF934969 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A100F975888348838B230774 /* Debug */,
-				D8054618EA0C4F1D89EE92F9 /* Release */,
-				C488D00ABDB741958B6D102F /* MinSizeRel */,
-				F035E3D5FD104525AE0DAE64 /* RelWithDebInfo */,
+				FE8DFD51F4474F35801FBEBC /* Debug */,
+				A3041AA934D441B8A4ED8CD3 /* Release */,
+				3180D539C4FF49F3AD75E5E7 /* MinSizeRel */,
+				00CCD442D4E14CEB855E529D /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		BE6875E4495744CDB0044C9B /* Build configuration list for PBXNativeTarget "MUSI6106Exec" */ = {
+		8A30AA2F92B84FCEB3E5C5AE /* Build configuration list for PBXProject "MUSI6106" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EAD94BB5D5EB4D1186C0DDDF /* Debug */,
-				04FD05C6DD6A482CABD6ADF3 /* Release */,
-				8B3189DB634F416DA649ADBD /* MinSizeRel */,
-				0DE2AAE90CAB48EF9C9FE129 /* RelWithDebInfo */,
+				EDD550B981D74995A04B083A /* Debug */,
+				0B2E870743F846AA812C4CC8 /* Release */,
+				0EF5C090DF5B403E82FED1D7 /* MinSizeRel */,
+				B3CF60C9E2E840DF8C515F12 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		C54CA0B3B5DB4950BEFA4C2B /* Build configuration list for PBXNativeTarget "CombFilter" */ = {
+		D9C94EE2D3AC4FF2887CC113 /* Build configuration list for PBXNativeTarget "AudioFileIO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4D2F66A2A9BA4F7E949F7736 /* Debug */,
-				A2CF277290DA4E96B0CFF29A /* Release */,
-				A7B6662596EB4B35B80C4504 /* MinSizeRel */,
-				A639397F09824466889DA709 /* RelWithDebInfo */,
+				18C541562BE444319A9E2E3B /* Debug */,
+				488BC8726587458E9EDF06B9 /* Release */,
+				B6F534A157F44EC6AF838D9B /* MinSizeRel */,
+				C022A789C48147E0A5B99149 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		FFDA1933DBFD4A399B54D2E2 /* Build configuration list for PBXNativeTarget "sndlib" */ = {
+		F72DEE08051C4027B6EB825B /* Build configuration list for PBXNativeTarget "CombFilter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1412D2D54A9A49C5A87F3A8E /* Debug */,
-				E1B6BEA30D614465BACF2D1A /* Release */,
-				5CB50EF7FAD34163BA285830 /* MinSizeRel */,
-				76B0CB2820DB47DEBA9285AE /* RelWithDebInfo */,
+				AEA7FA43EA604D72B89C8422 /* Debug */,
+				F312EE697DFD496EBEC2C825 /* Release */,
+				962060F8773242C6B5354C76 /* MinSizeRel */,
+				B1FC1F7B121F4F5C9B1704AC /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

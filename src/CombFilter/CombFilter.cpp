@@ -17,33 +17,71 @@
 #include "CombFilterIf.h"
 #include "CombFilter.h"
 
-CCombFilterBase::CCombFilterBase(int iMaxDelayLengthInFrames, int iNumChannels)
+CCombFilterBase::CCombFilterBase(int delayLengthInS, int iNumChannels, float gain): m_Buffptr(0)
 {
+    m_Buffptr = new CRingBuffer<float>*[iNumChannels];
+    for (int i; i<iNumChannels;i++)
+    {
+        m_Buffptr[i] = new CRingBuffer<float>(delayLengthInS);
+        m_Buffptr[i]->reset();
+        
+    }
+    
+   
+    
     
 }
+
+
 
 CCombFilterBase::~CCombFilterBase()
 {
+    for (int i; i<m_iNumChannels;i++)
+    {
+        m_Buffptr[i]->~CRingBuffer();
+    }
+}
+
+Error_t CCombFilterBase::setGain(float gain)
+{
+    m_gain = gain;
+}
+float CCombFilterBase::getGain()
+{
+    return m_gain;
+}
+Error_t CCombFilterBase::setDelay(int DelayLengthinSamples)
+{
+    m_DelayLengthIns=DelayLengthinSamples;
+    
+}
+int CCombFilterBase::getDelay()
+{
+    return m_DelayLengthIns;
     
 }
 
-Error_t CCombFilterBase::resetComb(){
-    
-}
-Error_t CCombFilterBase::setParam(<#CCombFilterIf::FilterParam_t eParam#>, <#float fParamValue#>)
+Error_t CCombFilterBase::resetComb()
 {
     
+    return Error_t::kNoError;
 }
-Error_t CCombFilterBase::getParam(<#CCombFilterIf::FilterParam_t eParam#>)
-{
-    
-}
+//Error_t CCombFilterBase::setParam(CCombFilterIf::FilterParam_t eParam, float fParamValue)
+//{
+//    return Error_t::kNoError;
+//
+//}
+//Error_t CCombFilterBase::getParam(CCombFilterIf::FilterParam_t eParam)
+//{
+//    return Error_t::kNoError;
+//}
 
-Error_t CCombFilterFir::process(<#float **ppfInputBuffer#>, <#float **ppfOutputBuffer#>, <#int iNumberOfFrames#>)
+Error_t CCombFilterFir::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {
-    
+    return Error_t::kNoError;
 }
-Error_t CCombFilterIir::process(<#float **ppfInputBuffer#>, <#float **ppfOutputBuffer#>, <#int iNumberOfFrames#>)
+Error_t CCombFilterIir::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {
+    return Error_t::kNoError;
     
 }

@@ -10,30 +10,33 @@
 #include "ErrorDef.h"
 #include "RingBuffer.h"
 
+
 // Base class definition for CombFilter FIR AND IIR (Brief definitions keep the implementation hidden)
 class CCombFilterBase
 {
 public:
-    CCombFilterBase(int iMaxDelayLengthInFrames, int iNumChannels);
+    CCombFilterBase(int DelayLengthIns, int iNumChannels, float gain=0.2);
     //You don't need to instantiate an object to call this function, make destructor with virtual
     // Make all the implementations hidden, make a seperate cpp file in CombFilter Source to run the functions
     virtual ~CCombFilterBase();
-    // use :: to use the enums from CCombFilterIf
-    Error_t setParam (CCombFilterIf::FilterParam_t eParam, float fParamValue);
-    float   getParam (CCombFilterIf::FilterParam_t eParam) const;
+    
     Error_t resetComb();
     Error_t setGain(float gain);
     float getGain();
     Error_t setDelay(int DelayLengthinSamples);
     int getDelay();
+    virtual Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
     
 
     // process needs to be called withuot an object, make virtual
-    virtual Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
+
 //Add members only accessed in the class definition or member classes ex:FIRFILTER,IIRFILTER
 protected:
-    CRingBuffer<float>  **m_ppCRingBuffer;
+    CRingBuffer<float>  **m_Buffptr;
     int     m_iNumChannels;
+    float m_gain;
+    int m_DelayLengthIns;
+    
 };
 
 //Making a child class from CCombFilterBase for FIR
@@ -41,7 +44,7 @@ class CCombFilterFir : public CCombFilterBase
 {
     //    //make constructor and destructor
 public:
-    CCombFilterFir (int iMaxDelayInFrames, int iNumChannels):CCombFilterBase(iMaxDelayInFrames, iNumChannels){};
+    CCombFilterFir (int DelayLengthIns, int iNumChannels,float gain=0.2):CCombFilterBase(DelayLengthIns, iNumChannels,gain){};
     virtual ~CCombFilterFir (){};
 
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) override;
@@ -53,7 +56,7 @@ public:
 class CCombFilterIir : public CCombFilterBase
 {
 public:
-    CCombFilterIir (int iMaxDelayInFrames, int iNumChannels);
+    CCombFilterIir (int DelayLengthIns, int iNumChannels,float gain=0.2):CCombFilterBase(DelayLengthIns, iNumChannels,gain){};
     virtual ~CCombFilterIir (){};
 
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) override;
