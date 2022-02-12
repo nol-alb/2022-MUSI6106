@@ -19,10 +19,13 @@
 
 CCombFilterBase::CCombFilterBase(int delayLengthInS, int iNumChannels, float gain): m_RingBuffptr(0)
 {
+    m_DelayLengthIns=delayLengthInS;
+    m_iNumChannels = iNumChannels;
+    gain=gain;
     m_RingBuffptr = new CRingBuffer<float>*[iNumChannels];
-    for (int i; i<iNumChannels;i++)
+    for (int i=0; i<iNumChannels;i++)
     {
-        m_RingBuffptr[i] = new CRingBuffer<float>(delayLengthInS);
+        m_RingBuffptr[i] = new CRingBuffer<float>(m_DelayLengthIns);
         m_RingBuffptr[i]->reset();
         
     }
@@ -92,9 +95,9 @@ Error_t CCombFilterFir::process(float **ppfInputBuffer, float **ppfOutputBuffer,
      buff=[0,0]
      y = [1,2,4,6,8]
      */
-    for  (int j; j<m_iNumChannels;j++)
+    for  (int j=0; j<m_iNumChannels;j++)
     {
-        for (int i; i<iNumberOfFrames;i++)
+        for (int i=0; i<iNumberOfFrames;i++)
         {
             ppfOutputBuffer[j][i]= ppfInputBuffer[j][i]+m_gain*m_RingBuffptr[j]->getPostInc();
             m_RingBuffptr[j]->putPostInc(ppfInputBuffer[j][i]);

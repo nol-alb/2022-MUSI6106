@@ -66,6 +66,7 @@ Error_t CCombFilterIf::create (CCombFilterIf*& pCCombFilter)
 
 Error_t CCombFilterIf::destroy (CCombFilterIf*& pCCombFilter)
 {
+    //take everything back to the initial stage and delete
     pCCombFilter->reset();
     delete pCCombFilter;
     pCCombFilter=nullptr;
@@ -92,7 +93,6 @@ Error_t CCombFilterIf::init (CombFilterType_t eFilterType, float fMaxDelayLength
 
 Error_t CCombFilterIf::reset ()
 {
-    delete m_pCCombFilter;
     m_pCCombFilter      = 0;
 
     m_fSampleRate       = 0;
