@@ -47,6 +47,7 @@ CCombFilterBase::~CCombFilterBase()
 
 Error_t CCombFilterBase::setGain(float gain)
 {
+
     m_gain = gain;
 }
 float CCombFilterBase::getGain()
@@ -55,6 +56,10 @@ float CCombFilterBase::getGain()
 }
 Error_t CCombFilterBase::setDelay(int DelayLengthinSamples)
 {
+    if(DelayLengthinSamples<=0)
+    {
+        return Error_t::kFunctionInvalidArgsError;
+    }
     m_DelayLengthIns=DelayLengthinSamples;
     
 }

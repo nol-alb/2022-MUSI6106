@@ -8,6 +8,7 @@
 #include "AudioFileIf.h"
 #include "CombFilterIf.h"
 #include "ErrorDef.h"
+#include <string>
 
 using std::cout;
 using std::endl;
@@ -127,7 +128,7 @@ int Basic_RunTest()
     ppfInputAudioData = nullptr;
     ppfOutputAudioData = nullptr;
 
-    std::cout<<"Everything Basically Works";
+    std::cout<<"Everything Basically Works"<<endl;
 
 }
 
@@ -300,16 +301,186 @@ int test3()
     std::cout << "---------------------"<< std::endl;
     std::cout << "--------TEST 3-------"<< std::endl;
     std::cout << "---------------------"<< std::endl;
+    std::string sInputFilePath = "/Users/noelalben/Desktop/AUDIOS/Sine_Tone100.wav";
+    std::string sOutputFilePath;
+    float delayTimeInSec = 0.01; //delay by one period
+    float gain = 0.5;
+
+    //Multiple BlockSizes
+    long long int blockSizes[] = {1024, 512, 256};
+    float **ppfInputAudioData = 0;
+    float **ppfOutputAudioData = 0;
+
+    CAudioFileIf *phInputAudioFile = 0;
+    CAudioFileIf *phOutputAudioFile = 0;
+
+    CAudioFileIf::FileSpec_t stFileSpec;
+
+    CCombFilterIf *pCombFilter = 0;
+    CCombFilterIf::CombFilterType_t filterType = CCombFilterIf::kCombFIR;
 
 
+    // Open the input and create output text file
+    CAudioFileIf::create(phInputAudioFile);
+    phInputAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
+    if (!phInputAudioFile->isOpen()) {
+        std::cout << "Input wav file open error!";
+        return -1;
+    }
+    phInputAudioFile->getFileSpec(stFileSpec);
 
 
+    // https://stackoverflow.com/questions/41687921/looping-through-array-using-pointers
+
+    for (long long int blockSize : blockSizes) {
+
+        std::cout << "Test with blockSize = " << blockSize << std::endl;
+        std::string Block_str = std::to_string(blockSize);
+        sOutputFilePath = "/Users/noelalben/Desktop/AUDIOS/Output_Sine_Tone100" + Block_str+ ".wav";
+        CAudioFileIf::create(phOutputAudioFile);
+        phOutputAudioFile->openFile(sOutputFilePath, CAudioFileIf::kFileWrite, &stFileSpec);
+        if (!phOutputAudioFile->isOpen()) {
+            std::cout << "Output wav file open error!";
+            return -1;
+        }
+        phInputAudioFile->setPosition((long long) 0);
+
+        // Allocate memory for audio i/o buffers
+        ppfInputAudioData = new float *[stFileSpec.iNumChannels];
+        ppfOutputAudioData = new float *[stFileSpec.iNumChannels];
+        for (int i = 0; i < stFileSpec.iNumChannels; i++) {
+            ppfInputAudioData[i] = new float[blockSize];
+            ppfOutputAudioData[i] = new float[blockSize];
+        }
+
+        // Create Comb Filter
+        CCombFilterIf::create(pCombFilter);
+        pCombFilter->init(filterType, delayTimeInSec, stFileSpec.fSampleRateInHz, stFileSpec.iNumChannels);
+        pCombFilter->setParam(CCombFilterIf::kParamGain, gain);
+
+        // Read, filter and write audio
+
+        while (!phInputAudioFile->isEof()) {
+
+            phInputAudioFile->readData(ppfInputAudioData, blockSize);
+            pCombFilter->process(ppfInputAudioData, ppfOutputAudioData, (int)blockSize);
+            phOutputAudioFile->writeData(ppfOutputAudioData, blockSize);
+        }
+        std::cout << "Reading and writing done in: \t" << std::endl;
+        std::cout << "Output: " << sOutputFilePath << std::endl;
+
+        // Clean up
+        CCombFilterIf::destroy(pCombFilter);
+
+        for (int i = 0; i < stFileSpec.iNumChannels; i++) {
+            delete[] ppfInputAudioData[i];
+            delete[] ppfOutputAudioData[i];
+        }
+        delete[] ppfInputAudioData;
+        delete[] ppfOutputAudioData;
+        ppfInputAudioData = nullptr;
+        ppfOutputAudioData = nullptr;
+
+        phOutputAudioFile->reset();
+    }
+
+    phInputAudioFile->reset();
+    CAudioFileIf::destroy(phInputAudioFile);
+    CAudioFileIf::destroy(phOutputAudioFile);
+    std::cout << "---------------" << std::endl;
+    std::cout << "Test 3 completed" << std::endl;
+    std::cout << "---------------" << std::endl;
     return 0;
-
 }
+
+
+
+
+
 int test4()
 {
+    static const int kBlockSize = 1024;
+
+    std::cout << "-----------------------------"<< std::endl;
+    std::cout << "--------TEST 4 (Empty)-------"<< std::endl;
+    std::cout << "-----------------------------"<< std::endl;
+    std::string sInputFilePath = "/Users/noelalben/Desktop/AUDIOS/Empty.wav";
+    float delayTimeInSec = 0.01;
+    float gain = 0.5;
+    CAudioFileIf *phOutputAudioFile = nullptr;
+    CAudioFileIf *phInputAudioFile=nullptr;
+    float **ppfInputAudioData = nullptr;
+    float **ppfOutputAudioData = nullptr;
+
+    std::string sOutputFilePath = "/Users/noelalben/Desktop/AUDIOS/Empty_filtered.wav";
+    CAudioFileIf::FileSpec_t stFileSpec;
+    CCombFilterIf *p_Combfilter;
+    CCombFilterIf::CombFilterType_t filterType = CCombFilterIf::kCombFIR;
+
+
+    // Creating the Audio Files buffer in and out
+
+    CAudioFileIf::create(phInputAudioFile);
+    phInputAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
+    if (!phInputAudioFile->isOpen()) {
+        std::cout << "Input wav file open error!";
+        return -1;
+    }
+    phInputAudioFile->getFileSpec(stFileSpec);
+
+    CAudioFileIf::create(phOutputAudioFile);
+    phOutputAudioFile->openFile(sOutputFilePath, CAudioFileIf::kFileWrite, &stFileSpec);
+    if (!phOutputAudioFile->isOpen()) {
+        std::cout << "Output wav file open error!";
+        return -1;
+    }
+
+
+    ppfInputAudioData = new float *[stFileSpec.iNumChannels];
+    ppfOutputAudioData = new float *[stFileSpec.iNumChannels];
+    for (int i = 0; i < stFileSpec.iNumChannels; i++) {
+        ppfInputAudioData[i] = new float[kBlockSize];
+        ppfOutputAudioData[i] = new float[kBlockSize];
+    }
+
+    //Create the CombFilters
+    CCombFilterIf::create(p_Combfilter);
+    p_Combfilter->init(filterType, delayTimeInSec, stFileSpec.fSampleRateInHz, stFileSpec.iNumChannels);
+    p_Combfilter->setParam(CCombFilterIf::kParamGain, gain);
+    p_Combfilter->setParam(CCombFilterIf::kParamDelay, delayTimeInSec);
+
+    //Read Audio Write AUDIO that is filtered
+    long long int BlockSize = kBlockSize;
+    while(!phInputAudioFile->isEof())
+    {
+        phInputAudioFile->readData(ppfInputAudioData, BlockSize);
+        p_Combfilter->process(ppfInputAudioData, ppfOutputAudioData, BlockSize);
+        phOutputAudioFile->writeData(ppfOutputAudioData, BlockSize);
+    }
+
+    std::cout<<"Reading and Writing done, with a filter";
+    std::cout << "Output: " << sOutputFilePath << std::endl;
+    // Clean-up
+    phInputAudioFile->closeFile();
+    phOutputAudioFile->closeFile();
+    CAudioFileIf::destroy(phInputAudioFile);
+    CAudioFileIf::destroy(phOutputAudioFile);
+    for (int i = 0; i < stFileSpec.iNumChannels; i++) {
+        delete[] ppfInputAudioData[i];
+        delete[] ppfOutputAudioData[i];
+    }
+    delete[] ppfInputAudioData;
+    delete[] ppfOutputAudioData;
+    ppfInputAudioData = nullptr;
+    ppfOutputAudioData = nullptr;
+    std::cout << "---------------" << std::endl;
+    std::cout << "Test 4 completed" << std::endl;
+    std::cout << "---------------" << std::endl;
+
+
+
     return 0;
+
 
 }
 int test5()
