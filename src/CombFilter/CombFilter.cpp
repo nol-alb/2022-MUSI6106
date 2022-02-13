@@ -47,7 +47,11 @@ CCombFilterBase::~CCombFilterBase()
 
 Error_t CCombFilterBase::setGain(float gain)
 {
-
+    if (gain > 1)
+        return Error_t::kFunctionInvalidArgsError;
+    else if (gain < -1)
+        return Error_t::kFunctionInvalidArgsError;
+    else
     m_gain = gain;
 }
 float CCombFilterBase::getGain()

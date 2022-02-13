@@ -19,6 +19,7 @@ public:
     //You don't need to instantiate an object to call this function, make destructor with virtual
     // Make all the implementations hidden, make a seperate cpp file in CombFilter Source to run the functions
     virtual ~CCombFilterBase();
+    void legality();
     
     Error_t resetComb();
     Error_t setGain(float gain);

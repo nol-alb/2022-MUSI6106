@@ -3,12 +3,17 @@
 
 // project headers
 #include "MUSI6106Config.h"
+#include <iostream>
 
 #include "ErrorDef.h"
 #include "Util.h"
 
 #include "CombFilterIf.h"
 #include "CombFilter.h"
+using std::cout;
+using std::endl;
+
+
 
 // Check for m)bIsInitialized state in each function?
 
@@ -78,6 +83,11 @@ Error_t CCombFilterIf::init (CombFilterType_t eFilterType, float fMaxDelayLength
 {
     m_fSampleRate=fSampleRateInHz;
     int delaylength = (int)(fMaxDelayLengthInS*fSampleRateInHz);
+    if(delaylength<=0)
+    {
+        std::cout<<"Illegal Values Entered, Please check"<<std::endl;
+        return Error_t::kFunctionInvalidArgsError;
+    }
     if (eFilterType == kCombFIR)
     {
         m_pCCombFilter  = (new CCombFilterFir (delaylength, iNumChannels));
@@ -131,6 +141,7 @@ Error_t CCombFilterIf::setParam (FilterParam_t eParam, float fParamValue)
 
 float CCombFilterIf::getParam (FilterParam_t eParam) const
 {
+
 
     switch(eParam){
         case kParamGain:
