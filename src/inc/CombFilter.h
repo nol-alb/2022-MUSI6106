@@ -26,13 +26,14 @@ public:
     Error_t setDelay(int DelayLengthinSamples);
     int getDelay();
     virtual Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)=0;
-    CRingBuffer<float>  **m_RingBuffptr;
+
 
 
     // process needs to be called withuot an object, make virtual
 
 //Add members only accessed in the class definition or member classes ex:FIRFILTER,IIRFILTER
 protected:
+    CRingBuffer<float>  **m_RingBuffptr;
     int     m_iNumChannels;
     float m_gain;
     int m_DelayLengthIns;
@@ -50,8 +51,7 @@ public:
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) override;
 };
 
-/*! \brief IIR comb filter implementation
-*/
+
 ////Similar child classs for IIR filter
 class CCombFilterIir : public CCombFilterBase
 {

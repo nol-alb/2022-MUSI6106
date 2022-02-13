@@ -1,17 +1,24 @@
 
 #include <iostream>
+#include <cstdlib>
 #include <ctime>
 
 #include "MUSI6106Config.h"
 
 #include "AudioFileIf.h"
 #include "CombFilterIf.h"
+#include "ErrorDef.h"
 
 using std::cout;
 using std::endl;
 
 // local function declarations
 void    showClInfo ();
+int test1();
+int test2();
+int test3();
+int test4();
+int test5();
 
 /////////////////////////////////////////////////////////////////////////////////
 // main function
@@ -22,12 +29,6 @@ void    showClInfo ();
 //  Created by Noel  Alben on 2/12/22.
 //
 
-#include <stdio.h>
-#include<iostream>
-#include "MUSI6106Config.h"
-#include "AudioFileIf.h"
-#include "CombFilterIf.h"
-#include "ErrorDef.h"
 
 /*
  [30] Add tests to your main function
@@ -42,15 +43,21 @@ using std::cout;
 using std::endl;
 int Basic_RunTest()
 {
+    std::cout << "---------------------"<< std::endl;
+    std::cout << "-----Sanity TEST-----"<< std::endl;
+    std::cout << "---------------------"<< std::endl;
+
+
+
 
     static const int kBlockSize = 1024;
 
     clock_t time = 0;
 
-    CAudioFileIf *phOutputAudioFile = 0;
-    CAudioFileIf *phInputAudioFile=0;
-    float **ppfInputAudioData = 0;
-    float **ppfOutputAudioData = 0;
+    CAudioFileIf *phOutputAudioFile = nullptr;
+    CAudioFileIf *phInputAudioFile=nullptr;
+    float **ppfInputAudioData = nullptr;
+    float **ppfOutputAudioData = nullptr;
 
     std::string sInputFilePath = "/Users/noelalben/Desktop/AUDIOS/6.wav";
     std::string sOutputFilePath = "/Users/noelalben/Desktop/AUDIOS/6_Filters.wav";
@@ -131,110 +138,182 @@ int main(int argc, char* argv[])
                 sOutputFilePath;
 
     static const int kBlockSize = 1024;
+    float delayTimeInSec;
+    float gain;
 
     clock_t time = 0;
 
-    float **ppfAudioData = 0;
-
-    CAudioFileIf *phAudioFile = 0;
-    std::fstream hOutputFile;
+    float **ppfInputAudioData = nullptr;
+    float **ppfOutputAudioData=nullptr;
+    CAudioFileIf *phInputAudioFile = nullptr;
+    CAudioFileIf *phOutputAudioFile = nullptr;
     CAudioFileIf::FileSpec_t stFileSpec;
 
+    CCombFilterIf *pCombFilter = nullptr;
+    CCombFilterIf::CombFilterType_t filterType;
     showClInfo();
 
     //////////////////////////////////////////////////////////////////////////////
-    Basic_RunTest();
+    //Basic_RunTest();
     // parse command line arguments
+    if (argc==1) {
+        std::cout << "Testing Testing" << std::endl;
+        Basic_RunTest();
+        test1();
+        test2();
+        test3();
+        test4();
+        test5();
+
+    }
+    if (argc > 1) {
+        sInputFilePath = argv[1];
+    }
+
     if (argc < 2)
     {
         cout << "Missing audio input path!";
         return -1;
     }
-    else
-    {
-        sInputFilePath = argv[1];
-        sOutputFilePath = sInputFilePath + ".txt";
+    else {
+        std::cout << "Missing: Input audio path and the Filter type ('FIR' or 'IIR')" << std::endl;
+        return -1;
     }
+    if (argc > 2) {
+        std::string arg = argv[2];
+        if (arg == "FIR")
+            filterType = CCombFilterIf::kCombFIR;
+        else if (arg == "IIR")
+            filterType = CCombFilterIf::kCombIIR;
+        else {
+            std::cout << "Missing:Filter type ('FIR' or 'IIR')" << std::endl;
+            return -1;
+        }
+        sOutputFilePath = sInputFilePath.substr(0, sInputFilePath.size() - 4).append("_FilteredIn_" + arg + "_cpp.wav");
+    }
+    if (argc > 3) {
+        delayTimeInSec = atof(argv[3]);
+        if (delayTimeInSec < 0)
+            std::cout << "Delay time cannot be negative. Will be set to 0." << std::endl;
+    }
+    else
+        delayTimeInSec = 0.01;
+    if (argc > 4) {
+        gain = atof(argv[4]);
+        if (gain > 1)
+            std::cout << "Gain cannot be > 1. Will be set to 1." << std::endl;
+        else if (gain < -1)
+            std::cout << "Gain cannot be < -1. Will be set to -1." << std::endl;
+    }
+    else
+        gain = 0.5;
+
+    std::cout << "Filter Type: " << argv[2] << std::endl;
+    std::cout << "Delay (sec): " << delayTimeInSec << std::endl;
+    std::cout << "Gain: " << gain << std::endl;
 
     //////////////////////////////////////////////////////////////////////////////
     // open the input wave file
-    CAudioFileIf::create(phAudioFile);
-    phAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
-    if (!phAudioFile->isOpen())
+    CAudioFileIf::create(phInputAudioFile);
+    phInputAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
+    if (!phInputAudioFile->isOpen())
     {
         cout << "Wave file open error!";
-        CAudioFileIf::destroy(phAudioFile);
+        CAudioFileIf::destroy(phInputAudioFile);
         return -1;
     }
-    phAudioFile->getFileSpec(stFileSpec);
+    phInputAudioFile->getFileSpec(stFileSpec);
 
-    //////////////////////////////////////////////////////////////////////////////
-    // open the output text file
-    hOutputFile.open(sOutputFilePath.c_str(), std::ios::out);
-    if (!hOutputFile.is_open())
+    // open the Output wave file
+    CAudioFileIf::create(phOutputAudioFile);
+    phOutputAudioFile->openFile(sOutputFilePath, CAudioFileIf::kFileWrite);
+    if (!phOutputAudioFile->isOpen())
     {
-        cout << "Text file open error!";
-        CAudioFileIf::destroy(phAudioFile);
+        cout << "Output Wave file open error!";
+        CAudioFileIf::destroy(phOutputAudioFile);
         return -1;
     }
+
 
     //////////////////////////////////////////////////////////////////////////////
     // allocate memory
-    ppfAudioData = new float*[stFileSpec.iNumChannels];
-    for (int i = 0; i < stFileSpec.iNumChannels; i++)
-        ppfAudioData[i] = new float[kBlockSize];
-
-    if (ppfAudioData == 0)
-    {
-        CAudioFileIf::destroy(phAudioFile);
-        hOutputFile.close();
-        return -1;
-    }
-    if (ppfAudioData[0] == 0)
-    {
-        CAudioFileIf::destroy(phAudioFile);
-        hOutputFile.close();
-        return -1;
-    }
-
-    time = clock();
-
-    //////////////////////////////////////////////////////////////////////////////
-    // get audio data and write it to the output text file (one column per channel)
-    while (!phAudioFile->isEof())
-    {
-        // set block length variable
-        long long iNumFrames = kBlockSize;
-
-        // read data (iNumOfFrames might be updated!)
-        phAudioFile->readData(ppfAudioData, iNumFrames);
-
-        cout << "\r" << "reading and writing";
-
-        // write
-        for (int i = 0; i < iNumFrames; i++)
-        {
-            for (int c = 0; c < stFileSpec.iNumChannels; c++)
-            {
-                hOutputFile << ppfAudioData[c][i] << "\t";
-            }
-            hOutputFile << endl;
-        }
-    }
-
-    cout << "\nreading/writing done in: \t" << (clock() - time) * 1.F / CLOCKS_PER_SEC << " seconds." << endl;
-
-    //////////////////////////////////////////////////////////////////////////////
-    // clean-up (close files and free memory)
-    CAudioFileIf::destroy(phAudioFile);
-    hOutputFile.close();
+    ppfInputAudioData = new float*[stFileSpec.iNumChannels];
+    ppfOutputAudioData = new float*[stFileSpec.iNumChannels];
 
     for (int i = 0; i < stFileSpec.iNumChannels; i++)
-        delete[] ppfAudioData[i];
-    delete[] ppfAudioData;
-    ppfAudioData = 0;
+    {
+        ppfInputAudioData[i] = new float[kBlockSize];
+        ppfOutputAudioData[i]= new float[kBlockSize];
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    // CREATE THE COMBFILTERS
+    CCombFilterIf::create(pCombFilter);
+    pCombFilter->init(filterType,delayTimeInSec,stFileSpec.fSampleRateInHz,stFileSpec.iNumChannels);
+    pCombFilter->setParam(CCombFilterIf::FilterParam_t::kParamGain, gain );
+    pCombFilter->setParam(CCombFilterIf::FilterParam_t::kParamDelay, delayTimeInSec );
+
+    long long BlockSize = kBlockSize;
+    while (!phInputAudioFile->isEof()) {
+        phInputAudioFile->readData(ppfInputAudioData, BlockSize);
+        pCombFilter->process(ppfInputAudioData, ppfOutputAudioData, (int)BlockSize);
+        phOutputAudioFile->writeData(ppfOutputAudioData, BlockSize);
+    }
+    cout << "Reading and writing done in: \t" << endl;
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //Clean-Up
+    CCombFilterIf::destroy(pCombFilter);
+    phInputAudioFile->closeFile();
+    phOutputAudioFile->closeFile();
+    CAudioFileIf::destroy(phInputAudioFile);
+    CAudioFileIf::destroy(phOutputAudioFile);
+    for (int i = 0; i < stFileSpec.iNumChannels; i++) {
+        delete[] ppfInputAudioData[i];
+        delete[] ppfOutputAudioData[i];
+    }
+    delete[] ppfInputAudioData;
+    delete[] ppfOutputAudioData;
+    ppfInputAudioData = nullptr;
+    ppfOutputAudioData = nullptr;
+
+
 
     // all done
+    return 0;
+
+}
+
+int test1()
+{
+    return 0;
+
+}
+int test2()
+{
+return 0;
+}
+int test3()
+{
+    // Use a pure tone to implement this test sine 1000 hz
+
+    std::cout << "---------------------"<< std::endl;
+    std::cout << "--------TEST 3-------"<< std::endl;
+    std::cout << "---------------------"<< std::endl;
+
+
+
+
+    return 0;
+
+}
+int test4()
+{
+    return 0;
+
+}
+int test5()
+{
     return 0;
 
 }
@@ -245,7 +324,5 @@ void     showClInfo()
     cout << "MUSI6106 Assignment Executable" << endl;
     cout << "(c) 2014-2022 by Alexander Lerch" << endl;
     cout  << endl;
-
-    return;
 }
 

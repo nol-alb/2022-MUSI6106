@@ -39,7 +39,7 @@ CCombFilterBase::CCombFilterBase(int delayLengthInS, int iNumChannels, float gai
 
 CCombFilterBase::~CCombFilterBase()
 {
-    for (int i; i<m_iNumChannels;i++)
+    for (int i=0; i<m_iNumChannels;i++)
     {
         m_RingBuffptr[i]->~CRingBuffer();
     }
@@ -104,17 +104,15 @@ Error_t CCombFilterFir::process(float **ppfInputBuffer, float **ppfOutputBuffer,
             
         }
     }
-    
-    //Set the number of samples I want the delay for 
     return Error_t::kNoError;
 }
 Error_t CCombFilterIir::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {
-    for  (int j; j<m_iNumChannels;j++)
+    for  (int j=0; j<m_iNumChannels;j++)
     {
-        for (int i; i<iNumberOfFrames;i++)
+        for (int i=0; i<iNumberOfFrames;i++)
         {
-            ppfOutputBuffer[j][i]= ppfInputBuffer[j][i]+m_gain*m_RingBuffptr[j]->getPostInc();
+            ppfOutputBuffer[j][i] = ppfInputBuffer[j][i] + m_gain * m_RingBuffptr[j]->getPostInc();
             m_RingBuffptr[j]->putPostInc(ppfOutputBuffer[j][i]);
             
         }
