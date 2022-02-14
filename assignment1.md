@@ -1,6 +1,6 @@
 # Assignment 1 Report
 
-Here are the plots for the assignment, I was not able to get a minimum difference as there is a scaling issue between the cpp outputs and the matlab outputs.
+Here are the plots for the assignment, I was not able to get a minimum difference as there is a scaling issue between the cpp outputs and the matlab outputs.There seems to be a large error between the matlab output and the cpp output, however perceptually they sounded the same.
 
 ## Real World Audio One (BRITNEY SPEARS - HIT ME BABY ONE MORE TIME)
 
