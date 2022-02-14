@@ -43,6 +43,13 @@ CCombFilterBase::~CCombFilterBase()
     {
         m_RingBuffptr[i]->~CRingBuffer();
     }
+    {
+        for (int i = 0; i < m_iNumChannels; ++i) {
+            delete m_RingBuffptr[i];
+        }
+        delete [] m_RingBuffptr;
+        m_RingBuffptr = 0;
+    }
 }
 
 Error_t CCombFilterBase::setGain(float gain)
