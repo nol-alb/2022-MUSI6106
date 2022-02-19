@@ -66,6 +66,60 @@ public:
     }
 
     /*! return the value at the current read index
+    \param fOffset: read at offset from read index
+    \return float the value from the read index
+     //const means the input parameters to the method will not be changed
+    */
+    T get(float fOffset = 0) const
+    {
+        //If offset is zero it is a normal get
+        if (fOffset==0)
+        {
+            return m_buffptr[m_iReadIdx]
+        }
+        else
+        {
+            //interp = (1-frac)*m_ptBuff[i(low)] + frac*m_ptBuff[i(high)];
+            // Use the mod function, seperate the int and fractional part
+            // Use the int part to move ahead in the m_iReadIdx This will handle negative values as well
+                //Check for Wraparound in this stage
+            //Then increment a new iReadIdx which is incremented
+            //Use interpolation formula using the fractional part
+            float frac, &frac_int;
+
+
+            return
+
+
+
+        }
+
+
+
+        //Check for when the offset is negative
+
+        float interp_value;
+        float add_value = m_iReadIdx+fOffset;
+        if (static_cast<int>(std::round(add_value))>m_iBuffLength)
+        {
+            Inc_m_iReadIdx = wraparound(static_cast<int >(add_value+1))
+        }
+        else
+        {
+            Inc_m_iReadIdx = (std::round(add_value) + m_iReadIdx;
+        }
+        Inc_m_iReadIdx = static_cast<int> Inc_m_iReadIdx;
+       // 𝑦=𝑦1+(𝑥−𝑥1)*(𝑦2−𝑦1)/(𝑥2−𝑥1)
+        interp_value = m_iBuffLength[m_iReadIdx] + (add_value- Inc_m_iReadIdx)*((m_iBuffLength[Inc_m_iReadIdx]-m_iBuffLength[m_iReadIdx])/(Inc_m_iReadIdx-m_iReadIdx));
+
+        return interp_value
+
+
+
+    }
+
+
+    /*! return the value at the current read index
     \return float the value from the read index
     */
     T get() const
