@@ -55,3 +55,8 @@ bld
 *.DS_Store
 *.db
 *.log
+/bin
+/CMakeFiles
+/build
+/MUSI6106.build
+/CMakeScripts

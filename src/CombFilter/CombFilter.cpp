@@ -1,9 +1,4 @@
-//
-//  CombFilter.cpp
-//  MUSI6106
-//
-//  Created by Noel  Alben on 2/7/22.
-//
+
 // standard headers
 #include <limits>
 
@@ -17,122 +12,131 @@
 #include "CombFilterIf.h"
 #include "CombFilter.h"
 
-CCombFilterBase::CCombFilterBase(int delayLengthInS, int iNumChannels, float gain): m_RingBuffptr(0)
+
+CCombFilterBase::CCombFilterBase( int iMaxDelayInFrames, int iNumChannels ) :
+    m_ppCRingBuffer(0),
+    m_iNumChannels(iNumChannels)
 {
-    m_DelayLengthIns=delayLengthInS;
-    m_iNumChannels = iNumChannels;
-    gain=gain;
-    m_RingBuffptr = new CRingBuffer<float>*[iNumChannels];
-    for (int i=0; i<iNumChannels;i++)
+
+    assert(iMaxDelayInFrames > 0);
+    assert(iNumChannels > 0);
+
+    for (int i = 0; i < CCombFilterIf::kNumFilterParams; i++)
     {
-        m_RingBuffptr[i] = new CRingBuffer<float>(m_DelayLengthIns);
-        m_RingBuffptr[i]->reset();
-        
+        m_afParam[i]            = 0.F;
     }
-    
-   
-    
-    
+    m_aafParamRange[CCombFilterIf::kParamGain][0]  = std::numeric_limits<float>::lowest();
+    m_aafParamRange[CCombFilterIf::kParamGain][1]  = std::numeric_limits<float>::max();
+    m_aafParamRange[CCombFilterIf::kParamDelay][0] = 0;
+    m_aafParamRange[CCombFilterIf::kParamDelay][1] = static_cast<float>(iMaxDelayInFrames);
+
+    m_ppCRingBuffer = new CRingBuffer<float>*[m_iNumChannels];
+    for (int c = 0; c < m_iNumChannels; c++)
+        m_ppCRingBuffer[c]  = new CRingBuffer<float>(iMaxDelayInFrames);
 }
-
-
 
 CCombFilterBase::~CCombFilterBase()
 {
-    for (int i=0; i<m_iNumChannels;i++)
+    if (m_ppCRingBuffer)
     {
-        m_RingBuffptr[i]->~CRingBuffer();
+        for (int c = 0; c < m_iNumChannels; c++)
+            delete m_ppCRingBuffer[c];
     }
-    {
-        for (int i = 0; i < m_iNumChannels; ++i) {
-            delete m_RingBuffptr[i];
-        }
-        delete [] m_RingBuffptr;
-        m_RingBuffptr = 0;
-    }
+    delete [] m_ppCRingBuffer;
 }
 
-Error_t CCombFilterBase::setGain(float gain)
+Error_t CCombFilterBase::resetInstance()
 {
-    if (gain > 1)
+    for (int c = 0; c < m_iNumChannels; c++)
+    {
+        m_ppCRingBuffer[c]->reset ();
+        m_ppCRingBuffer[c]->setWriteIdx(CUtil::float2int<int>(m_afParam[CCombFilterIf::kParamDelay]));
+    }
+
+    return Error_t::kNoError;
+}
+
+Error_t CCombFilterBase::setParam( CCombFilterIf::FilterParam_t eParam, float fParamValue )
+{
+    if (!isInParamRange(eParam, fParamValue))
         return Error_t::kFunctionInvalidArgsError;
-    else if (gain < -1)
-        return Error_t::kFunctionInvalidArgsError;
+
+    // special actions for special parameters
+    if (eParam == CCombFilterIf::kParamDelay)
+    {
+        int iNumAdditionalTaps  = CUtil::float2int<int>(fParamValue - m_afParam[CCombFilterIf::kParamDelay]);
+        if (iNumAdditionalTaps < 0)
+        {
+            for (int c = 0; c < m_iNumChannels; c++)
+            {
+                m_ppCRingBuffer[c]->setWriteIdx(CUtil::float2int<int>(fParamValue) + m_ppCRingBuffer[c]->getReadIdx());
+            }
+        }
+        else
+        {
+            
+            for (int c = 0; c < m_iNumChannels; c++)
+            {
+                for (int i = 0; i < iNumAdditionalTaps; i++)
+                {
+                    m_ppCRingBuffer[c]->putPostInc(0.F);
+                }
+            }
+        }
+    }
+
+    m_afParam[eParam]   = fParamValue;
+
+    return Error_t::kNoError;
+}
+
+float CCombFilterBase::getParam( CCombFilterIf::FilterParam_t eParam ) const
+{
+    return m_afParam[eParam];
+}
+
+bool CCombFilterBase::isInParamRange( CCombFilterIf::FilterParam_t eParam, float fValue )
+{
+    if (fValue < m_aafParamRange[eParam][0] || fValue > m_aafParamRange[eParam][1])
+    {
+        return false;
+    }
     else
-    m_gain = gain;
-}
-float CCombFilterBase::getGain()
-{
-    return m_gain;
-}
-Error_t CCombFilterBase::setDelay(int DelayLengthinSamples)
-{
-    if(DelayLengthinSamples<=0)
     {
-        return Error_t::kFunctionInvalidArgsError;
+        return true;
     }
-    m_DelayLengthIns=DelayLengthinSamples;
-    
-}
-int CCombFilterBase::getDelay()
-{
-    return m_DelayLengthIns;
-    
 }
 
-
-Error_t CCombFilterBase::resetComb()
+Error_t CCombFilterFir::process( float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
 {
-    m_DelayLengthIns=0;
-    m_gain=0;
-    
-    return Error_t::kNoError;
-}
-//Error_t CCombFilterBase::setParam(CCombFilterIf::FilterParam_t eParam, float fParamValue)
-//{
-//    return Error_t::kNoError;
-//
-//}
-//Error_t CCombFilterBase::getParam(CCombFilterIf::FilterParam_t eParam)
-//{
-//    return Error_t::kNoError;
-//}
-
-Error_t CCombFilterFir::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
-{
-    // For loop outside for each channel
-    //for loop inside to go through the audui file
-    //Ring buffer is my delayline
-    //i get from ringbuffer and post increment
-    //i put into ringbuffer and post increment
-    //Repeat loop
-    /*
-     x = [1,2,3,4,5]
-     buff=[0,0]
-     y = [1,2,4,6,8]
-     */
-    for  (int j=0; j<m_iNumChannels;j++)
+    for(int c = 0; c < m_iNumChannels; c++)
     {
-        for (int i=0; i<iNumberOfFrames;i++)
+        for (int i = 0; i < iNumberOfFrames; i++)
         {
-            ppfOutputBuffer[j][i]= ppfInputBuffer[j][i]+m_gain*m_RingBuffptr[j]->getPostInc();
-            m_RingBuffptr[j]->putPostInc(ppfInputBuffer[j][i]);
-            
+            m_ppCRingBuffer[c]->putPostInc(ppfInputBuffer[c][i]);
+            ppfOutputBuffer[c][i] = ppfInputBuffer[c][i] + m_afParam[CCombFilterIf::kParamGain] * m_ppCRingBuffer[c]->getPostInc();
         }
     }
     return Error_t::kNoError;
 }
-Error_t CCombFilterIir::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
+
+
+CCombFilterIir::CCombFilterIir (int iMaxDelayInFrames, int iNumChannels) : CCombFilterBase(iMaxDelayInFrames, iNumChannels)
 {
-    for  (int j=0; j<m_iNumChannels;j++)
+    // set limits
+    m_aafParamRange[CCombFilterIf::kParamGain][0] = -1.F; 
+    m_aafParamRange[CCombFilterIf::kParamGain][1] = 1.F;
+}
+
+Error_t CCombFilterIir::process( float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
+{
+    for(int c = 0; c < m_iNumChannels; c++)
     {
-        for (int i=0; i<iNumberOfFrames;i++)
+        for (int i = 0; i < iNumberOfFrames; i++)
         {
-            ppfOutputBuffer[j][i] = ppfInputBuffer[j][i] + m_gain * m_RingBuffptr[j]->getPostInc();
-            m_RingBuffptr[j]->putPostInc(ppfOutputBuffer[j][i]);
-            
+            ppfOutputBuffer[c][i] = ppfInputBuffer[c][i] + m_afParam[CCombFilterIf::kParamGain] * m_ppCRingBuffer[c]->getPostInc(); 
+            m_ppCRingBuffer[c]->putPostInc(ppfOutputBuffer[c][i]);
         }
     }
     return Error_t::kNoError;
-    
 }
