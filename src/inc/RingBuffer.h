@@ -60,10 +60,12 @@ public:
     }
 
     /*! return the value at the current read index
+    \param fOffset: read at offset from read index
     \return float the value from the read index
     */
-    T get() const
+    T get(float fOffset = 0) const
     {
+        assert(0); // TODO: implement offset
         return m_ptBuff[m_iReadIdx];
     }
 

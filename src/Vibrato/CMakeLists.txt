@@ -1,4 +1,4 @@
-set(CurrLib CombFilter)
+set(CurrLib Vibrato)
 
 
 # get all source files
