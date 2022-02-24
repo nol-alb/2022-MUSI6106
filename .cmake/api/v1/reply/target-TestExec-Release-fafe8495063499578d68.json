@@ -1,0 +1,229 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/Release/TestExec"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"include_directories",
+			"add_inc_directories"
+		],
+		"files" : 
+		[
+			"src/Tests/TestExec/CMakeLists.txt",
+			"cmake.modules/AddIncDirectories.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 31,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 28,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 3,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 3,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 3,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 3,
+				"parent" : 3
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-O3 -DNDEBUG"
+				},
+				{
+					"fragment" : "'-std=gnu++11'"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "/Users/noelalben/github/2022-MUSI6106/inc"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/noelalben/github/2022-MUSI6106/src/inc"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/gtest/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/gtest"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "AudioFileIO::@14733eaaa109906c281b"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "sndlib::@bef705fde8a82da36e5a"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "CombFilter::@7656a2d9f153a0096c6a"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "gtest::@f95b5c00bd49b3b4698d"
+		},
+		{
+			"id" : "ZERO_CHECK::@f95b5c00bd49b3b4698d"
+		}
+	],
+	"id" : "TestExec::@fd18b2a07275661ebf83",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-O3 -DNDEBUG",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../lib/Release/libgtest.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../lib/Release/libCombFilter.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../lib/Release/libAudioFileIO.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../lib/Release/libsndlib.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "TestExec",
+	"nameOnDisk" : "TestExec",
+	"paths" : 
+	{
+		"build" : "TestExec",
+		"source" : "src/Tests/TestExec"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Tests/TestExec/Test.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Tests/Tests/Test_AudioIO.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Tests/Tests/Test_CombFilter.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
