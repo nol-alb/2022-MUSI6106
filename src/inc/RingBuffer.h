@@ -80,43 +80,29 @@ public:
         else
         {
             //interp = (1-frac)*m_ptBuff[i(low)] + frac*m_ptBuff[i(high)];
-            // Use the mod function, seperate the int and fractional part
-            // Use the int part to move ahead in the m_iReadIdx This will handle negative values as well
+            // seperate the int and fractional part
+            // Use the int part to move ahead in the m_iReadIdx, handle negative values
                 //Check for Wraparound in this stage
             //Then increment a new iReadIdx which is incremented
             //Use interpolation formula using the fractional part
-            float frac, &frac_int;
 
+       if (fOffset)
+           return m_ptBuff[m_iReadIdx];
+       else
+       {
+           // Get Fractional Part
+           int IntOffset = static_cast<int>(floor(fOffset));
+           float fracOffset = fOffset-IntOffset;
 
-            return
-
-
-
-        }
-
-
-
-        //Check for when the offset is negative
-
-        float interp_value;
-        float add_value = m_iReadIdx+fOffset;
-        if (static_cast<int>(std::round(add_value))>m_iBuffLength)
-        {
-            Inc_m_iReadIdx = wraparound(static_cast<int >(add_value+1))
-        }
-        else
-        {
-            Inc_m_iReadIdx = (std::round(add_value) + m_iReadIdx;
-        }
-        Inc_m_iReadIdx = static_cast<int> Inc_m_iReadIdx;
-       // 𝑦=𝑦1+(𝑥−𝑥1)*(𝑦2−𝑦1)/(𝑥2−𝑥1)
-        interp_value = m_iBuffLength[m_iReadIdx] + (add_value- Inc_m_iReadIdx)*((m_iBuffLength[Inc_m_iReadIdx]-m_iBuffLength[m_iReadIdx])/(Inc_m_iReadIdx-m_iReadIdx));
-
-        return interp_value
-
-
-
-    }
+           int new_Read = incIdx(m_iReadIdx+IntOffset,0);
+           // Check Negative Values and return
+           new_Read = AllPos(new_Read);
+           float cur_BuffVal = m_ptBuff[new_Read];
+           float nex_BuffVal = m_ptBuff[incIdx(new_Read+1,0)];
+           //Weighted sum
+           return (1-fracOffset)*cur_BuffVal + fracOffset*(nex_BuffVal);
+       }
+   }
 
 
     /*! return the value at the current read index
@@ -213,6 +199,18 @@ private:
         int Idx_new = Idx%m_iBuffLength;
         return Idx_new;
         }
+    int AllPos(int ReadIdx)
+    {
+        if(ReadIdx<0) {
+            return AllPos(ReadIdx + m_iBuffLength);
+        }
+        else if(ReadIdx > m_iBuffLength-1) {
+            return AllPos(ReadIdx - m_iBuffLength);
+        }
+        else {
+            return incIdx(ReadIdx, 0);
+        }
+    }
     
 };
 #endif // __RingBuffer_hdr__
