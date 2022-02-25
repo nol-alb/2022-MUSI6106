@@ -183,7 +183,7 @@ private:
         if(ReadIdx<0) {
             return AllPos(incIdx(ReadIdx,m_iBuffLength));
         }
-        else if(ReadIdx>m_iBuffLength+1) {
+        else if(ReadIdx>m_iBuffLength-1) {
             return AllPos(incIdx(ReadIdx,-m_iBuffLength));
         }
         else {
