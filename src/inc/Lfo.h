@@ -10,6 +10,7 @@ class CLfo
 	{
 		kAmplitude,
 		kFrequency,
+		kSampleRate,
 
 		kNumParams
 	};
@@ -21,12 +22,28 @@ public:
 
 	void setParam(LfoParam_t param_t, float fValue)
 	{
-
+		switch (param_t)
+		{
+		case LfoParam_t::kAmplitude:
+			setGain(fValue);
+		case LfoParam_t::kFrequency:
+			setFrequency(fValue);
+		case LfoParam_t::kSampleRate:
+			setSampleRate(fValue);
+		}
 	}
 
 	float getParam(LfoParam_t param_t) const
 	{
-
+		switch (param_t)
+		{
+		case LfoParam_t::kAmplitude:
+			return m_fAmplitude;
+		case LfoParam_t::kFrequency:
+			return m_fFrequency;
+		case LfoParam_t::kSampleRate:
+			return m_fSampleRate;
+		}
 	}
 
 	float process()
@@ -43,15 +60,24 @@ private:
 	float m_fTableDelta = 0.0f;
 	float m_fCurrentIndex = 0.0f;
 	float m_fAmplitude = 0.0f;
+	float m_fFrequency = 0.0f;
+	float m_fSampleRate = 0.0f;
 
 	void setFrequency(float fValue)
 	{
-
+		m_fFrequency = fValue;
+		m_fTableDelta = (m_fSampleRate == 0) ? m_fFrequency / m_fSampleRate : 0;
 	}
 
 	void setGain(float fValue)
 	{
+		m_fAmplitude = fValue;
+	}
 
+	void setSampleRate(float fValue)
+	{
+		m_fSampleRate = fValue;
+		setFrequency(m_fFrequency);
 	}
 
 };
