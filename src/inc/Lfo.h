@@ -1,6 +1,9 @@
 #if !defined(__Lfo_hdr__)
 #define __Lfo_hdr__
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include "RingBuffer.h"
 
 class CLfo
@@ -17,7 +20,19 @@ class CLfo
 
 public:
 
-	CLfo() {};
+	CLfo() 
+	{
+		float angleDelta = M_PI / (float)(m_pWavetable.getLength() - 1);
+		float currentAngle = 0.0;
+
+		for (int i = 0; i < m_pWavetable.getLength(); i++)
+		{
+			float sample = std::sin(currentAngle);
+			m_pWavetable.putPostInc(sample);
+			currentAngle += angleDelta;
+		}
+	}
+
 	~CLfo() {};
 
 	void setParam(LfoParam_t param_t, float fValue)
@@ -55,8 +70,8 @@ public:
 
 private:
 
-	const int m_iWavetableSize = 1 << 7;
-	const CRingBuffer<float> m_pWavetable = CRingBuffer<float>(m_iWavetableSize);
+	const int m_iWavetableSize = 1 << 9;
+	CRingBuffer<float> m_pWavetable = CRingBuffer<float>(m_iWavetableSize);
 	float m_fTableDelta = 0.0f;
 	float m_fCurrentIndex = 0.0f;
 	float m_fAmplitude = 0.0f;
