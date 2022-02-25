@@ -65,8 +65,15 @@ public:
     */
     T get(float fOffset = 0) const
     {
-        assert(0); // TODO: implement offset
-        return m_ptBuff[m_iReadIdx];
+        float fRawIndex = m_iReadIdx + fOffset;
+        int iIndex0 = static_cast<int>(floor(fRawIndex));
+        int iIndex1 = static_cast<int>(ceil(fRawIndex));
+        float fValue0 = m_ptBuff[wrapAround(iIndex0)];
+        float fValue1 = m_ptBuff[wrapAround(iIndex1)];
+
+        float fInterpValue = fValue0 + ((fRawIndex - iIndex0) * (fValue1 - fValue0));
+
+        return fInterpValue;
     }
 
     /*! set buffer content and indices to 0
@@ -141,6 +148,14 @@ private:
         }
         iIdx = (iIdx + iOffset) % m_iBuffLength;
     };
+
+    int wrapAround(int iIdx) const
+    {
+        while (iIdx < 0)
+            iIdx += m_iBuffLength;
+        iIdx %= m_iBuffLength;
+        return iIdx;
+    }
 
     int m_iBuffLength = 0,      //!< length of the internal buffer
         m_iReadIdx = 0,         //!< current read index
