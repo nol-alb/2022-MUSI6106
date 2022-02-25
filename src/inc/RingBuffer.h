@@ -75,6 +75,28 @@ public:
 
         return fInterpValue;
     }
+    //Noel RingBuffFractional
+/*
+    T get(float fOffset = 0) const
+    {
+        if (fOffset)
+            return m_ptBuff[m_iReadIdx];
+        else
+        {
+            // Get Fractional Part
+            int IntOffset = static_cast<int>(floor(fOffset));
+            float fracOffset = fOffset-IntOffset;
+
+            int new_Read = incIdx(m_iReadIdx+IntOffset,0);
+//          Check Negative Values and return
+            new_Read = AllPos(new_Read);
+            float cur_BuffVal = m_ptBuff[new_Read];
+            float nex_BuffVal = m_ptBuff[incIdx(new_Read+1,0)];
+            //Weighted sum
+            return (1-fracOffset)*cur_BuffVal + fracOffset*(nex_BuffVal);
+        }
+    }
+*/
 
     /*! set buffer content and indices to 0
     \return void
@@ -155,6 +177,18 @@ private:
             iIdx += m_iBuffLength;
         iIdx %= m_iBuffLength;
         return iIdx;
+    }
+    int AllPos(int ReadIdx)
+    {
+        if(ReadIdx<0) {
+            return AllPos(incIdx(ReadIdx,m_iBuffLength));
+        }
+        else if(ReadIdx>m_iBuffLength+1) {
+            return AllPos(incIdx(ReadIdx,-m_iBuffLength));
+        }
+        else {
+            return incIdx(ReadIdx, 0);
+        }
     }
 
     int m_iBuffLength = 0,      //!< length of the internal buffer
