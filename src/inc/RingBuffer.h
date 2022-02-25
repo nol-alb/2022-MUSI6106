@@ -181,10 +181,10 @@ private:
     int AllPos(int ReadIdx)
     {
         if(ReadIdx<0) {
-            return AllPos(ReadIdx + m_iBuffLength);
+            return AllPos(incIdx(ReadIdx,m_iBuffLength));
         }
         else if(ReadIdx>m_iBuffLength+1) {
-            return AllPos(ReadIdx - m_iBuffLength);
+            return AllPos(incIdx(ReadIdx,-m_iBuffLength));
         }
         else {
             return incIdx(ReadIdx, 0);
