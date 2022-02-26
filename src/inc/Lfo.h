@@ -35,7 +35,10 @@ public:
 		}
 	}
 
-	~CLfo() {};
+	~CLfo() 
+	{
+		delete m_pWavetable;
+	};
 
 	void setParam(LfoParam_t param_t, float fValue)
 	{
@@ -73,7 +76,7 @@ public:
 private:
 
 	const int m_iWavetableSize = 1 << 9;
-	CRingBuffer<float> *m_pWavetable;
+	CRingBuffer<float> *m_pWavetable = 0;
 	float m_fTableDelta = 0.0f;
 	float m_fCurrentIndex = 0.0f;
 	float m_fAmplitude = 0.0f;

@@ -49,11 +49,12 @@ Error_t CVibrato::reset()
 {
     delete m_pLFO;
     m_pLFO=0;
+    return Error_t::kNoError;
 }
 
 Error_t CVibrato::setParam(ParamVibrato vParam, float fParamValue)
 {
-
+    return Error_t::kNoError;
 }
 
 
