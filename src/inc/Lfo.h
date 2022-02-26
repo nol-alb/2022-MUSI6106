@@ -9,8 +9,9 @@
 
 class CLfo
 {
+public:
 
-	enum LfoParam_t 
+	enum LfoParam_t
 	{
 		kAmplitude,
 		kFrequency,
@@ -18,8 +19,6 @@ class CLfo
 
 		kNumParams
 	};
-
-public:
 
 	CLfo() 
 	{

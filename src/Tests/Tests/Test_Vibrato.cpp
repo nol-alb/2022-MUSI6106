@@ -16,6 +16,47 @@ namespace vibrato_test {
         }
     }
 
+    class Lfo : public testing::Test
+    {
+    protected:
+        void SetUp() override
+        {
+            pLfo = new CLfo();
+        }
+
+        virtual void TearDown()
+        {
+            delete pLfo;
+            pLfo = 0;
+        }
+
+        CLfo* pLfo = 0;
+    };
+
+    TEST_F(Lfo, HandlesOutOfBoundsInput)
+    {
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kSampleRate, -1) , Error_t::kFunctionInvalidArgsError);
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kSampleRate, -11020), Error_t::kFunctionInvalidArgsError);
+
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kFrequency, -1), Error_t::kFunctionInvalidArgsError);
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kFrequency, -28381), Error_t::kFunctionInvalidArgsError);
+
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kAmplitude, -2), Error_t::kFunctionInvalidArgsError);
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kAmplitude, 3), Error_t::kFunctionInvalidArgsError);
+    }
+
+    TEST_F(Lfo, SetParametersCorrectly)
+    {
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kSampleRate, 44100), Error_t::kNoError);
+        EXPECT_EQ(pLfo->getParam(CLfo::LfoParam_t::kSampleRate), 44100);
+
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kFrequency, 440), Error_t::kNoError);
+        EXPECT_EQ(pLfo->getParam(CLfo::LfoParam_t::kFrequency), 440);
+
+        EXPECT_EQ(pLfo->setParam(CLfo::LfoParam_t::kAmplitude, 0.5), Error_t::kNoError);
+        EXPECT_EQ(pLfo->getParam(CLfo::LfoParam_t::kAmplitude), 0.5);
+    }
+
 }
 
 #endif //WITH_TESTS
