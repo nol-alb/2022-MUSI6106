@@ -64,4 +64,4 @@ bld
 /MUSI6106.xcodeproj
 *CMakeCache.txt
 *cmake_install.cmake
-
+/.cmake
