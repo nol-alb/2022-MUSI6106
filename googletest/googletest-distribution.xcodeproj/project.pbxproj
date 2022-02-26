@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		56B949CA0360411B918918E5 /* ZERO_CHECK */ = {
+		783A72E0FCF94E1488700245 /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = CB60F428B892447CBEE5A178 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = C296D417E13D461797ECB6B3 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
 				6B0A3E55C373224D25EDE4BB /* Generate CMakeFiles/ZERO_CHECK */,
 			);
@@ -18,16 +18,16 @@
 			name = ZERO_CHECK;
 			productName = ZERO_CHECK;
 		};
-		DC228CFA67B249B1923793CC /* ALL_BUILD */ = {
+		8D2C420E0A844C168A202D28 /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = E1BF03E0EB5C47ACAA973250 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = CAC770F094CA46359AD12FCA /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
 				08A05068DB4AAE0D2CA4068D /* Generate CMakeFiles/ALL_BUILD */,
 			);
 			dependencies = (
-				845FABB4D299405A95401AA2 /* PBXTargetDependency */,
-				DFFAC4344C104B5EB94335F6 /* PBXTargetDependency */,
-				FEF9BB5629AB465384DC9C22 /* PBXTargetDependency */,
+				BCD1D4C43E5F421AA765C763 /* PBXTargetDependency */,
+				61A6E5E39E2042E48CF33EB1 /* PBXTargetDependency */,
+				11CCDA18734E4049AE7B6097 /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
@@ -35,35 +35,35 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		106CDFF899E24104A466A786 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */ = {isa = PBXBuildFile; fileRef = E70F570A4DA249A4ACC43352 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */; };
-		62C9534B5BDA4EA1A2F9C5FA /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */ = {isa = PBXBuildFile; fileRef = 1D7F963E07B849ABB27AC1A9 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */; };
-		65B39B167C2F43EB9C393825 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = A38218FBF5134BA9B013031B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */; };
-		F01E0F4234994FEDB376B87D /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 7E4F027101D244A999FC1768 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */; };
+		12FE47A710354A5D9025B4D6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */ = {isa = PBXBuildFile; fileRef = 58082FDB34C64B35B87E2926 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */; };
+		219058AC63B841088ABE5B8F /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 9C680DE0BAFC4075B07E9060 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */; };
+		A66E5CEB91144D8B9F63EC54 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */ = {isa = PBXBuildFile; fileRef = 935CC4F271C14DB2AB651BED /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */; };
+		CBCA19CEAD3D49B8AD5E9C41 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = EC14358380AA42808F5C071A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-		027C03F73144473497978D43 /* MinSizeRel */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = MinSizeRel;
-		};
-		9CFC2BB4338C4EE0B7C271FF /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Debug;
-		};
-		BC1CD9DE95414C14A27EEAED /* Release */ = {
+		030EF8201EAE4018B23FC4DB /* Release */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = Release;
 		};
-		BC64CE6B4B3345ACAD14C4FA /* RelWithDebInfo */ = {
+		B29548F782E1426D94D80F59 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		DD77F483B83549C69E4D2B30 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		E61CA991E2E345BC8FAF88EB /* RelWithDebInfo */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -73,55 +73,55 @@
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-		1E39605CE2B14FF2B0037197 /* PBXContainerItemProxy */ = {
+		1E785F2211404E7BB7E19B28 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 443CB2E1517E43B0AA356BAC /* Project object */;
+			containerPortal = 3BB0D632F908413292B296F8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6DC8DEAE33E84039B95C49C3;
-			remoteInfo = gtest;
-		};
-		5C81E73FBB6B48438BA0CD29 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 443CB2E1517E43B0AA356BAC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6DC8DEAE33E84039B95C49C3;
-			remoteInfo = gtest;
-		};
-		A3FCF6A0CB384BE5AF3106CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 443CB2E1517E43B0AA356BAC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 56B949CA0360411B918918E5;
+			remoteGlobalIDString = 783A72E0FCF94E1488700245;
 			remoteInfo = ZERO_CHECK;
 		};
-		C467A4B2EFC744CC9549EF02 /* PBXContainerItemProxy */ = {
+		5DC978EFE17D4B72913B048F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 443CB2E1517E43B0AA356BAC /* Project object */;
+			containerPortal = 3BB0D632F908413292B296F8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C4A9452516BA435D9B1DD4D1;
+			remoteGlobalIDString = B5A0ABCF33B44319B0BEED40;
 			remoteInfo = gtest_main;
+		};
+		B0A00C9C6C4847FF896ED1D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BB0D632F908413292B296F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E160BFCB5285477C9CE71F4C;
+			remoteInfo = gtest;
+		};
+		F0AADA68AA97455DB7ACC1AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BB0D632F908413292B296F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E160BFCB5285477C9CE71F4C;
+			remoteInfo = gtest;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D7F963E07B849ABB27AC1A9 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = gtest_main.cc; path = googletest/src/gtest_main.cc; sourceTree = SOURCE_ROOT; };
-		27C9C738987742528B79A12D /* gtest_main */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libgtest_maind.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E4F027101D244A999FC1768 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = googletest/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		87DF3FDD71AF45EF8E09AA84 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		A38218FBF5134BA9B013031B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = googletest/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		DB90035645BB4778A217F30C /* gtest */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libgtestd.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E70F570A4DA249A4ACC43352 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "gtest-all.cc"; path = "googletest/src/gtest-all.cc"; sourceTree = SOURCE_ROOT; };
+		1BE5F263CAF242839D4F0713 /* gtest */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libgtestd.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		58082FDB34C64B35B87E2926 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "gtest-all.cc"; path = "googletest/src/gtest-all.cc"; sourceTree = SOURCE_ROOT; };
+		5D2354C9BCE0480397A7F705 /* gtest_main */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libgtest_maind.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		935CC4F271C14DB2AB651BED /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = gtest_main.cc; path = googletest/src/gtest_main.cc; sourceTree = SOURCE_ROOT; };
+		9C680DE0BAFC4075B07E9060 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = googletest/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		B6E712D2ADE747F89AE6AEDE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		EC14358380AA42808F5C071A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = googletest/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		05C1F9F2D34B47A5AC2A4C38 /* Frameworks */ = {
+		1D209C8676D9411A9F3093C1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1DFD02C3F8DD4810A14DA67E /* Frameworks */ = {
+		8230E0BF89774F01920AA716 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -131,79 +131,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4710B9356EFA47D78B269DD7 /* Products */ = {
+		3942813A92F6414385F164C1 /* gtest_main */ = {
 			isa = PBXGroup;
 			children = (
-				DB90035645BB4778A217F30C /* gtest */,
-				27C9C738987742528B79A12D /* gtest_main */,
+				F774CC30B713456183F0F7A8 /* Source Files */,
+				9C680DE0BAFC4075B07E9060 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */,
+			);
+			name = gtest_main;
+			sourceTree = "<group>";
+		};
+		6ADE201E2402475A804D3BF7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1BE5F263CAF242839D4F0713 /* gtest */,
+				5D2354C9BCE0480397A7F705 /* gtest_main */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4B03AAD97B5744828D289FE4 = {
+		A74FF513B9264C279941C76A /* ALL_BUILD */ = {
 			isa = PBXGroup;
 			children = (
-				76C1E820409649CDBC59E61E /* ALL_BUILD */,
-				B474CE5481CE4CE89504A4A5 /* gtest_main */,
-				A527726F31504FACA304C7C0 /* gtest */,
-				4710B9356EFA47D78B269DD7 /* Products */,
-				9037824AC45F452F9215FA4B /* Frameworks */,
+				C67DBA76590343D5AC7D57F5 /* CMake Rules */,
+				B6E712D2ADE747F89AE6AEDE /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/CMakeLists.txt */,
 			);
+			name = ALL_BUILD;
 			sourceTree = "<group>";
 		};
-		5E4648BFBDE0433792CCE789 /* CMake Rules */ = {
+		BDBCB220F5AB4AE5AB6E0346 /* gtest */ = {
+			isa = PBXGroup;
+			children = (
+				D190E08AA7EA42D8AB1A8F75 /* Source Files */,
+				EC14358380AA42808F5C071A /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */,
+			);
+			name = gtest;
+			sourceTree = "<group>";
+		};
+		C67DBA76590343D5AC7D57F5 /* CMake Rules */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "CMake Rules";
 			sourceTree = "<group>";
 		};
-		76C1E820409649CDBC59E61E /* ALL_BUILD */ = {
+		D190E08AA7EA42D8AB1A8F75 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				5E4648BFBDE0433792CCE789 /* CMake Rules */,
-				87DF3FDD71AF45EF8E09AA84 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/CMakeLists.txt */,
+				58082FDB34C64B35B87E2926 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */,
 			);
-			name = ALL_BUILD;
+			name = "Source Files";
 			sourceTree = "<group>";
 		};
-		9037824AC45F452F9215FA4B /* Frameworks */ = {
+		E175DBC0311E4168BAA3F567 = {
+			isa = PBXGroup;
+			children = (
+				A74FF513B9264C279941C76A /* ALL_BUILD */,
+				BDBCB220F5AB4AE5AB6E0346 /* gtest */,
+				3942813A92F6414385F164C1 /* gtest_main */,
+				6ADE201E2402475A804D3BF7 /* Products */,
+				E45432C6BACF4BB4A3BE5A0A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E45432C6BACF4BB4A3BE5A0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A527726F31504FACA304C7C0 /* gtest */ = {
+		F774CC30B713456183F0F7A8 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				F9DC80FD84B44711A40C8ED2 /* Source Files */,
-				A38218FBF5134BA9B013031B /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */,
-			);
-			name = gtest;
-			sourceTree = "<group>";
-		};
-		B474CE5481CE4CE89504A4A5 /* gtest_main */ = {
-			isa = PBXGroup;
-			children = (
-				F4F319C67C7E4EE2AADF54B0 /* Source Files */,
-				7E4F027101D244A999FC1768 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/CMakeLists.txt */,
-			);
-			name = gtest_main;
-			sourceTree = "<group>";
-		};
-		F4F319C67C7E4EE2AADF54B0 /* Source Files */ = {
-			isa = PBXGroup;
-			children = (
-				1D7F963E07B849ABB27AC1A9 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */,
-			);
-			name = "Source Files";
-			sourceTree = "<group>";
-		};
-		F9DC80FD84B44711A40C8ED2 /* Source Files */ = {
-			isa = PBXGroup;
-			children = (
-				E70F570A4DA249A4ACC43352 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */,
+				935CC4F271C14DB2AB651BED /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */,
 			);
 			name = "Source Files";
 			sourceTree = "<group>";
@@ -211,12 +211,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6DC8DEAE33E84039B95C49C3 /* gtest */ = {
+		B5A0ABCF33B44319B0BEED40 /* gtest_main */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DD4953B8366940EBB3A0B6CB /* Build configuration list for PBXNativeTarget "gtest" */;
+			buildConfigurationList = 8ECCCE17078C46AB91BEC36C /* Build configuration list for PBXNativeTarget "gtest_main" */;
 			buildPhases = (
-				470EFB465CFA4284991E694C /* Sources */,
-				05C1F9F2D34B47A5AC2A4C38 /* Frameworks */,
+				EC89DB56FA334F2DA58C98FB /* Sources */,
+				8230E0BF89774F01920AA716 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				166F5AC7CF80455B9189A0B3 /* PBXTargetDependency */,
+			);
+			name = gtest_main;
+			productName = gtest_main;
+			productReference = 5D2354C9BCE0480397A7F705 /* gtest_main */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E160BFCB5285477C9CE71F4C /* gtest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8455E7FCCB85482A80900C61 /* Build configuration list for PBXNativeTarget "gtest" */;
+			buildPhases = (
+				3633634371824B2392809661 /* Sources */,
+				1D209C8676D9411A9F3093C1 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -224,54 +241,37 @@
 			);
 			name = gtest;
 			productName = gtest;
-			productReference = DB90035645BB4778A217F30C /* gtest */;
-			productType = "com.apple.product-type.library.static";
-		};
-		C4A9452516BA435D9B1DD4D1 /* gtest_main */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0E957BD1E9784E7FA5A7B076 /* Build configuration list for PBXNativeTarget "gtest_main" */;
-			buildPhases = (
-				AAD35E18341A4FF1AFFE69D3 /* Sources */,
-				1DFD02C3F8DD4810A14DA67E /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F96F49CB91C049D9AC0FF110 /* PBXTargetDependency */,
-			);
-			name = gtest_main;
-			productName = gtest_main;
-			productReference = 27C9C738987742528B79A12D /* gtest_main */;
+			productReference = 1BE5F263CAF242839D4F0713 /* gtest */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		443CB2E1517E43B0AA356BAC /* Project object */ = {
+		3BB0D632F908413292B296F8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1320;
 			};
-			buildConfigurationList = 98628B73D50C4C7686DD61A4 /* Build configuration list for PBXProject "googletest-distribution" */;
+			buildConfigurationList = 2F9E33290C934B61A8786268 /* Build configuration list for PBXProject "googletest-distribution" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				9CFC2BB4338C4EE0B7C271FF /* Debug */,
-				BC1CD9DE95414C14A27EEAED /* Release */,
-				027C03F73144473497978D43 /* MinSizeRel */,
-				BC64CE6B4B3345ACAD14C4FA /* RelWithDebInfo */,
+				DD77F483B83549C69E4D2B30 /* Debug */,
+				030EF8201EAE4018B23FC4DB /* Release */,
+				B29548F782E1426D94D80F59 /* MinSizeRel */,
+				E61CA991E2E345BC8FAF88EB /* RelWithDebInfo */,
 			);
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
-			mainGroup = 4B03AAD97B5744828D289FE4;
+			mainGroup = E175DBC0311E4168BAA3F567;
 			projectDirPath = ../3rdparty/googletest;
 			projectRoot = "";
 			targets = (
-				DC228CFA67B249B1923793CC /* ALL_BUILD */,
-				56B949CA0360411B918918E5 /* ZERO_CHECK */,
-				6DC8DEAE33E84039B95C49C3 /* gtest */,
-				C4A9452516BA435D9B1DD4D1 /* gtest_main */,
+				8D2C420E0A844C168A202D28 /* ALL_BUILD */,
+				783A72E0FCF94E1488700245 /* ZERO_CHECK */,
+				E160BFCB5285477C9CE71F4C /* gtest */,
+				B5A0ABCF33B44319B0BEED40 /* gtest_main */,
 			);
 		};
 /* End PBXProject section */
@@ -376,67 +376,49 @@ exit 0";
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		470EFB465CFA4284991E694C /* Sources */ = {
+		3633634371824B2392809661 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				106CDFF899E24104A466A786 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */,
+				12FE47A710354A5D9025B4D6 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest-all.cc */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AAD35E18341A4FF1AFFE69D3 /* Sources */ = {
+		EC89DB56FA334F2DA58C98FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62C9534B5BDA4EA1A2F9C5FA /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */,
+				A66E5CEB91144D8B9F63EC54 /* /Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/src/gtest_main.cc */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		845FABB4D299405A95401AA2 /* PBXTargetDependency */ = {
+		11CCDA18734E4049AE7B6097 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 56B949CA0360411B918918E5 /* ZERO_CHECK */;
-			targetProxy = A3FCF6A0CB384BE5AF3106CB /* PBXContainerItemProxy */;
+			target = 783A72E0FCF94E1488700245 /* ZERO_CHECK */;
+			targetProxy = 1E785F2211404E7BB7E19B28 /* PBXContainerItemProxy */;
 		};
-		DFFAC4344C104B5EB94335F6 /* PBXTargetDependency */ = {
+		166F5AC7CF80455B9189A0B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C4A9452516BA435D9B1DD4D1 /* gtest_main */;
-			targetProxy = C467A4B2EFC744CC9549EF02 /* PBXContainerItemProxy */;
+			target = E160BFCB5285477C9CE71F4C /* gtest */;
+			targetProxy = B0A00C9C6C4847FF896ED1D6 /* PBXContainerItemProxy */;
 		};
-		F96F49CB91C049D9AC0FF110 /* PBXTargetDependency */ = {
+		61A6E5E39E2042E48CF33EB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6DC8DEAE33E84039B95C49C3 /* gtest */;
-			targetProxy = 1E39605CE2B14FF2B0037197 /* PBXContainerItemProxy */;
+			target = B5A0ABCF33B44319B0BEED40 /* gtest_main */;
+			targetProxy = 5DC978EFE17D4B72913B048F /* PBXContainerItemProxy */;
 		};
-		FEF9BB5629AB465384DC9C22 /* PBXTargetDependency */ = {
+		BCD1D4C43E5F421AA765C763 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6DC8DEAE33E84039B95C49C3 /* gtest */;
-			targetProxy = 5C81E73FBB6B48438BA0CD29 /* PBXContainerItemProxy */;
+			target = E160BFCB5285477C9CE71F4C /* gtest */;
+			targetProxy = F0AADA68AA97455DB7ACC1AD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1F37F021B1C045A0BF004F23 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/build";
-			};
-			name = RelWithDebInfo;
-		};
-		23F84B7CF58B4BF7949F2C8F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/build";
-			};
-			name = Debug;
-		};
-		28FE1A1FCCDF4B9C9FD077AC /* RelWithDebInfo */ = {
+		03F8084F6C4A4053B7886C43 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -450,7 +432,7 @@ exit 0";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = ("","$(inherited)");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
+				PRODUCT_NAME = ALL_BUILD;
 				SECTORDER_FLAGS = "";
 				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest";
 				USE_HEADERMAP = NO;
@@ -458,85 +440,7 @@ exit 0";
 			};
 			name = RelWithDebInfo;
 		};
-		3287F6E1BD8D4C70BB574BFD /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG  -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = gtest;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		58407C16740C45E0B4EDD4D9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		5845090A27764F0AA5242537 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG  -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = gtest_main;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
-				SYSTEM_HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		6B261938C9D647CA9283ED98 /* MinSizeRel */ = {
+		07C0653763F44D39A7081017 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -564,7 +468,44 @@ exit 0";
 			};
 			name = MinSizeRel;
 		};
-		A21D8684656C40C898748B46 /* Debug */ = {
+		173FC581726B43C7AFB51C1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Release";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = gtest_main;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
+				SYSTEM_HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		3BCB2EDDDD5B49AEA6E786FF /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/build";
+			};
+			name = RelWithDebInfo;
+		};
+		52993A124E084471ABE2EA4D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -592,122 +533,7 @@ exit 0";
 			};
 			name = Debug;
 		};
-		A68A48EB338A4B0088C6A75C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Release";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = gtest_main;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
-				SYSTEM_HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		B2B491359DEA418D8776401F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/build";
-			};
-			name = Release;
-		};
-		B690159C8AF94B56A3BAAB4B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		DA137E5BEC4244838F76849A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Debug";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "    -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = gtest_maind;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
-				SYSTEM_HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		DED24DC37A934E58BF27CDBC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Release";
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
-				OTHER_LIBTOOLFLAGS = ("");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = gtest;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		E0CA38BEABF34B35A032E8D5 /* MinSizeRel */ = {
+		587025AE38A44362A92B3AB5 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -735,29 +561,7 @@ exit 0";
 			};
 			name = MinSizeRel;
 		};
-		E80B02758C6946D0B63EB9ED /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		E83903FE9FF34D059F7D9941 /* Debug */ = {
+		765D3F0DD2D743DFAABCE58E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -779,16 +583,7 @@ exit 0";
 			};
 			name = Debug;
 		};
-		EDEA462B47F243B483CF94DB /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
-				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/build";
-			};
-			name = MinSizeRel;
-		};
-		F10FB426E42541C7945A3BF6 /* Release */ = {
+		9CAD7E9CBD62472EBB43BABA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -810,7 +605,85 @@ exit 0";
 			};
 			name = Release;
 		};
-		F49E1D2D8ED1472C9EB943FA /* MinSizeRel */ = {
+		A50B8752A3C14BDD8432FCFB /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		A63CC20BE222473387BC7EBA /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG  -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = gtest_main;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
+				SYSTEM_HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		A8C85D7FB4844CF5B05719C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Release";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = gtest;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		A99A1F54E3D44CE29EB696D1 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -832,7 +705,7 @@ exit 0";
 			};
 			name = MinSizeRel;
 		};
-		FF27E65185044D20ACBD57D6 /* MinSizeRel */ = {
+		B283929D6406494A9F3F610D /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = arm64;
@@ -854,65 +727,192 @@ exit 0";
 			};
 			name = MinSizeRel;
 		};
+		B2BEA1196DE84E51B3E6F58C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		C3D5A5619D874666B024590D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/build";
+			};
+			name = Debug;
+		};
+		C7908A039C4B4D31B626BBE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/build";
+			};
+			name = Release;
+		};
+		C8B70B842F3D4690BE0BC1D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		D3ED8F97017245BAADEF859E /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk;
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/build";
+			};
+			name = MinSizeRel;
+		};
+		D8D078A372D1445DBABE9F9C /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/relwithdebinfo";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG  -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = gtest;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		EBED544801F34AE89AC59959 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/noelalben/github/2022-MUSI6106/lib/Debug";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DGTEST_HAS_PTHREAD=1   '-std=c++11' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = gtest_maind;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/noelalben/github/2022-MUSI6106/googletest/googletest";
+				SYSTEM_HEADER_SEARCH_PATHS = ("/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest/include","/Users/noelalben/github/2022-MUSI6106/3rdparty/googletest/googletest","$(inherited)");
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0E957BD1E9784E7FA5A7B076 /* Build configuration list for PBXNativeTarget "gtest_main" */ = {
+		2F9E33290C934B61A8786268 /* Build configuration list for PBXProject "googletest-distribution" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DA137E5BEC4244838F76849A /* Debug */,
-				A68A48EB338A4B0088C6A75C /* Release */,
-				E0CA38BEABF34B35A032E8D5 /* MinSizeRel */,
-				5845090A27764F0AA5242537 /* RelWithDebInfo */,
+				C3D5A5619D874666B024590D /* Debug */,
+				C7908A039C4B4D31B626BBE2 /* Release */,
+				D3ED8F97017245BAADEF859E /* MinSizeRel */,
+				3BCB2EDDDD5B49AEA6E786FF /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		98628B73D50C4C7686DD61A4 /* Build configuration list for PBXProject "googletest-distribution" */ = {
+		8455E7FCCB85482A80900C61 /* Build configuration list for PBXNativeTarget "gtest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				23F84B7CF58B4BF7949F2C8F /* Debug */,
-				B2B491359DEA418D8776401F /* Release */,
-				EDEA462B47F243B483CF94DB /* MinSizeRel */,
-				1F37F021B1C045A0BF004F23 /* RelWithDebInfo */,
+				52993A124E084471ABE2EA4D /* Debug */,
+				A8C85D7FB4844CF5B05719C3 /* Release */,
+				07C0653763F44D39A7081017 /* MinSizeRel */,
+				D8D078A372D1445DBABE9F9C /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		CB60F428B892447CBEE5A178 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		8ECCCE17078C46AB91BEC36C /* Build configuration list for PBXNativeTarget "gtest_main" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B690159C8AF94B56A3BAAB4B /* Debug */,
-				58407C16740C45E0B4EDD4D9 /* Release */,
-				F49E1D2D8ED1472C9EB943FA /* MinSizeRel */,
-				28FE1A1FCCDF4B9C9FD077AC /* RelWithDebInfo */,
+				EBED544801F34AE89AC59959 /* Debug */,
+				173FC581726B43C7AFB51C1C /* Release */,
+				587025AE38A44362A92B3AB5 /* MinSizeRel */,
+				A63CC20BE222473387BC7EBA /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		DD4953B8366940EBB3A0B6CB /* Build configuration list for PBXNativeTarget "gtest" */ = {
+		C296D417E13D461797ECB6B3 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A21D8684656C40C898748B46 /* Debug */,
-				DED24DC37A934E58BF27CDBC /* Release */,
-				6B261938C9D647CA9283ED98 /* MinSizeRel */,
-				3287F6E1BD8D4C70BB574BFD /* RelWithDebInfo */,
+				C8B70B842F3D4690BE0BC1D3 /* Debug */,
+				B2BEA1196DE84E51B3E6F58C /* Release */,
+				A99A1F54E3D44CE29EB696D1 /* MinSizeRel */,
+				A50B8752A3C14BDD8432FCFB /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		E1BF03E0EB5C47ACAA973250 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		CAC770F094CA46359AD12FCA /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E83903FE9FF34D059F7D9941 /* Debug */,
-				F10FB426E42541C7945A3BF6 /* Release */,
-				FF27E65185044D20ACBD57D6 /* MinSizeRel */,
-				E80B02758C6946D0B63EB9ED /* RelWithDebInfo */,
+				765D3F0DD2D743DFAABCE58E /* Debug */,
+				9CAD7E9CBD62472EBB43BABA /* Release */,
+				B283929D6406494A9F3F610D /* MinSizeRel */,
+				03F8084F6C4A4053B7886C43 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 443CB2E1517E43B0AA356BAC /* Project object */;
+	rootObject = 3BB0D632F908413292B296F8 /* Project object */;
 }
