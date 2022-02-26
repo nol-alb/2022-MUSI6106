@@ -4,6 +4,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#include "ErrorDef.h"
 #include "RingBuffer.h"
 
 class CLfo
@@ -40,17 +41,18 @@ public:
 		delete m_pWavetable;
 	};
 
-	void setParam(LfoParam_t param_t, float fValue)
+	Error_t setParam(LfoParam_t param_t, float fValue)
 	{
 		switch (param_t)
 		{
 		case LfoParam_t::kAmplitude:
-			setGain(fValue);
+			return setGain(fValue);
 		case LfoParam_t::kFrequency:
-			setFrequency(fValue);
+			return setFrequency(fValue);
 		case LfoParam_t::kSampleRate:
-			setSampleRate(fValue);
+			return setSampleRate(fValue);
 		}
+		return Error_t::kFunctionInvalidArgsError;
 	}
 
 	float getParam(LfoParam_t param_t) const
@@ -83,21 +85,30 @@ private:
 	float m_fFrequency = 0.0f;
 	float m_fSampleRate = 0.0f;
 
-	void setFrequency(float fValue)
+	Error_t setFrequency(float fValue)
 	{
+		if (fValue < 0)
+			return Error_t::kFunctionInvalidArgsError;
 		m_fFrequency = fValue;
 		m_fTableDelta = (m_fSampleRate == 0) ? m_fFrequency / m_fSampleRate : 0;
+		return Error_t::kNoError;
 	}
 
-	void setGain(float fValue)
+	Error_t setGain(float fValue)
 	{
+		if (fValue < -1.0 || fValue > 1.0)
+			return Error_t::kFunctionInvalidArgsError;
 		m_fAmplitude = fValue;
+		return Error_t::kNoError;
 	}
 
-	void setSampleRate(float fValue)
+	Error_t setSampleRate(float fValue)
 	{
+		if (fValue < 0)
+			return Error_t::kFunctionInvalidArgsError;
 		m_fSampleRate = fValue;
 		setFrequency(m_fFrequency);
+		return Error_t::kNoError;
 	}
 
 };
