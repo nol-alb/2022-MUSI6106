@@ -60,3 +60,8 @@ bld
 /build
 /MUSI6106.build
 /CMakeScripts
+!/.idea
+!/MUSI6106.xcodeproj
+!*CMakeCache.txt
+!*cmake_install.cmake
+
