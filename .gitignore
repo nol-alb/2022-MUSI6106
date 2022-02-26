@@ -52,7 +52,7 @@ bld
 /3rdparty/sndlib/autom4te.cache/traces.0
 /3rdparty/sndlib/autom4te.cache/traces.1
 /cmake.modules/*.bak
-!*.DS_Store
+*.DS_Store
 *.db
 *.log
 /bin
@@ -60,8 +60,8 @@ bld
 /build
 /MUSI6106.build
 /CMakeScripts
-!/.idea
-!/MUSI6106.xcodeproj
-!*CMakeCache.txt
-!*cmake_install.cmake
+/.idea
+/MUSI6106.xcodeproj
+*CMakeCache.txt
+*cmake_install.cmake
 
