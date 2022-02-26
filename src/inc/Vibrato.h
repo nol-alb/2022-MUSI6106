@@ -29,7 +29,7 @@ public:
     enum ParamVibrato{
         kDelayInSec,
         kWidthInSec,
-        kLFOfreqInSec,
+        kLFOFreqInSec,
 
 
         kNumVibratoParams
