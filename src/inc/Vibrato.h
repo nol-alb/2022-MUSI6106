@@ -31,6 +31,7 @@ public:
         kWidthInSec,
         kLFOfreqInSec,
 
+
         kNumVibratoParams
     };
     static Error_t create (CVibrato*& pCVibrato);
@@ -38,9 +39,8 @@ public:
 
     //Initialise the relevant parameters as shown in Matlab and Vibrato Requirements
 
-    Error_t init (float delayInSec, float modWidthInSec, float lfoFreqInHz, float fSampleFreqInHz, int iNumChannels);
+    Error_t init (float fdelayInSec, float fmodWidthInSec, float flfoFreqInHz, float fSampleFreqInHz, int iNumChannels);
     // Reset the Vibrato to Default Values
-    Error_t reset();
 
     //Set the parameters of the Vibrato Enum
     Error_t setParam(ParamVibrato vParam, float fParamValue);
@@ -48,9 +48,9 @@ public:
     //Get the parameter values User Specifies
     float getParam(ParamVibrato vParam) const;
 
-    //Apply the Vibrato Effect to inputBuffer and write to the outputBuffer
+    //Apply the Vibrato Effect to inputBuffer and write to the outputBuffer renamed iNumFrames to pBlockSize
 
-    Error_t process(float **ppfInputBuffer, float **ppfOutputbuffer, int iNumberOfFrames);
+    Error_t process(float **ppfInputBuffer, float **ppfOutputbuffer, int pBlockSize);
 
 
 
@@ -59,8 +59,9 @@ public:
 
 
 protected:
-    CVibrato;
+    CVibrato();
     virtual ~CVibrato();
+    Error_t reset();
 
 private:
     bool m_bIsInitialised;
@@ -68,11 +69,11 @@ private:
     CLfo *m_pLFO;                   //Handle the LFO
     CRingBuffer<float> **m_ptBuff; //Handle Ring Buffer
 
-
-
-    float m_fAmplitude;
     float m_fFrequency;
-    float m_fSampleRate;
+    float m_fSampleRateinHz;
+    float m_fModFrequencyinHz;
+    float m_fWidthInSamples;
+    float m_fDelayinSamples;
 
     int m_iNumChannels;
 

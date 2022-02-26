@@ -22,13 +22,15 @@ public:
 
 	CLfo() 
 	{
-		float angleDelta = M_PI / (float)(m_pWavetable.getLength() - 1);
+        m_pWavetable= new CRingBuffer<float>(m_iWavetableSize);
+
+		float angleDelta = M_PI / (float)(m_pWavetable->getLength() - 1);
 		float currentAngle = 0.0;
 
-		for (int i = 0; i < m_pWavetable.getLength(); i++)
+		for (int i = 0; i < m_pWavetable->getLength(); i++)
 		{
 			float sample = std::sin(currentAngle);
-			m_pWavetable.putPostInc(sample);
+			m_pWavetable->putPostInc(sample);
 			currentAngle += angleDelta;
 		}
 	}
@@ -63,7 +65,7 @@ public:
 
 	float process()
 	{
-		float fCurrentValue = m_pWavetable.get(m_fCurrentIndex);
+		float fCurrentValue = m_pWavetable->get(m_fCurrentIndex);
 		m_fCurrentIndex += m_fTableDelta;
 		return m_fAmplitude * fCurrentValue;
 	}
@@ -71,7 +73,7 @@ public:
 private:
 
 	const int m_iWavetableSize = 1 << 9;
-	CRingBuffer<float> m_pWavetable = CRingBuffer<float>(m_iWavetableSize);
+	CRingBuffer<float> *m_pWavetable;
 	float m_fTableDelta = 0.0f;
 	float m_fCurrentIndex = 0.0f;
 	float m_fAmplitude = 0.0f;
