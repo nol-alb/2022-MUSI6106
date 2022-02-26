@@ -3,6 +3,7 @@
 #ifdef WITH_TESTS
 #include "Vector.h"
 #include "Vibrato.h"
+#include "Synthesis.h"
 
 #include "gtest/gtest.h"
 
@@ -57,6 +58,31 @@ namespace vibrato_test {
         EXPECT_EQ(pLfo->getParam(CLfo::LfoParam_t::kAmplitude), 0.5);
     }
 
+    TEST_F(Lfo, ReturnCorrectSinusoid)
+    {
+        float fSampleRate = 44100.0f;
+        float fFrequency = 440.0f;
+        float fAmplitude = 1.0f;
+        int iLength = 1000;
+
+        pLfo->setParam(CLfo::CLfo::kSampleRate, fSampleRate);
+        pLfo->setParam(CLfo::CLfo::kFrequency, fFrequency);
+        pLfo->setParam(CLfo::CLfo::kAmplitude, fAmplitude);
+
+        float* pfSinusoidData = new float[iLength];
+        float* pfLfoData = new float[iLength];
+
+        CSynthesis::generateSine(pfSinusoidData, fFrequency, fSampleRate, iLength, fAmplitude);
+
+        for (int i = 0; i < iLength; i++)
+            pfLfoData[i] = pLfo->process();
+
+        CHECK_ARRAY_CLOSE(pfLfoData, pfSinusoidData, iLength, 0);
+
+        delete[] pfSinusoidData;
+        delete[] pfLfoData;
+
+    }
 }
 
 #endif //WITH_TESTS

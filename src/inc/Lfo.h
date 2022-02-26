@@ -24,7 +24,7 @@ public:
 	{
         m_pWavetable= new CRingBuffer<float>(m_iWavetableSize);
 
-		float angleDelta = M_PI / (float)(m_pWavetable->getLength() - 1);
+		float angleDelta = (2.0f * M_PI) / (float)(m_iWavetableSize);
 		float currentAngle = 0.0;
 
 		for (int i = 0; i < m_pWavetable->getLength(); i++)
@@ -89,7 +89,7 @@ private:
 		if (fValue < 0)
 			return Error_t::kFunctionInvalidArgsError;
 		m_fFrequency = fValue;
-		m_fTableDelta = (m_fSampleRate == 0) ? m_fFrequency / m_fSampleRate : 0;
+		m_fTableDelta = (m_fSampleRate == 0) ? 0 : m_fFrequency / m_fSampleRate;
 		return Error_t::kNoError;
 	}
 
