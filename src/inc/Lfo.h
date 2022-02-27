@@ -9,16 +9,16 @@
 class CLfo
 {
 
-	enum LfoParam_t 
-	{
-		kAmplitude,
-		kFrequency,
-		kSampleRate,
-
-		kNumParams
-	};
 
 public:
+    enum LfoParam_t
+    {
+        kAmplitude,
+        kFrequency,
+        kSampleRate,
+
+        kNumParams
+    };
 
 	CLfo() 
 	{
