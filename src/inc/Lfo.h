@@ -20,7 +20,7 @@ public:
 		kNumParams
 	};
 
-	CLfo() 
+	CLfo(float fSampleRate = 0.0f, float fAmplitude = 0.0f, float fFrequency = 0.0f)
 	{
         m_pWavetable= new CRingBuffer<float>(m_iWavetableSize);
 
@@ -33,6 +33,11 @@ public:
 			m_pWavetable->putPostInc(sample);
 			currentAngle += angleDelta;
 		}
+
+		setSampleRate(fSampleRate);
+		setFrequency(fFrequency);
+		setAmplitude(fAmplitude);
+
 	}
 
 	~CLfo() 
@@ -45,7 +50,7 @@ public:
 		switch (param_t)
 		{
 		case LfoParam_t::kAmplitude:
-			return setGain(fValue);
+			return setAmplitude(fValue);
 		case LfoParam_t::kFrequency:
 			return setFrequency(fValue);
 		case LfoParam_t::kSampleRate:
@@ -94,7 +99,7 @@ private:
 		return Error_t::kNoError;
 	}
 
-	Error_t setGain(float fValue)
+	Error_t setAmplitude(float fValue)
 	{
 		if (fValue < -1.0 || fValue > 1.0)
 			return Error_t::kFunctionInvalidArgsError;
