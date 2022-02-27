@@ -150,6 +150,7 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputbuffer, int p
         for (int i=0; i<pBlockSize; i++)
         {
             float Lfo_Offset = m_pLFO->process();
+            //John's process code already handles the amplitude width
             float buf_fOffset = 1 + m_fDelayinSamples +Lfo_Offset;
             m_ptBuff[j]->putPostInc(ppfInputBuffer[j][i]);
             ppfOutputbuffer[j][i] = m_ptBuff[j]->get(buf_fOffset);
