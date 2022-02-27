@@ -70,12 +70,12 @@ Error_t CVibrato::init(float fdelayInSec, float fmodWidthInSec, float flfoFreqIn
         return Error_t::kFunctionInvalidArgsError;
 
     m_fSampleRateinSamples = fSampleFreqInHz;
-    m_fModFrequencyinSamples = flfoFreqInHz/m_fSampleRateinSamples;
-    m_fWidthInSamples = fmodWidthInSec*m_fSampleRateinSamples;
-    m_fDelayinSamples = fdelayInSec*m_fSampleRateinSamples;
+    m_fModFrequencyinSamples = (flfoFreqInHz/m_fSampleRateinSamples);
+    m_fWidthInSamples = (fmodWidthInSec*m_fSampleRateinSamples);
+    m_fDelayinSamples =(fdelayInSec*m_fSampleRateinSamples);
     m_iNumChannels=iNumChannels;
 
-    m_pLFO = new CLfo();
+    m_pLFO = new CLfo(m_fSampleRateinSamples,m_fWidthInSamples,m_fModFrequencyinSamples);
 
     m_ptBuff = new CRingBuffer<float>* [iNumChannels];
     for (int i=0; i<iNumChannels;i++) {
@@ -133,7 +133,7 @@ float CVibrato::getParam(ParamVibrato vParam) const {
             return m_fWidthInSamples/m_fSampleRateinSamples;
             break;
         case (CVibrato::ParamVibrato::kLFOFreqInHz):
-            return m_fModFrequencyinSamples;
+            return m_fModFrequencyinSamples*m_fSampleRateinSamples;
             break;
         case (CVibrato::ParamVibrato::kSampleRate):
             return m_fSampleRateinSamples;
@@ -150,10 +150,11 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputbuffer, int p
         for (int i=0; i<pBlockSize; i++)
         {
             float Lfo_Offset = m_pLFO->process();
+            //John's process code already handles the amplitude width
             float buf_fOffset = 1 + m_fDelayinSamples +Lfo_Offset;
             m_ptBuff[j]->putPostInc(ppfInputBuffer[j][i]);
             ppfOutputbuffer[j][i] = m_ptBuff[j]->get(buf_fOffset);
-            int currRead = m_ptBuff[j]->getPostInc();
+            float currRead = m_ptBuff[j]->getPostInc();
         }
     }
     return Error_t::kNoError;

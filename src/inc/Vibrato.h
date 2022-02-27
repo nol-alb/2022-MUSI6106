@@ -12,9 +12,9 @@
     - The frequency of the LFO
     - Type of LFO?
 User methods:
- 1. Create                                |
- 2. Destroy                               |  Can be handled by a constructor/Destructor I guess
- 3. Initialise all the Vibrato Parameters |
+ 1. Create
+ 2. Destroy
+ 3. Initialise all the Vibrato Parameters
  4. Reset The buffer and Vibrato
  5. Set Get and Processes
  The interface is designed similar to the CCombFilterIf
