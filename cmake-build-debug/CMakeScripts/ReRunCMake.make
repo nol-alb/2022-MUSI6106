@@ -15,7 +15,6 @@ TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Applications/CLion.app/Cont
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CheckCSourceCompiles.cmake))
-TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CheckIncludeFile.c.in))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CheckIncludeFile.cmake))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CheckLibraryExists.cmake))
 TARGETS += $(subst $(space),$(spaceplus),$(wildcard /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake))

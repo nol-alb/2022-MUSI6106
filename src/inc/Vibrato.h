@@ -29,7 +29,8 @@ public:
     enum ParamVibrato{
         kDelayInSec,
         kWidthInSec,
-        kLFOFreqInSec,
+        kLFOFreqInHz,
+        kSampleRate,
 
 
         kNumVibratoParams
@@ -70,8 +71,8 @@ private:
     CRingBuffer<float> **m_ptBuff; //Handle Ring Buffer
 
     float m_fFrequency;
-    float m_fSampleRateinHz;
-    float m_fModFrequencyinHz;
+    float m_fSampleRateinSamples;
+    float m_fModFrequencyinSamples;
     float m_fWidthInSamples;
     float m_fDelayinSamples;
 
