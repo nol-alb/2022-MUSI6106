@@ -42,12 +42,6 @@ namespace vibrato_test {
             CVibrato::create(p_CVibratoTest);
             p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels);
             p_CVibratoTest->setParam(CVibrato::kWidthInSec, fTestWidth);
-
-
-
-
-
-
         }
 
         ~CVibratoTests() override {
@@ -80,7 +74,7 @@ namespace vibrato_test {
         // Class members declared here can be used by all tests in the test suite
         // for Foo.
     };
-    
+
 
     class Lfo : public testing::Test
     {

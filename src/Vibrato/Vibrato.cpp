@@ -142,6 +142,20 @@ float CVibrato::getParam(ParamVibrato vParam) const {
     }
 }
 Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputbuffer, int pBlockSize) {
+    //TAP=1+DELAY+WIDTH*MOD;
+    if (!m_bIsInitialised)
+        return Error_t::kNotInitializedError;
+    for (int j=0; j<m_iNumChannels; j++)
+    {
+        for (int i=0; i<pBlockSize; i++)
+        {
+            float Lfo_Offset = m_pLFO->process();
+            float buf_fOffset = 1 + m_fDelayinSamples +Lfo_Offset;
+            m_ptBuff[j]->putPostInc(ppfInputBuffer[j][i]);
+            ppfOutputbuffer[j][i] = m_ptBuff[j]->get(buf_fOffset);
+            int currRead = m_ptBuff[j]->getPostInc();
+        }
+    }
     return Error_t::kNoError;
 
 }
