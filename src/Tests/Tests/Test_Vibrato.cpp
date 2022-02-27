@@ -61,7 +61,7 @@ namespace vibrato_test {
     TEST_F(Lfo, ReturnCorrectSinusoid)
     {
         float fSampleRate = 44100.0f;
-        float fFrequency = 440.0f;
+        float fFrequency = 1;
         float fAmplitude = 1.0f;
         int iLength = 1000;
 

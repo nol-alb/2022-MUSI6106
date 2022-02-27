@@ -89,7 +89,7 @@ private:
 		if (fValue < 0)
 			return Error_t::kFunctionInvalidArgsError;
 		m_fFrequency = fValue;
-		m_fTableDelta = (m_fSampleRate == 0) ? 0 : m_fFrequency / m_fSampleRate;
+		m_fTableDelta = (m_fSampleRate == 0) ? 0 : 2.0f * M_PI * fValue / m_fSampleRate;
 		return Error_t::kNoError;
 	}
 
