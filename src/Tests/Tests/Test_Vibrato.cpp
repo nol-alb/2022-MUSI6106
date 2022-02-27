@@ -120,7 +120,7 @@ namespace vibrato_test {
     TEST_F(Lfo, ReturnCorrectSinusoid)
     {
         float fSampleRate = 44100.0f;
-        float fFrequency = 1;
+        float fFrequency = 1.5;
         float fAmplitude = 1.0f;
         int iLength = 1000;
 
@@ -136,7 +136,7 @@ namespace vibrato_test {
         for (int i = 0; i < iLength; i++)
             pfLfoData[i] = pLfo->process();
 
-        CHECK_ARRAY_CLOSE(pfLfoData, pfSinusoidData, iLength, 0);
+        CHECK_ARRAY_CLOSE(pfLfoData, pfSinusoidData, iLength, 1E-3);
 
         delete[] pfSinusoidData;
         delete[] pfLfoData;

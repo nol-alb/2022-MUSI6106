@@ -24,12 +24,12 @@ public:
 	{
         m_pWavetable= new CRingBuffer<float>(m_iWavetableSize);
 
-		float angleDelta = (2.0f * M_PI) / (float)(m_iWavetableSize);
-		float currentAngle = 0.0;
+		double angleDelta = (2.0f * M_PI) / (double)(m_iWavetableSize);
+		double currentAngle = 0.0;
 
-		for (int i = 0; i < m_pWavetable->getLength(); i++)
+		for (int i = 0; i < m_iWavetableSize; i++)
 		{
-			float sample = std::sin(currentAngle);
+			float sample = static_cast<float>(std::sin(currentAngle));
 			m_pWavetable->putPostInc(sample);
 			currentAngle += angleDelta;
 		}
@@ -70,7 +70,8 @@ public:
 	float process()
 	{
 		float fCurrentValue = m_pWavetable->get(m_fCurrentIndex);
-		m_fCurrentIndex += m_fTableDelta;
+		if ((m_fCurrentIndex += m_fTableDelta) > m_iWavetableSize)
+			m_fCurrentIndex -= m_iWavetableSize;
 		return m_fAmplitude * fCurrentValue;
 	}
 
@@ -89,7 +90,7 @@ private:
 		if (fValue < 0)
 			return Error_t::kFunctionInvalidArgsError;
 		m_fFrequency = fValue;
-		m_fTableDelta = (m_fSampleRate == 0) ? 0 : 2.0f * M_PI * fValue / m_fSampleRate;
+		m_fTableDelta = (m_fSampleRate == 0) ? 0 : m_iWavetableSize * fValue / m_fSampleRate;
 		return Error_t::kNoError;
 	}
 
