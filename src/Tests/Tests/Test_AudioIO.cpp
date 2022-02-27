@@ -1,4 +1,4 @@
-
+/*
 #include "MUSI6106Config.h"
 
 
@@ -341,3 +341,4 @@ namespace audiofile_test {
 }
 
 #endif //WITH_TESTS
+*/

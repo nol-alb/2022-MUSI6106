@@ -24,6 +24,7 @@ namespace vibrato_test {
         float** m_ppfOutBuffer = 0;
         int m_iBufferChannels = 2;
         int m_iBufferLength = 1000;
+        int m_iSampleFreq = 44100;
 
         // You can remove any or all of the following functions if their bodies would
         // be empty.
@@ -56,7 +57,7 @@ namespace vibrato_test {
 
         }
 
-        virtual void TearDown() {
+        virtual void TearDown() override{
             CVibrato::destroy(p_CVibratoTest);
             for (int channel = 0; channel < m_iBufferChannels; channel++)
             {
@@ -106,12 +107,17 @@ namespace vibrato_test {
     {
         for (int channel = 0; channel < m_iBufferChannels; channel++)
             CSynthesis::generateDc(m_ppfInBuffer[channel], m_iBufferLength, 1);
+        float fWidth = 0.0000025;
+        float fDelayInSec = 1000;
 
-        p_CVibratoTest->init(2, 1, 1, 44100, m_iBufferChannels);
+        p_CVibratoTest->init(fDelayInSec, fWidth, 1, 44100, m_iBufferChannels);
         p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
-
+        int check_start_post = static_cast<int>(2+fDelayInSec*m_iSampleFreq+fWidth*2*m_iSampleFreq);
         for (int channel = 0; channel < m_iBufferChannels; channel++)
-            CHECK_ARRAY_CLOSE(m_ppfInBuffer[channel], m_ppfOutBuffer[channel], m_iBufferLength, 0);
+            for (int val = check_start_post; val<m_iBufferLength; val++)
+            {
+                EXPECT_NEAR(m_ppfInBuffer[channel][val], m_ppfOutBuffer[channel][val],0);
+            }
     }
 
 
