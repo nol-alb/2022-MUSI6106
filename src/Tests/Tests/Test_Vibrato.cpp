@@ -35,17 +35,18 @@ namespace vibrato_test {
         CVibratoTests() {
             // You can do set-up work for each test here.
             iNumChannels = 1;
+            iTestSigLength = 1000;
             fTestSampleRateInHz= 44100;
             fTestDelay=0.1f;
             fTestModInHz= 15;
             fTestWidth=0.01f;
-            CVibrato::create(p_CVibratoTest);
-            p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels);
-            p_CVibratoTest->setParam(CVibrato::kWidthInSec, fTestWidth);
+            //CVibrato::create(p_CVibratoTest);
+            //p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels);
+            //p_CVibratoTest->setParam(CVibrato::kWidthInSec, fTestWidth);
         }
 
         ~CVibratoTests() override {
-            //// You can do clean-up work that doesn't throw exceptions here.
+            // You can do clean-up work that doesn't throw exceptions here.
             //CVibrato::destroy(p_CVibratoTest);
             //for (int i = 0; i <iNumChannels; i++)
             //{
@@ -64,11 +65,29 @@ namespace vibrato_test {
         void SetUp() override {
             // Code here will be called immediately after the constructor (right
             // before each test).
+
+            CVibrato::create(p_CVibratoTest);
+            InputTestBuff = new float*[iNumChannels];
+            OutputTestBuff = new float*[iNumChannels];
+            for (int channel = 0; channel < iNumChannels; channel++)
+            {
+                InputTestBuff[channel] = new float[iTestSigLength] {};
+                OutputTestBuff[channel] = new float[iTestSigLength] {};
+            }
+
         }
 
-        void TearDown() override {
-            // Code here will be called immediately after each test (right
-            // before the destructor).
+        virtual void TearDown() {
+            CVibrato::destroy(p_CVibratoTest);
+            for (int channel = 0; channel < iNumChannels; channel++)
+            {
+                delete[] InputTestBuff[channel];
+                delete[] OutputTestBuff[channel];
+            }
+            delete[] InputTestBuff;
+            delete[] OutputTestBuff;
+            InputTestBuff = 0;
+            OutputTestBuff = 0;
         }
 
         // Class members declared here can be used by all tests in the test suite
@@ -97,15 +116,15 @@ namespace vibrato_test {
         void SetUp() override
         {
             pLfo = new CLfo();
-            pfLfoBuffer = new float[iBufferLength];
-            pfSynthesisBuffer = new float[iBufferLength];
+            pfLfoBuffer = new float[iBufferLength] {};
+            pfSynthesisBuffer = new float[iBufferLength] {};
         }
 
         virtual void TearDown()
         {
             delete pLfo;
-            delete pfLfoBuffer;
-            delete pfSynthesisBuffer;
+            delete[] pfLfoBuffer;
+            delete[] pfSynthesisBuffer;
             pLfo = 0;
             pfLfoBuffer = 0;
             pfSynthesisBuffer = 0;
@@ -172,34 +191,17 @@ namespace vibrato_test {
             compareSinusoids(sampleRates[i], 440, 1.0);
     }
 
-    //TEST_F(CVibratoTests, DCstaysDC)
-    //{
-    //    int iNumFrames = 1000;
-    //    int iNumChannels = 1;
-    //    float** ppfInBuffer = new float* [iNumChannels];
-    //    float** ppfOutBuffer = new float* [iNumChannels];
-    //    for (int channel = 0; channel < iNumChannels; channel++)
-    //    {
-    //        ppfInBuffer[channel] = new float[iNumFrames];
-    //        ppfOutBuffer[channel] = new float[iNumFrames];
-    //    }
+    TEST_F(CVibratoTests, DCstaysDC)
+    {
+        for (int channel = 0; channel < iNumChannels; channel++)
+            CSynthesis::generateDc(InputTestBuff[channel], iTestSigLength, 1);
 
-    //    for (int channel = 0; channel < iNumChannels; channel++)
-    //        CSynthesis::generateDc(ppfInBuffer[channel], iNumFrames, 1);
+        p_CVibratoTest->init(2, 1, 1, 44100, iNumChannels);
+        p_CVibratoTest->process(InputTestBuff, OutputTestBuff, iTestSigLength);
 
-    //    p_CVibratoTest->process(ppfInBuffer, ppfOutBuffer, iNumFrames);
-
-    //    for (int channel = 0; channel < iNumChannels; channel++)
-    //        CHECK_ARRAY_CLOSE(ppfInBuffer[channel], ppfOutBuffer[channel], 1000, 0);
-
-    //    for (int channel = 0; channel < iNumChannels; channel++)
-    //    {
-    //        delete[] ppfInBuffer[channel];
-    //        delete[] ppfOutBuffer[channel];
-    //    }
-    //    delete[] ppfInBuffer;
-    //    delete[] ppfOutBuffer;
-    //}
+        for (int channel = 0; channel < iNumChannels; channel++)
+            CHECK_ARRAY_CLOSE(InputTestBuff[channel], OutputTestBuff[channel], iTestSigLength, 1);
+    }
 }
 
 #endif //WITH_TESTS
