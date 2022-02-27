@@ -90,6 +90,28 @@ namespace vibrato_test {
             pLfo = 0;
         }
 
+        void compareSinusoids(float fSampleRate, float fFrequency, float fAmplitude, int iLength = 1000)
+        {
+            pLfo->resetPhase();
+
+            pLfo->setParam(CLfo::CLfo::kSampleRate, fSampleRate);
+            pLfo->setParam(CLfo::CLfo::kFrequency, fFrequency);
+            pLfo->setParam(CLfo::CLfo::kAmplitude, fAmplitude);
+
+            float* pfSinusoidData = new float[iLength];
+            float* pfLfoData = new float[iLength];
+
+            CSynthesis::generateSine(pfSinusoidData, fFrequency, fSampleRate, iLength, fAmplitude);
+
+            for (int i = 0; i < iLength; i++)
+                pfLfoData[i] = pLfo->process();
+
+            CHECK_ARRAY_CLOSE(pfLfoData, pfSinusoidData, iLength, 1E-3);
+
+            delete[] pfSinusoidData;
+            delete[] pfLfoData;
+        }
+
         CLfo* pLfo = 0;
     };
 
@@ -119,28 +141,17 @@ namespace vibrato_test {
 
     TEST_F(Lfo, ReturnCorrectSinusoid)
     {
-        float fSampleRate = 44100.0f;
-        float fFrequency = 440.0f;
-        float fAmplitude = 1.0f;
-        int iLength = 1000;
+        int freqs[10]{ 1,2,3,4,5,6,7,8,9,10 };
+        for (int i = 0; i < 10; i++)
+            compareSinusoids(44100, freqs[i], 1.0);
 
-        pLfo->setParam(CLfo::CLfo::kSampleRate, fSampleRate);
-        pLfo->setParam(CLfo::CLfo::kFrequency, fFrequency);
-        pLfo->setParam(CLfo::CLfo::kAmplitude, fAmplitude);
+        int amps[7]{ -1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0 };
+        for (int i = 0; i < 7; i++)
+            compareSinusoids(44100, 440, amps[i]);
 
-        float* pfSinusoidData = new float[iLength];
-        float* pfLfoData = new float[iLength];
-
-        CSynthesis::generateSine(pfSinusoidData, fFrequency, fSampleRate, iLength, fAmplitude);
-
-        for (int i = 0; i < iLength; i++)
-            pfLfoData[i] = pLfo->process();
-
-        CHECK_ARRAY_CLOSE(pfLfoData, pfSinusoidData, iLength, 0);
-
-        delete[] pfSinusoidData;
-        delete[] pfLfoData;
-
+        int sampleRates[4]{ 11025, 22050, 44100, 48000};
+        for (int i = 0; i < 4; i++)
+            compareSinusoids(sampleRates[i], 440, 1.0);
     }
 }
 
