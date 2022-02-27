@@ -18,7 +18,7 @@ namespace vibrato_test {
     }
     class CVibratoTests : public testing::Test
     {
-    protected:
+    public:
         CVibrato *p_CVibratoTest=0;
         float** InputTestBuff;
         float** OutputTestBuff;
@@ -34,28 +34,23 @@ namespace vibrato_test {
 
         CVibratoTests() {
             // You can do set-up work for each test here.
-            iNumChannels = 1;
-            fTestSampleRateInHz= 44100;
-            fTestDelay=0.1f;
-            fTestModInHz= 15;
-            fTestWidth=0.01f;
             CVibrato::create(p_CVibratoTest);
-            p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels);
-            p_CVibratoTest->setParam(CVibrato::kWidthInSec, fTestWidth);
+//            p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels);
+//            p_CVibratoTest->setParam(CVibrato::kWidthInSec, fTestWidth);
         }
 
         ~CVibratoTests() override {
             // You can do clean-up work that doesn't throw exceptions here.
             CVibrato::destroy(p_CVibratoTest);
-            for (int i = 0; i <iNumChannels; i++)
-            {
-                delete [] InputTestBuff[i];
-                delete [] OutputTestBuff[i];
-            }
-            delete [] InputTestBuff;
-            delete [] OutputTestBuff;
-            InputTestBuff = 0;
-            OutputTestBuff = 0;
+//            for (int i = 0; i <iNumChannels; i++)
+//            {
+//                delete [] InputTestBuff[i];
+//                delete [] OutputTestBuff[i];
+//            }
+//            delete [] InputTestBuff;
+//            delete [] OutputTestBuff;
+//            InputTestBuff = 0;
+//            OutputTestBuff = 0;
         }
 
         // If the constructor and destructor are not enough for setting up
@@ -74,6 +69,37 @@ namespace vibrato_test {
         // Class members declared here can be used by all tests in the test suite
         // for Foo.
     };
+
+    TEST_F(CVibratoTests, CorrectInputOutputHandles)
+    {
+        iNumChannels = 1;
+        fTestSampleRateInHz= 44100;
+        fTestDelay=0.1f;
+        fTestModInHz= 15;
+        fTestWidth=0.01f;
+        EXPECT_EQ(p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels),Error_t::kNoError);
+        EXPECT_EQ(p_CVibratoTest->getParam(CVibrato::ParamVibrato::kLFOFreqInHz),15);
+        EXPECT_EQ(p_CVibratoTest->getParam(CVibrato::ParamVibrato::kSampleRate),44100);
+        EXPECT_EQ(p_CVibratoTest->getParam(CVibrato::ParamVibrato::kWidthInSec),0.01f);
+        iNumChannels = 2;
+        fTestSampleRateInHz= 44100;
+        fTestDelay=1.5f;
+        fTestModInHz= 15;
+        fTestWidth=0.015f;
+        EXPECT_EQ(p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels),Error_t::kNoError);
+        EXPECT_EQ(p_CVibratoTest->getParam(CVibrato::ParamVibrato::kWidthInSec),0.015f);
+    }
+    TEST_F(CVibratoTests, OutBoundsInputOutputHandles)
+    {
+        iNumChannels = 1;
+        fTestSampleRateInHz= -44100;
+        fTestDelay=-0.1f;
+        fTestModInHz= -15;
+        fTestWidth=0.01f;
+        EXPECT_EQ(p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels),Error_t::kFunctionInvalidArgsError);
+
+    }
+
 
 
     class Lfo : public testing::Test
@@ -145,7 +171,7 @@ namespace vibrato_test {
         for (int i = 0; i < 10; i++)
             compareSinusoids(44100, freqs[i], 1.0);
 
-        int amps[7]{ -1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0 };
+        float amps[7]{ -1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0 };
         for (int i = 0; i < 7; i++)
             compareSinusoids(44100, 440, amps[i]);
 
