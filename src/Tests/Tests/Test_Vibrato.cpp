@@ -141,18 +141,17 @@ namespace vibrato_test {
 
     TEST_F(Lfo, ReturnCorrectSinusoid)
     {
-        compareSinusoids(44100, 1, 1);
-        compareSinusoids(44100, 2, 1);
-        compareSinusoids(44100, 3, 1);
-        compareSinusoids(44100, 4, 1);
-        compareSinusoids(44100, 5, 1);
+        int freqs[10]{ 1,2,3,4,5,6,7,8,9,10 };
+        for (int i = 0; i < 10; i++)
+            compareSinusoids(44100, freqs[i], 1.0);
 
-        compareSinusoids(22050, 5, 0.25);
-        compareSinusoids(22050, 5, 0.75);
-        compareSinusoids(22050, 5, 0.23);
+        int amps[7]{ -1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0 };
+        for (int i = 0; i < 7; i++)
+            compareSinusoids(44100, 440, amps[i]);
 
-
-
+        int sampleRates[4]{ 11025, 22050, 44100, 48000};
+        for (int i = 0; i < 4; i++)
+            compareSinusoids(sampleRates[i], 440, 1.0);
     }
 }
 
