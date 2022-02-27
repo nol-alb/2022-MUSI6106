@@ -4,27 +4,27 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#include "ErrorDef.h"
 #include "RingBuffer.h"
 
 class CLfo
 {
-
-
 public:
-    enum LfoParam_t
-    {
-        kAmplitude,
-        kFrequency,
-        kSampleRate,
 
-        kNumParams
-    };
+	enum LfoParam_t
+	{
+		kAmplitude,
+		kFrequency,
+		kSampleRate,
+
+		kNumParams
+	};
 
 	CLfo() 
 	{
         m_pWavetable= new CRingBuffer<float>(m_iWavetableSize);
 
-		float angleDelta = M_PI / (float)(m_pWavetable->getLength() - 1);
+		float angleDelta = (2.0f * M_PI) / (float)(m_iWavetableSize);
 		float currentAngle = 0.0;
 
 		for (int i = 0; i < m_pWavetable->getLength(); i++)
@@ -40,17 +40,18 @@ public:
 		delete m_pWavetable;
 	};
 
-	void setParam(LfoParam_t param_t, float fValue)
+	Error_t setParam(LfoParam_t param_t, float fValue)
 	{
 		switch (param_t)
 		{
 		case LfoParam_t::kAmplitude:
-			setGain(fValue);
+			return setGain(fValue);
 		case LfoParam_t::kFrequency:
-			setFrequency(fValue);
+			return setFrequency(fValue);
 		case LfoParam_t::kSampleRate:
-			setSampleRate(fValue);
+			return setSampleRate(fValue);
 		}
+		return Error_t::kFunctionInvalidArgsError;
 	}
 
 	float getParam(LfoParam_t param_t) const
@@ -83,21 +84,30 @@ private:
 	float m_fFrequency = 0.0f;
 	float m_fSampleRate = 0.0f;
 
-	void setFrequency(float fValue)
+	Error_t setFrequency(float fValue)
 	{
+		if (fValue < 0)
+			return Error_t::kFunctionInvalidArgsError;
 		m_fFrequency = fValue;
-		m_fTableDelta = (m_fSampleRate == 0) ? m_fFrequency / m_fSampleRate : 0;
+		m_fTableDelta = (m_fSampleRate == 0) ? 0 : m_fFrequency / m_fSampleRate;
+		return Error_t::kNoError;
 	}
 
-	void setGain(float fValue)
+	Error_t setGain(float fValue)
 	{
+		if (fValue < -1.0 || fValue > 1.0)
+			return Error_t::kFunctionInvalidArgsError;
 		m_fAmplitude = fValue;
+		return Error_t::kNoError;
 	}
 
-	void setSampleRate(float fValue)
+	Error_t setSampleRate(float fValue)
 	{
+		if (fValue < 0)
+			return Error_t::kFunctionInvalidArgsError;
 		m_fSampleRate = fValue;
 		setFrequency(m_fFrequency);
+		return Error_t::kNoError;
 	}
 
 };
