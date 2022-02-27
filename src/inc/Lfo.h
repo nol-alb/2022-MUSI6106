@@ -72,6 +72,12 @@ public:
 		}
 	}
 
+	Error_t resetPhase()
+	{
+		m_fCurrentIndex = 0.0f;
+		return Error_t::kNoError;
+	}
+
 	float process()
 	{
 		float fCurrentValue = m_pWavetable->get(m_fCurrentIndex);

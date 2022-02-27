@@ -90,6 +90,28 @@ namespace vibrato_test {
             pLfo = 0;
         }
 
+        void compareSinusoids(float fSampleRate, float fFrequency, float fAmplitude, int iLength = 1000)
+        {
+            pLfo->resetPhase();
+
+            pLfo->setParam(CLfo::CLfo::kSampleRate, fSampleRate);
+            pLfo->setParam(CLfo::CLfo::kFrequency, fFrequency);
+            pLfo->setParam(CLfo::CLfo::kAmplitude, fAmplitude);
+
+            float* pfSinusoidData = new float[iLength];
+            float* pfLfoData = new float[iLength];
+
+            CSynthesis::generateSine(pfSinusoidData, fFrequency, fSampleRate, iLength, fAmplitude);
+
+            for (int i = 0; i < iLength; i++)
+                pfLfoData[i] = pLfo->process();
+
+            CHECK_ARRAY_CLOSE(pfLfoData, pfSinusoidData, iLength, 1E-3);
+
+            delete[] pfSinusoidData;
+            delete[] pfLfoData;
+        }
+
         CLfo* pLfo = 0;
     };
 
@@ -119,27 +141,17 @@ namespace vibrato_test {
 
     TEST_F(Lfo, ReturnCorrectSinusoid)
     {
-        float fSampleRate = 44100.0f;
-        float fFrequency = 1.5;
-        float fAmplitude = 1.0f;
-        int iLength = 1000;
+        compareSinusoids(44100, 1, 1);
+        compareSinusoids(44100, 2, 1);
+        compareSinusoids(44100, 3, 1);
+        compareSinusoids(44100, 4, 1);
+        compareSinusoids(44100, 5, 1);
 
-        pLfo->setParam(CLfo::CLfo::kSampleRate, fSampleRate);
-        pLfo->setParam(CLfo::CLfo::kFrequency, fFrequency);
-        pLfo->setParam(CLfo::CLfo::kAmplitude, fAmplitude);
+        compareSinusoids(22050, 5, 0.25);
+        compareSinusoids(22050, 5, 0.75);
+        compareSinusoids(22050, 5, 0.23);
 
-        float* pfSinusoidData = new float[iLength];
-        float* pfLfoData = new float[iLength];
 
-        CSynthesis::generateSine(pfSinusoidData, fFrequency, fSampleRate, iLength, fAmplitude);
-
-        for (int i = 0; i < iLength; i++)
-            pfLfoData[i] = pLfo->process();
-
-        CHECK_ARRAY_CLOSE(pfLfoData, pfSinusoidData, iLength, 1E-3);
-
-        delete[] pfSinusoidData;
-        delete[] pfLfoData;
 
     }
 }
