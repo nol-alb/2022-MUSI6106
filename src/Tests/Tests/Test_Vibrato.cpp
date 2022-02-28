@@ -108,15 +108,15 @@ namespace vibrato_test {
         for (int channel = 0; channel < m_iBufferChannels; channel++)
             CSynthesis::generateDc(m_ppfInBuffer[channel], m_iBufferLength, 1);
         float fWidth = 0.0000025;
-        float fDelayInSec = 1000;
+        float fDelayInSec = 0.0001;
 
         p_CVibratoTest->init(fDelayInSec, fWidth, 1, 44100, m_iBufferChannels);
         p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
-        int check_start_post = static_cast<int>(2+fDelayInSec*m_iSampleFreq+fWidth*2*m_iSampleFreq);
+        int check_start_post = static_cast<int>(2+(fWidth*2*m_iSampleFreq));
         for (int channel = 0; channel < m_iBufferChannels; channel++)
             for (int val = check_start_post; val<m_iBufferLength; val++)
             {
-                EXPECT_NEAR(m_ppfInBuffer[channel][val], m_ppfOutBuffer[channel][val],0);
+                EXPECT_NEAR(m_ppfInBuffer[channel][val-check_start_post], m_ppfOutBuffer[channel][val],0);
             }
     }
 
