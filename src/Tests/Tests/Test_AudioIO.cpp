@@ -47,7 +47,7 @@ namespace audiofile_test {
             }
         }
 
-        virtual void TearDown()
+        virtual void TearDown() override;
         {
             assert(m_ppfAudioData != 0);
             for (int i = 0; i < m_iNumChannels; i++)
@@ -95,9 +95,9 @@ namespace audiofile_test {
         CAudioFileIf    *m_pCAudioFile = 0;
         CAudioFileIf::FileSpec_t m_stFileSpec;
 
-        static const int m_iBuffLength  = 1027;
-        static const int m_iBlockLength = 17;
-        static const int m_iNumChannels = 2;
+        const int m_iBuffLength  = 1027;
+        const int m_iBlockLength = 17;
+        const int m_iNumChannels = 2;
     };
 
     TEST_F(AudioIo, FileReadRaw)

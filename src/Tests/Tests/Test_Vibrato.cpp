@@ -118,8 +118,26 @@ namespace vibrato_test {
             {
                 EXPECT_NEAR(m_ppfInBuffer[channel][val-check_start_post], m_ppfOutBuffer[channel][val],0);
             }
+
     }
 
+    TEST_F(CVibratoTests, ZeroWidthTest)
+    {
+        for (int channel = 0; channel < m_iBufferChannels; channel++)
+            CSynthesis::generateSine(m_ppfInBuffer[channel], 440.f,1.f,m_iBufferLength);
+        float fWidth = 0.f;
+        float fDelayInSec = 0.25;
+        p_CVibratoTest->init(fDelayInSec, fWidth, 24, 44100, m_iBufferChannels);
+        p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
+        int delayInSamples = fDelayInSec*m_iSampleFreq;
+        for (int channel = 0; channel < m_iBufferChannels; channel++)
+            {
+                CHECK_ARRAY_CLOSE(m_ppfInBuffer[channel], m_ppfOutBuffer[channel]+delayInSamples,m_iBufferLength-delayInSamples,1e-3);
+            }
+
+
+
+    }
 
     class Lfo : public testing::Test
     {
