@@ -124,6 +124,24 @@ namespace vibrato_test {
     TEST_F(CVibratoTests, ZeroWidthTest)
     {
         for (int channel = 0; channel < m_iBufferChannels; channel++)
+            CSynthesis::generateDc(m_ppfInBuffer[channel], m_iBufferLength, 0);
+        float fWidth = 222.f;
+        float fDelayInSec = 0.25;
+        p_CVibratoTest->init(fDelayInSec, fWidth, 24, 44100, m_iBufferChannels);
+        p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
+        int delayInSamples = fDelayInSec*m_iSampleFreq;
+        for (int channel = 0; channel < m_iBufferChannels; channel++)
+            {
+
+                CHECK_ARRAY_CLOSE(m_ppfInBuffer[channel], m_ppfOutBuffer[channel]+delayInSamples,m_iBufferLength-delayInSamples,1e-3);
+            }
+
+
+
+    }
+    TEST_F(CVibratoTests, ZeroInputSignal)
+    {
+        for (int channel = 0; channel < m_iBufferChannels; channel++)
             CSynthesis::generateSine(m_ppfInBuffer[channel], 440.f,1.f,m_iBufferLength);
         float fWidth = 0.f;
         float fDelayInSec = 0.25;
@@ -131,9 +149,13 @@ namespace vibrato_test {
         p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
         int delayInSamples = fDelayInSec*m_iSampleFreq;
         for (int channel = 0; channel < m_iBufferChannels; channel++)
+        {
+            for (int val = 0; val<m_iBufferLength; val++)
             {
-                CHECK_ARRAY_CLOSE(m_ppfInBuffer[channel], m_ppfOutBuffer[channel]+delayInSamples,m_iBufferLength-delayInSamples,1e-3);
+                EXPECT_NEAR(m_ppfOutBuffer[channel][val],0,1e-3);
             }
+
+        }
 
 
 
