@@ -208,16 +208,73 @@ namespace vibrato_test {
     protected:
         void SetUp() override
         {
-
+            m_pRingBuffer = new CRingBuffer<float>(m_iMaxBufferSize);
         }
 
         virtual void TearDown()
         {
-
+            delete m_pRingBuffer;
         }
 
-
+        CRingBuffer<float>* m_pRingBuffer = 0;
+        int m_iMaxBufferSize = 10;
     };
+
+    TEST_F(RingBuffer, WrapAround)
+    {
+        int expectedValues[] = { 0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9 };
+        for (int i = 0; i < m_iMaxBufferSize; i++)
+            m_pRingBuffer->putPostInc(static_cast<float>(i));
+
+        for (int i = 0; i < m_iMaxBufferSize * 2; i++)
+            EXPECT_EQ(m_pRingBuffer->getPostInc(), expectedValues[i]);
+    }
+
+    TEST_F(RingBuffer, OutOfBoundsIndexing)
+    {
+        for (int i = 0; i < m_iMaxBufferSize; i++)
+            m_pRingBuffer->putPostInc(static_cast<float>(i));
+
+        EXPECT_EQ(m_pRingBuffer->get(-1), m_pRingBuffer->get(9));
+        EXPECT_EQ(m_pRingBuffer->get(-11), m_pRingBuffer->get(9));
+        EXPECT_EQ(m_pRingBuffer->get(10), m_pRingBuffer->get(0));
+        EXPECT_EQ(m_pRingBuffer->get(21), m_pRingBuffer->get(1));
+
+        m_pRingBuffer->setReadIdx(-5);
+        m_pRingBuffer->setWriteIdx(-5);
+        EXPECT_EQ(m_pRingBuffer->getReadIdx(), 5);
+        EXPECT_EQ(m_pRingBuffer->getWriteIdx(), 5);
+
+        m_pRingBuffer->setReadIdx(12);
+        m_pRingBuffer->setWriteIdx(12);
+        EXPECT_EQ(m_pRingBuffer->getReadIdx(), 2);
+        EXPECT_EQ(m_pRingBuffer->getWriteIdx(), 2);
+    }
+
+    TEST_F(RingBuffer, FractionalIndexing)
+    {
+        for (int i = 0; i < m_iMaxBufferSize; i++)
+            m_pRingBuffer->putPostInc(static_cast<float>(i));
+
+        float indexValues[5] = { 0.5, 3.25, 4.44, 6.43, 8.77 };
+        for (const float index : indexValues)
+            EXPECT_EQ(m_pRingBuffer->get(index), index);
+    }
+
+    TEST_F(RingBuffer, NumValuesInBuffer)
+    {
+        for (int i = 0; i < 5; i++)
+            m_pRingBuffer->putPostInc(1);
+
+        EXPECT_EQ(m_pRingBuffer->getLength(), m_iMaxBufferSize);
+        EXPECT_EQ(m_pRingBuffer->getNumValuesInBuffer(), 5);
+
+        for (int i = 0; i < m_iMaxBufferSize; i++)
+        {
+            m_pRingBuffer->putPostInc(m_pRingBuffer->getPostInc());
+            EXPECT_EQ(m_pRingBuffer->getNumValuesInBuffer(), 5);
+        }
+    }
 
 }
 
