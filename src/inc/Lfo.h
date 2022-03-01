@@ -22,6 +22,7 @@ public:
 
 	CLfo(float fSampleRate = 0.0f, float fAmplitude = 0.0f, float fFrequency = 0.0f)
 	{
+
         m_pWavetable= new CRingBuffer<float>(m_iWavetableSize);
 
 		double angleDelta = (2.0f * M_PI) / (double)(m_iWavetableSize);
@@ -90,11 +91,11 @@ private:
 
 	const int m_iWavetableSize = 1 << 9;
 	CRingBuffer<float> *m_pWavetable = 0;
-	float m_fTableDelta = 0.0f;
-	float m_fCurrentIndex = 0.0f;
-	float m_fAmplitude = 0.0f;
-	float m_fFrequency = 0.0f;
-	float m_fSampleRate = 0.0f;
+	float m_fTableDelta=0;
+	float m_fCurrentIndex=0;
+	float m_fAmplitude=0;
+	float m_fFrequency=0;
+	float m_fSampleRate=0;
 
 	Error_t setFrequency(float fValue)
 	{
@@ -107,7 +108,7 @@ private:
 
 	Error_t setAmplitude(float fValue)
 	{
-		if (fValue < -1.0 || fValue > 1.0)
+		if (fValue < -1.0)
 			return Error_t::kFunctionInvalidArgsError;
 		m_fAmplitude = fValue;
 		return Error_t::kNoError;

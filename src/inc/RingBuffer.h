@@ -75,8 +75,9 @@ public:
 
         return fInterpValue;
     }
+
     //Noel RingBuffFractional
-/*
+/*\
     T get(float fOffset = 0) const
     {
         if (fOffset)
