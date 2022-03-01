@@ -357,6 +357,19 @@ namespace vibrato_test {
         }
     }
 
+    TEST_F(RingBuffer, CorrectDelay)
+    {
+        m_pRingBuffer->put(1);
+
+        m_pRingBuffer->setWriteIdx(5);
+        int expectedValues[5]{ 0,0,0,0,1 };
+        for (int i = 0; i < 5; i++)
+        {
+            m_pRingBuffer->putPostInc(m_pRingBuffer->getPostInc());
+            EXPECT_EQ(m_pRingBuffer->get(), expectedValues[i]);
+        }
+    }
+
 }
 
 #endif //WITH_TESTS
