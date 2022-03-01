@@ -70,6 +70,31 @@ namespace vibrato_test {
             m_ppfOutBuffer = 0;
         }
 
+        void processBlock(float** ppfInputBuffer, float** ppfOutputBuffer, CVibrato* pVibrato, int iNumChannels, int iStartSample, int iBlockSize)
+        {
+            float** ppfTempInBuffer = new float* [iNumChannels];
+            float** ppfTempOutBuffer = new float* [iNumChannels];
+            for (int channel = 0; channel < iNumChannels; channel++)
+            {
+                ppfTempInBuffer[channel] = new float[iBlockSize] {0};
+                ppfTempOutBuffer[channel] = new float[iBlockSize] {0};
+                for (int sample = 0; sample < iBlockSize; sample++)
+                    ppfTempInBuffer[channel][sample] = ppfInputBuffer[channel][sample + iStartSample];
+            }
+
+            pVibrato->process(ppfTempInBuffer, ppfTempOutBuffer, iBlockSize);
+
+            for (int channel = 0; channel < iNumChannels; channel++)
+            {
+                for (int sample = 0; sample < iBlockSize; sample++)
+                    ppfOutputBuffer[channel][sample + iStartSample] = ppfTempOutBuffer[channel][sample];
+                delete[] ppfTempInBuffer[channel];
+                delete[] ppfTempOutBuffer[channel];
+            }
+            delete[] ppfTempInBuffer;
+            delete[] ppfTempOutBuffer;
+        }
+
         // Class members declared here can be used by all tests in the test suite
         // for Foo.
     };
@@ -157,8 +182,37 @@ namespace vibrato_test {
 
         }
 
+    }
 
+    TEST_F(CVibratoTests, VaryingInputBlockSize)
+    {
+        float** ppfBlockInput = new float* [m_iBufferChannels];
+        float** ppfBlockOutput = new float* [m_iBufferChannels];
+        for (int channel = 0; channel < m_iBufferChannels; channel++)
+        {
+            ppfBlockInput[channel] = new float[m_iBufferLength] {0};
+            ppfBlockOutput[channel] = new float[m_iBufferLength] {0};
+            CSynthesis::generateSine(m_ppfInBuffer[channel], 440, 44100, m_iBufferLength, 1);
+            CSynthesis::generateSine(ppfBlockInput[channel], 440, 44100, m_iBufferLength, 1);
+            CHECK_ARRAY_CLOSE(m_ppfInBuffer[channel], ppfBlockInput[channel], m_iBufferLength, 0);
+        }
 
+        p_CVibratoTest->init(0.01, 0.002, 2, 44100, 2);
+        p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
+
+        p_CVibratoTest->init(0.01, 0.002, 2, 44100, 2);
+        processBlock(ppfBlockInput, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 0, 100);
+        processBlock(ppfBlockInput, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 100, 500);
+        processBlock(ppfBlockInput, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 600, 400);
+
+        for (int channel = 0; channel < m_iBufferChannels; channel++)
+        {
+            CHECK_ARRAY_CLOSE(ppfBlockOutput[channel], m_ppfOutBuffer[channel], m_iBufferLength, 1E-4);
+            delete[] ppfBlockInput[channel];
+            delete[] ppfBlockOutput[channel];
+        }
+        delete[] ppfBlockInput;
+        delete[] ppfBlockOutput;
     }
 
     class Lfo : public testing::Test
@@ -212,7 +266,7 @@ namespace vibrato_test {
         EXPECT_EQ(m_pLfo->setParam(CLfo::LfoParam_t::kFrequency, -28381), Error_t::kFunctionInvalidArgsError);
 
         EXPECT_EQ(m_pLfo->setParam(CLfo::LfoParam_t::kAmplitude, -2), Error_t::kFunctionInvalidArgsError);
-        EXPECT_EQ(m_pLfo->setParam(CLfo::LfoParam_t::kAmplitude, 3), Error_t::kFunctionInvalidArgsError);
+        EXPECT_EQ(m_pLfo->setParam(CLfo::LfoParam_t::kAmplitude, -1293), Error_t::kFunctionInvalidArgsError);
     }
 
     TEST_F(Lfo, SetParametersCorrectly)
@@ -233,7 +287,7 @@ namespace vibrato_test {
         for (int i = 0; i < 10; i++)
             compareSinusoids(44100, freqs[i], 1.0);
 
-        float amps[7]{ -1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0 };
+        float amps[7]{ 0, 0.25, 0.5, 1.0, 1.5, 2.0, 2.5 };
         for (int i = 0; i < 7; i++)
             compareSinusoids(44100, 440, amps[i]);
 

@@ -108,7 +108,7 @@ private:
 
 	Error_t setAmplitude(float fValue)
 	{
-		if (fValue < -1.0)
+		if (fValue < 0)
 			return Error_t::kFunctionInvalidArgsError;
 		m_fAmplitude = fValue;
 		return Error_t::kNoError;
