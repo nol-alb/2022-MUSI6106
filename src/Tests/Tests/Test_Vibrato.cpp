@@ -132,37 +132,30 @@ namespace vibrato_test {
     {
         for (int channel = 0; channel < m_iBufferChannels; channel++)
             CSynthesis::generateDc(m_ppfInBuffer[channel], m_iBufferLength, 1);
-        float fWidth = 0.0000025;
+        float fWidth = 0.02;
         float fDelayInSec = 0.0001;
 
         p_CVibratoTest->init(fDelayInSec, fWidth, 1, 44100, m_iBufferChannels);
         p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
-        int check_start_post = static_cast<int>(2+(fWidth*2*m_iSampleFreq));
+        int check_start_post = static_cast<int>(2 + (fWidth * 2 * 44100));
         for (int channel = 0; channel < m_iBufferChannels; channel++)
-            for (int val = check_start_post; val<m_iBufferLength; val++)
-            {
-                EXPECT_NEAR(m_ppfInBuffer[channel][val-check_start_post], m_ppfOutBuffer[channel][val],0);
-            }
+            CHECK_ARRAY_CLOSE(m_ppfInBuffer[channel] + check_start_post, m_ppfOutBuffer[channel], m_iBufferLength - check_start_post, 1e-3);
 
     }
 
     TEST_F(CVibratoTests, ZeroWidthTest)
     {
         for (int channel = 0; channel < m_iBufferChannels; channel++)
-            CSynthesis::generateDc(m_ppfInBuffer[channel], m_iBufferLength, 0);
-        float fWidth = 222.f;
-        float fDelayInSec = 0.25;
+            CSynthesis::generateSine(m_ppfInBuffer[channel], 440, 44100, m_iBufferLength, 0);
+        float fWidth = 0;
+        float fDelayInSec = 0.0025;
         p_CVibratoTest->init(fDelayInSec, fWidth, 24, 44100, m_iBufferChannels);
         p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
         int delayInSamples = fDelayInSec*m_iSampleFreq;
         for (int channel = 0; channel < m_iBufferChannels; channel++)
-            {
-
+        {
                 CHECK_ARRAY_CLOSE(m_ppfInBuffer[channel], m_ppfOutBuffer[channel]+delayInSamples,m_iBufferLength-delayInSamples,1e-3);
-            }
-
-
-
+        }
     }
     TEST_F(CVibratoTests, ZeroInputSignal)
     {
@@ -186,32 +179,26 @@ namespace vibrato_test {
 
     TEST_F(CVibratoTests, VaryingInputBlockSize)
     {
-        float** ppfBlockInput = new float* [m_iBufferChannels];
         float** ppfBlockOutput = new float* [m_iBufferChannels];
         for (int channel = 0; channel < m_iBufferChannels; channel++)
         {
-            ppfBlockInput[channel] = new float[m_iBufferLength] {0};
             ppfBlockOutput[channel] = new float[m_iBufferLength] {0};
-            CSynthesis::generateSine(m_ppfInBuffer[channel], 440, 44100, m_iBufferLength, 1);
-            CSynthesis::generateSine(ppfBlockInput[channel], 440, 44100, m_iBufferLength, 1);
-            CHECK_ARRAY_CLOSE(m_ppfInBuffer[channel], ppfBlockInput[channel], m_iBufferLength, 0);
+            CSynthesis::generateNoise(m_ppfInBuffer[channel], m_iBufferLength);
         }
 
         p_CVibratoTest->init(0.01, 0.002, 2, 44100, 2);
         p_CVibratoTest->process(m_ppfInBuffer, m_ppfOutBuffer, m_iBufferLength);
 
         p_CVibratoTest->init(0.01, 0.002, 2, 44100, 2);
-        processBlock(ppfBlockInput, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 0, 100);
-        processBlock(ppfBlockInput, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 100, 500);
-        processBlock(ppfBlockInput, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 600, 400);
+        processBlock(m_ppfInBuffer, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 0, 100);
+        processBlock(m_ppfInBuffer, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 100, 500);
+        processBlock(m_ppfInBuffer, ppfBlockOutput, p_CVibratoTest, m_iBufferChannels, 600, 400);
 
         for (int channel = 0; channel < m_iBufferChannels; channel++)
         {
-            CHECK_ARRAY_CLOSE(ppfBlockOutput[channel], m_ppfOutBuffer[channel], m_iBufferLength, 1E-4);
-            delete[] ppfBlockInput[channel];
+            CHECK_ARRAY_CLOSE(ppfBlockOutput[channel], m_ppfOutBuffer[channel], m_iBufferLength, 1E-3);
             delete[] ppfBlockOutput[channel];
         }
-        delete[] ppfBlockInput;
         delete[] ppfBlockOutput;
     }
 
