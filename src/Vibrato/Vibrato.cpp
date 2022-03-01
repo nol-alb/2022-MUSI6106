@@ -36,7 +36,6 @@ Error_t CVibrato::destroy(CVibrato*& pCVibrato)
 {
     if (!pCVibrato)
         return Error_t::kUnknownError;
-    pCVibrato->reset();
     delete pCVibrato;
     pCVibrato=0;
 
