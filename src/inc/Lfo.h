@@ -20,6 +20,13 @@ public:
 		kNumParams
 	};
 
+	/**
+	* Constructor for LFO class
+	* @param fSampleRate : sample rate in Hz
+	* @param fAmplitude : amplitude of LFO output
+	* @param fFrequency : frequency of LFO in Hz
+	* @return void
+	*/
 	CLfo(float fSampleRate = 0.0f, float fAmplitude = 0.0f, float fFrequency = 0.0f)
 	{
 
@@ -46,6 +53,12 @@ public:
 		delete m_pWavetable;
 	};
 
+	/**
+	* Set parameters of LFO
+	* @param param_t : enum of LfoParam_t type (kAmplitude, kFrequency, kSampleRate)
+	* @param fValue : value to set parameter to
+	* @return Error_t
+	*/
 	Error_t setParam(LfoParam_t param_t, float fValue)
 	{
 		switch (param_t)
@@ -60,6 +73,10 @@ public:
 		return Error_t::kFunctionInvalidArgsError;
 	}
 
+	/**
+	* Returns desired LFO parameter value
+	* @return Error_t
+	*/
 	float getParam(LfoParam_t param_t) const
 	{
 		switch (param_t)
@@ -73,12 +90,20 @@ public:
 		}
 	}
 
+	/**
+	* Resets wavetable read index. Equivalent to reseting phase of LFO
+	* @return Error_t
+	*/
 	Error_t resetPhase()
 	{
 		m_fCurrentIndex = 0.0f;
 		return Error_t::kNoError;
 	}
 
+	/**
+	* Returns next value of LFO
+	* @return float
+	*/
 	float process()
 	{
 		float fCurrentValue = m_pWavetable->get(m_fCurrentIndex);

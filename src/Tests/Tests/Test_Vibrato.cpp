@@ -26,9 +26,6 @@ namespace vibrato_test {
         int m_iBufferLength = 1000;
         int m_iSampleFreq = 44100;
 
-        // You can remove any or all of the following functions if their bodies would
-        // be empty.
-
         CVibratoTests() 
         {
 
@@ -36,15 +33,10 @@ namespace vibrato_test {
 
         ~CVibratoTests() override 
         {
-            // You can do clean-up work that doesn't throw exceptions here.
+
         }
 
-        // If the constructor and destructor are not enough for setting up
-        // and cleaning up each test, you can define the following methods:
-
         void SetUp() override {
-            // Code here will be called immediately after the constructor (right
-            // before each test).
 
             CVibrato::create(p_CVibratoTest);
             m_ppfInBuffer = new float*[m_iBufferChannels];
@@ -94,9 +86,6 @@ namespace vibrato_test {
             delete[] ppfTempInBuffer;
             delete[] ppfTempOutBuffer;
         }
-
-        // Class members declared here can be used by all tests in the test suite
-        // for Foo.
     };
     TEST_F(CVibratoTests, CorrectInputOutputHandles)
     {
