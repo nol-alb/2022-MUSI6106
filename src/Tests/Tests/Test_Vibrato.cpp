@@ -62,6 +62,16 @@ namespace vibrato_test {
             m_ppfOutBuffer = 0;
         }
 
+        /**
+        * Process one block of data given a starting sample and block size
+        * @param ppfInputBuffer : entire buffer of input values
+        * @param ppfOutputBuffer : entire buffer to place outputted values
+        * @param pVibrato : pointer to an initialized CVibrato instantiation
+        * @param iNumChannels : number of channels in input/output buffer
+        * @param iStartSample : the sample at which to begin the block processing
+        * @param iBlockSize : the number of samples to process
+        * @return void
+        */
         void processBlock(float** ppfInputBuffer, float** ppfOutputBuffer, CVibrato* pVibrato, int iNumChannels, int iStartSample, int iBlockSize)
         {
             float** ppfTempInBuffer = new float* [iNumChannels];
@@ -217,6 +227,13 @@ namespace vibrato_test {
             m_pfSynthesisBuffer = 0;
         }
 
+        /**
+        * Generates and compares sinusoidal buffers from CLfo and CSynthesis based on a set of values
+        * @param fSampleRate : sample rate in Hz
+        * @param fFrequency : frequency in Hz
+        * @param fAmplitude : amplitude of sinusoid
+        * @return void
+        */
         void compareSinusoids(float fSampleRate, float fFrequency, float fAmplitude)
         {
             m_pLfo->resetPhase();
@@ -265,6 +282,7 @@ namespace vibrato_test {
 
     TEST_F(Lfo, ReturnCorrectSinusoid)
     {
+        // 
         int freqs[10]{ 1,2,3,4,5,6,7,8,9,10 };
         for (int i = 0; i < 10; i++)
             compareSinusoids(44100, freqs[i], 1.0);
