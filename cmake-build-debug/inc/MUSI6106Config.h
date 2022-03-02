@@ -30,6 +30,6 @@
 #define MUSI6106_VERSION_PATCH 0
 
 // for testing only
-#define CMAKE_SOURCE_DIR "/Users/noelalben/github/2022-MUSI6106"
+#define CMAKE_SOURCE_DIR "/Users/noelalben/Downloads/2022-MUSI6106-exercise_spectrogram-2"
 
 #endif // __MigEdit_config_hdr__

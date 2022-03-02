@@ -60,43 +60,12 @@ public:
     }
 
     /*! return the value at the current read index
-    \param fOffset: read at offset from read index
     \return float the value from the read index
     */
-    T get(float fOffset = 0) const
+    T get() const
     {
-        float fRawIndex = m_iReadIdx + fOffset;
-        int iIndex0 = static_cast<int>(floor(fRawIndex));
-        int iIndex1 = static_cast<int>(ceil(fRawIndex));
-        float fValue0 = m_ptBuff[wrapAround(iIndex0)];
-        float fValue1 = m_ptBuff[wrapAround(iIndex1)];
-
-        float fInterpValue = fValue0 + ((fRawIndex - iIndex0) * (fValue1 - fValue0));
-
-        return fInterpValue;
+        return m_ptBuff[m_iReadIdx];
     }
-    //Noel RingBuffFractional
-/*
-    T get(float fOffset = 0) const
-    {
-        if (fOffset)
-            return m_ptBuff[m_iReadIdx];
-        else
-        {
-            // Get Fractional Part
-            int IntOffset = static_cast<int>(floor(fOffset));
-            float fracOffset = fOffset-IntOffset;
-
-            int new_Read = incIdx(m_iReadIdx+IntOffset,0);
-//          Check Negative Values and return
-            new_Read = AllPos(new_Read);
-            float cur_BuffVal = m_ptBuff[new_Read];
-            float nex_BuffVal = m_ptBuff[incIdx(new_Read+1,0)];
-            //Weighted sum
-            return (1-fracOffset)*cur_BuffVal + fracOffset*(nex_BuffVal);
-        }
-    }
-*/
 
     /*! set buffer content and indices to 0
     \return void
@@ -170,26 +139,6 @@ private:
         }
         iIdx = (iIdx + iOffset) % m_iBuffLength;
     };
-
-    int wrapAround(int iIdx) const
-    {
-        while (iIdx < 0)
-            iIdx += m_iBuffLength;
-        iIdx %= m_iBuffLength;
-        return iIdx;
-    }
-    int AllPos(int ReadIdx)
-    {
-        if(ReadIdx<0) {
-            return AllPos(incIdx(ReadIdx,m_iBuffLength));
-        }
-        else if(ReadIdx>m_iBuffLength-1) {
-            return AllPos(incIdx(ReadIdx,-m_iBuffLength));
-        }
-        else {
-            return incIdx(ReadIdx, 0);
-        }
-    }
 
     int m_iBuffLength = 0,      //!< length of the internal buffer
         m_iReadIdx = 0,         //!< current read index

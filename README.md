@@ -9,19 +9,20 @@ Template project for assignments and exercises for the class MUSI6106
 ## Project Structure
 ```console
 |_ 3rdparty: (3rd party dependencies)
+  |_ Fft: simple Fft library
   |_ sndlib: sndfile library (3rdparty with ugly code and lots of warnings)
   |_ googletest: googletest framework
 |_ cmake.modules: (cmake scripts)
 |_ inc: global headers
 |_ src: source code
   |_ AudioFileIO: library wrapping sndfile (3rdparty)
+  |_ CombFilter: combfilter library (assignment 1)
   |_ inc: internal headers
   |_ MUSI6106Exec: code for executable binary
   |_ Tests: all code related to tests
 	|_ TestData: data for specific tests possibly requiring data
 	|_ TestExec: test executable
 	|_ Tests: individual test implementations (one file per target)
-  |_ Vibrato: library for a vibrato effect
 ```
 
 ## Creating the Project Files with CMake
