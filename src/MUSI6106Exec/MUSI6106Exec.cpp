@@ -42,6 +42,13 @@ int main(int argc, char* argv[])
     showClInfo();
 
 
+    if(argc < 7)
+    {
+        cout << "Incorrect number of arguments!" << endl;
+        return -1;
+    }
+
+
     sInputFilePath = argv[1];
     sOutputFilePath = argv[2];
     fSampleRate = atof(argv[3]);
@@ -49,11 +56,9 @@ int main(int argc, char* argv[])
     fBasicDelayInSec = atof(argv[5]);
     fModWidthInSec = atof(argv[6]);
 
-    if(argc < 7)
-    {
-        cout << "Incorrect number of arguments!" << endl;
-        return -1;
-    }
+    cout << "Delay: " << fBasicDelayInSec << endl;
+    cout << "Width: " << fModWidthInSec << endl;
+    cout << "LFO Freq: " << fModFrequencyInHz << endl;
     ///////////////////////////////////////////////////////////////////////////
     CAudioFileIf::create(phAudioFile);
     CAudioFileIf::create(phAudioOutputFile);

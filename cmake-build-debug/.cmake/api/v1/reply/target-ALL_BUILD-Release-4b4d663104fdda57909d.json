@@ -17,13 +17,13 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "ZERO_CHECK::@b3026ea3adfb7c2366ee"
-		},
-		{
 			"id" : "gtest_main::@f95b5c00bd49b3b4698d"
 		},
 		{
 			"id" : "gtest::@f95b5c00bd49b3b4698d"
+		},
+		{
+			"id" : "ZERO_CHECK::@b3026ea3adfb7c2366ee"
 		}
 	],
 	"id" : "ALL_BUILD::@b3026ea3adfb7c2366ee",

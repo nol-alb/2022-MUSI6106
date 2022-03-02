@@ -125,6 +125,12 @@ namespace vibrato_test {
         float fTestModInHz= -15;
         float fTestWidth=0.01f;
         EXPECT_EQ(p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels),Error_t::kFunctionInvalidArgsError);
+        iNumChannels = 1;
+        fTestSampleRateInHz= 44100;
+        fTestDelay=0.1f;
+        fTestModInHz= 15;
+        fTestWidth=1.24f;
+        EXPECT_EQ(p_CVibratoTest->init(fTestDelay,fTestWidth,fTestModInHz,fTestSampleRateInHz,iNumChannels),Error_t::kFunctionInvalidArgsError);
 
     }
 

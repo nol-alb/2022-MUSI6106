@@ -65,8 +65,10 @@ Error_t CVibrato::reset()
 Error_t CVibrato::init(float fdelayInSec, float fmodWidthInSec, float flfoFreqInHz, float fSampleFreqInHz,
                        int iNumChannels){
     this->reset();
-    if (fSampleFreqInHz <= 0|| flfoFreqInHz <= 0 || iNumChannels <= 0 || fmodWidthInSec>fdelayInSec)
+    if (fSampleFreqInHz <= 0|| flfoFreqInHz <= 0 || iNumChannels <= 0 || fmodWidthInSec>fdelayInSec) {
+        cout << "Invalid Argument Please check Param Bounds" << endl;
         return Error_t::kFunctionInvalidArgsError;
+    }
     m_fSampleRateinSamples = fSampleFreqInHz;
     m_fModFrequencyinSamples = (flfoFreqInHz/m_fSampleRateinSamples);
     m_fWidthInSamples = (fmodWidthInSec*m_fSampleRateinSamples);
