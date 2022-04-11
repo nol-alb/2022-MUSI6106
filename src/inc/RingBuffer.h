@@ -16,33 +16,39 @@ public:
         m_iBuffLength(iBufferLengthInSamples),
         m_iReadIdx(0),
         m_iWriteIdx(0),
-        m_buffptr(0)
-    
+        m_ptBuff(0)
     {
         assert(iBufferLengthInSamples > 0);
-        m_buffptr = new T[m_iBuffLength];
-        
 
-        // allocate and init
+        m_ptBuff = new T[m_iBuffLength];
+        reset();
     }
 
     virtual ~CRingBuffer()
     {
-        // free memory
-        delete [] m_buffptr;
-        m_buffptr=0;
+        delete[] m_ptBuff;
+        m_ptBuff = 0;
     }
 
     /*! add a new value of type T to write index and increment write index
     \param tNewValue the new value
     \return void
     */
-    void putPostInc (T tNewValue)
+    void putPostInc(T tNewValue)
     {
         put(tNewValue);
-        m_iWriteIdx = wraparound(++m_iWriteIdx);
-        
-        
+        incIdx(m_iWriteIdx);
+    }
+
+    /*! add new values of type T to write index and increment write index
+    \param ptNewBuff: new values
+    \param iLength: number of values
+    \return void
+    */
+    void putPostInc(const T* ptNewBuff, int iLength)
+    {
+        put(ptNewBuff, iLength);
+        incIdx(m_iWriteIdx, iLength);
     }
 
     /*! add a new value of type T to write index
@@ -51,80 +57,97 @@ public:
     */
     void put(T tNewValue)
     {
-        m_buffptr[m_iWriteIdx]= tNewValue;
+        m_ptBuff[m_iWriteIdx] = tNewValue;
     }
-    
+
+    /*! add new values of type T to write index
+    \param ptNewBuff: new values
+    \param iLength: number of values
+    \return void
+    */
+    void put(const T* ptNewBuff, int iLength)
+    {
+        assert(iLength <= m_iBuffLength && iLength >= 0);
+
+        // copy two parts: to the end of buffer and after wrap around
+        int iNumValues2End = std::min(iLength, m_iBuffLength - m_iWriteIdx);
+
+        std::memcpy (&m_ptBuff[m_iWriteIdx], ptNewBuff, sizeof(T)*iNumValues2End);
+        if ((iLength - iNumValues2End) > 0)
+            std::memcpy (m_ptBuff, &ptNewBuff[iNumValues2End], sizeof(T)*(iLength - iNumValues2End));
+    }
+
     /*! return the value at the current read index and increment the read pointer
     \return float the value from the read index
     */
     T getPostInc()
     {
-        float new_value = m_buffptr[m_iReadIdx];
-        m_iReadIdx = wraparound(++m_iReadIdx);
-        
-        return new_value;
+        T tValue = get();
+        incIdx(m_iReadIdx);
+        return tValue;
+    }
+
+    /*! return the values starting at the current read index and increment the read pointer
+    \param ptBuff: pointer to where the values will be written
+    \param iLength: number of values
+    \return void
+    */
+    void getPostInc(T* ptBuff, int iLength)
+    {
+        get(ptBuff, iLength);
+        incIdx(m_iReadIdx, iLength);
     }
 
     /*! return the value at the current read index
     \param fOffset: read at offset from read index
     \return float the value from the read index
-     //const means the input parameters to the method will not be changed
     */
     T get(float fOffset = 0) const
     {
-        //If offset is zero it is a normal get
-        if (fOffset==0)
-        {
-            return m_buffptr[m_iReadIdx]
-        }
+        if (fOffset == 0)
+            return m_ptBuff[m_iReadIdx];
         else
         {
-            //interp = (1-frac)*m_ptBuff[i(low)] + frac*m_ptBuff[i(high)];
-            // seperate the int and fractional part
-            // Use the int part to move ahead in the m_iReadIdx, handle negative values
-                //Check for Wraparound in this stage
-            //Then increment a new iReadIdx which is incremented
-            //Use interpolation formula using the fractional part
 
-       if (fOffset)
-           return m_ptBuff[m_iReadIdx];
-       else
-       {
-           // Get Fractional Part
-           int IntOffset = static_cast<int>(floor(fOffset));
-           float fracOffset = fOffset-IntOffset;
+            // compute fraction for linear interpolation 
+            int     iOffset = static_cast<int>(std::floor(fOffset));
+            float   fFrac = fOffset - iOffset;
+            int     iRead = m_iReadIdx + iOffset;
+            while (iRead > m_iBuffLength - 1)
+                iRead -= m_iBuffLength;
+            while (iRead < 0)
+                iRead += m_iBuffLength;
 
-           int new_Read = incIdx(m_iReadIdx+IntOffset,0);
-           // Check Negative Values and return
-           new_Read = AllPos(new_Read);
-           float cur_BuffVal = m_ptBuff[new_Read];
-           float nex_BuffVal = m_ptBuff[incIdx(new_Read+1,0)];
-           //Weighted sum
-           return (1-fracOffset)*cur_BuffVal + fracOffset*(nex_BuffVal);
-       }
-   }
-
-
-    /*! return the value at the current read index
-    \return float the value from the read index
-    */
-    T get() const
-    {
-        return m_buffptr[m_iReadIdx];
+            return (1 - fFrac) * m_ptBuff[iRead] +
+                fFrac * m_ptBuff[(iRead + 1) % m_iBuffLength];
+        }
     }
-    
+
+    /*! return the values starting at the current read index
+    \param ptBuff to where the values will be written
+    \param iLength: number of values
+    \return void
+    */
+    void get(T* ptBuff, int iLength) const
+    {
+        assert(iLength <= m_iBuffLength && iLength >= 0);
+
+        // copy two parts: to the end of buffer and after wrap around
+        int iNumValues2End = std::min(iLength, m_iBuffLength - m_iReadIdx);
+
+        std::memcpy (ptBuff, &m_ptBuff[m_iReadIdx], sizeof(T)*iNumValues2End);
+        if ((iLength - iNumValues2End)>0)
+            std::memcpy (&ptBuff[iNumValues2End], m_ptBuff, sizeof(T)*(iLength - iNumValues2End));
+    }
+
     /*! set buffer content and indices to 0
     \return void
     */
     void reset()
     {
-        m_iReadIdx=0;
-        m_iWriteIdx=0;
-        for(int i =0; i<=m_iBuffLength;i++)
-        {
-            m_buffptr[i]=0;
-        }
-        
+        std::memset (m_ptBuff, 0, sizeof(T)*m_iBuffLength);
+        m_iReadIdx  = 0;
+        m_iWriteIdx = 0;
     }
 
     /*! return the current index for writing/put
@@ -141,13 +164,7 @@ public:
     */
     void setWriteIdx(int iNewWriteIdx)
     {
-        m_iWriteIdx=iNewWriteIdx;
-        if (m_iWriteIdx<0 || m_iWriteIdx>=m_iBuffLength){
-            std::cout<<"Check Write Index, cannot be negative or over the buffer length"<<std::endl;
-        }
-        else{
-        
-        }
+        incIdx(m_iWriteIdx, iNewWriteIdx - m_iWriteIdx);
     }
 
     /*! return the current index for reading/get
@@ -164,10 +181,7 @@ public:
     */
     void setReadIdx(int iNewReadIdx)
     {
-        m_iReadIdx=iNewReadIdx;
-        if (m_iReadIdx<0 || m_iReadIdx>=m_iBuffLength){
-            std::cout<<"Check the read Index, no negative values or over the buffer length"<<std::endl;
-        }
+        incIdx(m_iReadIdx, iNewReadIdx - m_iReadIdx);
     }
 
     /*! returns the number of values currently buffered (note: 0 could also mean the buffer is full!)
@@ -175,8 +189,7 @@ public:
     */
     int getNumValuesInBuffer() const
     {
-        // (12-8+15)
-        return (m_iWriteIdx-m_iReadIdx + m_iBuffLength)%m_iBuffLength ;
+        return (m_iWriteIdx - m_iReadIdx + m_iBuffLength) % m_iBuffLength;
     }
 
     /*! returns the length of the internal buffer
@@ -184,35 +197,26 @@ public:
     */
     int getLength() const
     {
-        return -1;
+        return m_iBuffLength;
     }
 private:
     CRingBuffer();
     CRingBuffer(const CRingBuffer& that);
 
-    int m_iBuffLength;              //!< length of the internal buffer
-    int m_iReadIdx;
-    int m_iWriteIdx;
-    
-    T *m_buffptr;
-    int wraparound(int Idx) {
-        int Idx_new = Idx%m_iBuffLength;
-        return Idx_new;
-        }
-    int AllPos(int ReadIdx)
+    void incIdx(int& iIdx, int iOffset = 1)
     {
-        if(ReadIdx<0) {
-            return AllPos(incIdx(ReadIdx,m_iBuffLength));
+        while ((iIdx + iOffset) < 0)
+        {
+            // avoid negative buffer indices
+            iOffset += m_iBuffLength;
         }
-        else if(ReadIdx>m_iBuffLength-1) {
-            return AllPos(incIdx(ReadIdx,-m_iBuffLength));
-        }
-        else {
-            return incIdx(ReadIdx, 0);
-        }
-    }
-    
+        iIdx = (iIdx + iOffset) % m_iBuffLength;
+    };
+
+    int m_iBuffLength = 0,      //!< length of the internal buffer
+        m_iReadIdx = 0,         //!< current read index
+        m_iWriteIdx = 0;        //!< current write index
+
+    T* m_ptBuff = 0;            //!< data buffer
 };
 #endif // __RingBuffer_hdr__
-
-
