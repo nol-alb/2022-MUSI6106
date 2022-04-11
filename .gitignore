@@ -52,3 +52,20 @@ bld
 /3rdparty/sndlib/autom4te.cache/requests
 /3rdparty/sndlib/autom4te.cache/traces.0
 /3rdparty/sndlib/autom4te.cache/traces.1
+/cmake.modules/*.bak
+/2022-MUSI6106-cppcheck-build-dir
+/src/*.bak
+/build/inc
+/src/Vibrato/*.bak
+
+
+# Build artifacts
+**/CMakeFiles/
+build/
+Makefile
+CMakeCache.txt
+*.cmake
+inc/MUSI6106Config.h
+docs/doxy.config
+
+
