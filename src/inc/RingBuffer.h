@@ -199,8 +199,10 @@ public:
     {
         return m_iBuffLength;
     }
-private:
+
     CRingBuffer();
+
+private:
     CRingBuffer(const CRingBuffer& that);
 
     void incIdx(int& iIdx, int iOffset = 1)
