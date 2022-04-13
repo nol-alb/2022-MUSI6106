@@ -5,6 +5,7 @@
 #pragma once
 
 #include "ErrorDef.h"
+#include "RingBuffer.h"
 
 /*! \brief interface for fast convolution
 */
@@ -29,6 +30,7 @@ public:
     \return Error_t
     */
     Error_t init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLength = 8192, ConvCompMode_t eCompMode = kFreqDomain);
+    //If initialised for mode set a flag, use flag to call the process block of time or frequency domain
 
     /*! resets all internal class members
     \return Error_t
@@ -42,14 +44,21 @@ public:
     \return Error_t
     */
     Error_t process(float* pfOutputBuffer, const float* pfInputBuffer, int iLengthOfBuffers);
+    // https://www.youtube.com/watch?v=fYggIQTaVx4
 
     /*! return the 'tail' after processing has finished (identical to feeding in zeros
     \param pfOutputBuffer (mono)
     \return Error_t
     */
     Error_t flushBuffer(float* pfOutputBuffer);
+    // https://dsp.stackexchange.com/questions/74710/convolution-reverb-calculation
 
 private:
+    CRingBuffer<float>  *m_pCRingBuffer;
+    float* m_pImpulseResponse = 0;
+    int m_IBlockLength;
+    Error_t timedomainprocess(float *pfOutputBuffer, const float* pfInputBuffer, int iLengthOfBuffers);
+    Error_t freqdomainprocess(float *pfOutputBuffer, const float* pfInputBuffer, int iLengthOfBuffers);
 
 };
 

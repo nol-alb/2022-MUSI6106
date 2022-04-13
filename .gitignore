@@ -67,5 +67,5 @@ CMakeCache.txt
 *.cmake
 inc/MUSI6106Config.h
 docs/doxy.config
-
+*.idea/misc.xml
 
