@@ -13,6 +13,7 @@ CFastConv::~CFastConv( void )
 Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
 
+
     return Error_t::kNoError;
 }
 

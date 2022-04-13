@@ -55,7 +55,7 @@ public:
 
 private:
     CRingBuffer<float>  *m_pCRingBuffer;
-    float* m_pImpulseResponse = 0;
+    float* m_pImpulseResponse;
     int m_IBlockLength;
     Error_t timedomainprocess(float *pfOutputBuffer, const float* pfInputBuffer, int iLengthOfBuffers);
     Error_t freqdomainprocess(float *pfOutputBuffer, const float* pfInputBuffer, int iLengthOfBuffers);
