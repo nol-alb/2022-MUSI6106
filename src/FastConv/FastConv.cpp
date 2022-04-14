@@ -5,6 +5,7 @@ CFastConv::CFastConv( void ):m_pCRingBuffer(0), m_pImpulseResponse(0),
 m_lengthofIR(0),
 m_IBlockLength(0)
 {
+    this->reset();
 }
 
 CFastConv::~CFastConv( void )
@@ -16,7 +17,10 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
 {
     m_pImpulseResponse = new float[iLengthOfIr];
     m_lengthofIR = iLengthOfIr;
-    m_pImpulseResponse = pfImpulseResponse;
+    for (int i=0; i < iLengthOfIr;i++){
+        m_pImpulseResponse[i] = pfImpulseResponse[i];
+    }
+//    std::memcpy(m_pImpulseResponse, pfImpulseResponse, sizeof(float) * m_lengthofIR);
     m_pCRingBuffer = new CRingBuffer<float>(iLengthOfIr);
     type = eCompMode;
     return Error_t::kNoError;
@@ -24,8 +28,8 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
 
 Error_t CFastConv::reset()
 {
-//    delete m_pImpulseResponse;
-//    m_pImpulseResponse = 0;
+    delete[] m_pImpulseResponse;
+    m_pImpulseResponse = 0;
     delete m_pCRingBuffer;
     m_pCRingBuffer = 0;
 
