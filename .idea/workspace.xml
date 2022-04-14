@@ -22,9 +22,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ae03ac04-c42d-406e-b250-785254538fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FastConv_TestCode.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/FastConv_TestCode.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/inc/FastConv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/FastConv.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inc/RingBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/RingBuffer.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +67,13 @@
     <property name="ctest.advertisement.all.test.configuration.is.created" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="CMake Application.MUSI6106Exec">
+  <component name="RunManager" selected="Google Test.TestExec">
+    <configuration name="FastConv.TimeDomainIdentifyTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="TimeDomainIdentifyTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestExec" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -116,7 +123,13 @@
       <item itemvalue="CMake Application.MUSI6106Exec" />
       <item itemvalue="CMake Application.Vibrato" />
       <item itemvalue="Google Test.TestExec" />
+      <item itemvalue="Google Test.FastConv.TimeDomainIdentifyTest" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Google Test.FastConv.TimeDomainIdentifyTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -131,7 +144,7 @@
       <workItem from="1646081426663" duration="10000" />
       <workItem from="1646083374633" duration="51000" />
       <workItem from="1646085113984" duration="13871000" />
-      <workItem from="1649835435599" duration="6261000" />
+      <workItem from="1649835435599" duration="9761000" />
     </task>
     <servers />
   </component>
@@ -145,6 +158,11 @@
           <url>file://$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp</url>
           <line>18</line>
           <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
+          <line>16</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

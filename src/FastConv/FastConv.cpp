@@ -1,7 +1,9 @@
 
 #include "FastConv.h"
 
-CFastConv::CFastConv( void )
+CFastConv::CFastConv( void ):m_pCRingBuffer(0), m_pImpulseResponse(0),
+m_lengthofIR(0),
+m_IBlockLength(0)
 {
 }
 
@@ -12,18 +14,18 @@ CFastConv::~CFastConv( void )
 
 Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
-    m_pImpulseResponse = new float [iLengthOfIr];
+    m_pImpulseResponse = new float[iLengthOfIr];
     m_lengthofIR = iLengthOfIr;
     m_pImpulseResponse = pfImpulseResponse;
-    m_pCRingBuffer = new CRingBuffer<float>[iLengthOfIr];
+    m_pCRingBuffer = new CRingBuffer<float>(iLengthOfIr);
     type = eCompMode;
     return Error_t::kNoError;
 }
 
 Error_t CFastConv::reset()
 {
-    delete[] m_pImpulseResponse;
-    m_pImpulseResponse = 0;
+//    delete m_pImpulseResponse;
+//    m_pImpulseResponse = 0;
     delete m_pCRingBuffer;
     m_pCRingBuffer = 0;
 

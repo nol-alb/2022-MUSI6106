@@ -17,8 +17,7 @@
 
 //TODO: Duplicate your above tests so they now verify computation in the frequency domain and compensate appropriately for
 // latency at different blocksizes.
-//TODO: [6] Build your program in release mode and use <ctime>.
-// Compare the runtime performance between your time domain and frequency domain implementations in a markdown file.
+
 
 
 
@@ -36,17 +35,33 @@ namespace fastconv_test {
     protected:
         void SetUp() override
         {
+           m_pCFastConv = new CFastConv;
         }
 
         virtual void TearDown()
         {
+            delete m_pCFastConv;
+            m_pCFastConv = 0;
         }
 
         CFastConv *m_pCFastConv = 0;
     };
 
-    TEST_F(FastConv, EmptyTest)
+    TEST_F(FastConv, TimeDomainIdentifyTest)
     {
+        float TestImpulse[12] = { 0 };
+        float TestInput[10] = { 0 };
+        float TestOutput[10] = { 0 };
+        TestInput[3] = 1;
+        for (int i = 0; i < 12; i++)
+        {
+            TestImpulse[i] = i;
+        }
+
+        m_pCFastConv->init(TestImpulse, 12, 0, CFastConv::kTimeDomain);
+        m_pCFastConv->process(TestOutput, TestInput, 10);
+
+        CHECK_ARRAY_CLOSE(TestOutput + 3, TestImpulse, 7, 1e-3);
     }
 }
 

@@ -55,7 +55,7 @@ public:
 
 private:
     CRingBuffer<float>  *m_pCRingBuffer;
-    float* m_pImpulseResponse;
+    float *m_pImpulseResponse;
     int m_lengthofIR;
     int m_IBlockLength;
     ConvCompMode_t type;
