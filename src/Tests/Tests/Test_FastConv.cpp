@@ -5,6 +5,7 @@
 
 #include "Vector.h"
 #include "FastConv.h"
+#include "RingBuffer.h"
 
 #include "gtest/gtest.h"
 
@@ -36,6 +37,13 @@ namespace fastconv_test {
     protected:
         void SetUp() override
         {
+            CFastConv m_pCFastConv;
+
+            // why do I have a linker error with CRingBuffer
+            
+
+
+
         }
 
         virtual void TearDown()
@@ -45,8 +53,28 @@ namespace fastconv_test {
         CFastConv *m_pCFastConv = 0;
     };
 
-    TEST_F(FastConv, EmptyTest)
+    TEST_F(FastConv, TimeDomainConv)
     {
+        float x[] = { 1.f, 1.f, 1.f };
+        float h[] = {1.f, 2.f, 0.f, -1.f};
+        
+        float *outputBuf = new float[11];
+        float expectedOutputBuf[] = { 1.f,3.f,3.f,-1.f,-3.f,-3.f};
+
+
+
+        m_pCFastConv->init(x, 3, 8192, CFastConv::ConvCompMode_t::kTimeDomain);
+        m_pCFastConv->process(outputBuf, x, 3);
+
+        
+        
+        //CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/);
+        
+        for (int i = 0; i < sizeof(expectedOutputBuf) / sizeof(expectedOutputBuf[0]); i++) {
+            EXPECT_NEAR(outputBuf[i], expectedOutputBuf[i], .001);
+        }
+
+
     }
 }
 

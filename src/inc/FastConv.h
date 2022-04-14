@@ -5,7 +5,7 @@
 #pragma once
 
 #include "ErrorDef.h"
-#include "RingBuffer.h"
+ #include "RingBuffer.h"
 
 /*! \brief interface for fast convolution
 */

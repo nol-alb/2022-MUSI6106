@@ -1,5 +1,9 @@
-
+#include "MUSI6106Config.h"
+#include "ErrorDef.h"
+#include "Util.h"
 #include "FastConv.h"
+#include "RingBuffer.h"
+
 
 CFastConv::CFastConv( void )
 {
