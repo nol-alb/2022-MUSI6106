@@ -82,5 +82,14 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
 
 Error_t CFastConv::flushBuffer(float* pfOutputBuffer)
 {
+    for(int i=0; i<m_lengthofIR-1;i++){
+        m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1);
+        m_pCRingBuffer->putPostInc(0);
+        float accum = 0;
+        for(int j =m_lengthofIR-1; j>=0;j--){
+            accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
+        }
+        pfOutputBuffer[i] = accum;
+    }
     return Error_t::kNoError;
 }
