@@ -55,7 +55,8 @@ namespace fastconv_test {
         TestInput[0] = 1;
         for (int i = 0; i < 12; i++)
         {
-           TestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
+            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+            TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
         }
 
         m_pCFastConv->init(TestImpulse, 12, 0, CFastConv::kTimeDomain);
@@ -73,8 +74,8 @@ namespace fastconv_test {
         TestInput[3] = 1;
         for (int i = 0; i < 51; i++)
         {
-            // todo: add random values -MIR
-            TestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
+            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+            TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
         }
 
         m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
@@ -100,21 +101,28 @@ namespace fastconv_test {
         }
         int BufferSize[8] = {1, 13, 1023, 2048, 1, 17, 5000, 1897 };
         int InputStartIdx[8] = { 0 }; // All of the buffersizes add up to 10000, so we can just start the reading of the input at shifted positions
-        for (int i=0; i<8;i++)
+        for (int i=1; i<8;i++)
         {
             InputStartIdx[i] = InputStartIdx[i-1]+BufferSize[i-1];
         }
-        TestInput[3] = 1;
+        //TestInput[0] = 1;
         for (int i = 0; i < 51; i++)
         {
-            TestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
+            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+            TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
         }
+
+
+        //create 8 arrays and memcpy each with the contents of testimpulse
+
         m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
         for (int i = 0; i < 8; i++)
         {
+            TestInput[InputStartIdx[i]] = 1;
             m_pCFastConv->process(TestOutput + InputStartIdx[i], TestInput + InputStartIdx[i], BufferSize[i]);
+            CHECK_ARRAY_CLOSE(TestOutput+InputStartIdx[i], TestImpulse, BufferSize[i]-1, 1e-3);
+
         }
-        CHECK_ARRAY_CLOSE(TestOutput + 3, TestImpulse, 10000 - 3, 1e-3);
 
 
     }
