@@ -52,7 +52,7 @@ namespace fastconv_test {
         float TestImpulse[12] = { 0 };
         float TestInput[10] = { 0 };
         float TestOutput[10] = { 0 };
-        TestInput[3] = 1;
+        TestInput[0] = 1;
         for (int i = 0; i < 12; i++)
         {
             TestImpulse[i] = i;
@@ -61,7 +61,7 @@ namespace fastconv_test {
         m_pCFastConv->init(TestImpulse, 12, 0, CFastConv::kTimeDomain);
         m_pCFastConv->process(TestOutput, TestInput, 10);
 
-        CHECK_ARRAY_CLOSE(TestOutput + 3, TestImpulse, 7, 1e-3);
+        CHECK_ARRAY_CLOSE(TestOutput, TestImpulse, 7, 1e-3);
     }
     TEST_F(FastConv, TimeDomainFlushIdentifyTest)
     {

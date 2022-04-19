@@ -6,6 +6,8 @@
 
 #include "ErrorDef.h"
 #include "RingBuffer.h"
+#include "Fft.h"
+#include "Vector.h"
 
 /*! \brief interface for fast convolution
 */
@@ -57,10 +59,13 @@ private:
     CRingBuffer<float>  *m_pCRingBuffer;
     float *m_pImpulseResponse;
     int m_lengthofIR;
-    int m_IBlockLength;
+    int m_BlockLength;
     ConvCompMode_t type;
     Error_t timedomainprocess(float *pfOutputBuffer, const float* pfInputBuffer, int iLengthOfBuffers);
     Error_t freqdomainprocess(float *pfOutputBuffer, const float* pfInputBuffer, int iLengthOfBuffers);
+    //Required pointers for fft handlers
+    CFft* m_pCFft = nullptr;
+
 
 };
 

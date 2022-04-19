@@ -25,6 +25,7 @@
       <change beforePath="$PROJECT_DIR$/FastConv_TestCode.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/FastConv_TestCode.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/FastConv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/FastConv.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +144,7 @@
       <workItem from="1646081426663" duration="10000" />
       <workItem from="1646083374633" duration="51000" />
       <workItem from="1646085113984" duration="13871000" />
-      <workItem from="1649835435599" duration="11663000" />
+      <workItem from="1649835435599" duration="19966000" />
     </task>
     <servers />
   </component>
@@ -160,17 +161,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>17</line>
+          <line>19</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>7</line>
+          <line>8</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>24</line>
+          <line>27</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>

@@ -1,9 +1,10 @@
 
 #include "FastConv.h"
 
+
 CFastConv::CFastConv( void ):m_pCRingBuffer(0), m_pImpulseResponse(0),
 m_lengthofIR(0),
-m_IBlockLength(0)
+m_BlockLength(0)
 {
     this->reset();
 }
@@ -15,8 +16,10 @@ CFastConv::~CFastConv( void )
 
 Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
+    //TODO: Set BIsInitialized
     m_pImpulseResponse = new float[iLengthOfIr];
     m_lengthofIR = iLengthOfIr;
+    m_BlockLength = iBlockLength;
     for (int i=0; i < iLengthOfIr;i++){
         m_pImpulseResponse[i] = pfImpulseResponse[i];
     }
@@ -74,6 +77,41 @@ Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInput
     return Error_t::kNoError;
 }
 Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
+    //Initialise the FFT
+    CFft::createInstance(m_pCFft);
+    m_pCFft->initInstance(2*m_BlockLength,1,CFft::kWindowHann,CFft::kNoWindow);
+
+    //Calculate Number of Blocks in the Impulse Response
+    int numOfIRBlocks = 0;
+    numOfIRBlocks = static_cast<int>(m_lengthofIR / m_BlockLength);
+
+    //Create the IR Matrix to pre-calculate the freq domain representation
+    float** ppfBlockedIR = new float* [numOfIRBlocks];
+    CFft::complex_t** ppFreqBlockedIR = nullptr;
+    ppFreqBlockedIR = new CFft::complex_t*[numOfIRBlocks];
+
+    // Calculate the freq domain representation of the Impulse Response
+    for(int i=0;i<numOfIRBlocks;i++)
+    {
+        ppfBlockedIR[i] = new float[(2*m_BlockLength)];
+        long long ldbBlockLength;
+        long long sBlockLength;
+        sBlockLength = m_BlockLength;
+        ldbBlockLength = 2*m_BlockLength;
+        CVectorFloat::setZero(ppfBlockedIR[i],ldbBlockLength); //Zero padding so the size of each block is 2M
+        CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
+        ppFreqBlockedIR[i]=new CFft::complex_t[(2*m_BlockLength)];
+        m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
+    }
+
+
+
+
+
+
+
+
+
     return Error_t::kNoError;
 }
 //TODO: [10] Implement the 'flushBuffer' function that will return the remaining result (reverb tail) after the last sample has been processed (end of input signal).
