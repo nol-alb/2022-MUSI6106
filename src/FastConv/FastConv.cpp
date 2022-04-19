@@ -112,12 +112,30 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
         ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
         m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
     }
+    int PointOfWrite = 0;
     float* pfInputProcessing=nullptr;
     pfInputProcessing = new float[(2*m_BlockLength)];
+    CFft::complex_t* pfreqInputProcessing = nullptr;
+    float* pfRealInputProcessing = nullptr;
+    float* pfImagInputProcessing = nullptr;
+    pfRealInputProcessing = new float[(2*m_BlockLength)];
+    pfImagInputProcessing = new float[(2*m_BlockLength)];
+    pfreqInputProcessing = new float[(2*m_BlockLength)];
     CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
 
     for (int i=0; i<iLengthOfBuffers; i++)
     {
+        //Set the second half of the inputBuffer with the input process values
+        pfInputProcessing[PointOfWrite+m_BlockLength] = pfInputBuffer[i];
+        PointOfWrite++;
+        if(PointOfWrite==m_BlockLength)
+        {
+            PointOfWrite=0;
+            m_pCFft->doFft(pfreqInputProcessing,pfInputProcessing);
+            m_pCFft->splitRealImag(pfRealInputProcessing,pfImagInputProcessing,pfreqInputProcessing);
+            
+
+        }
 
     }
 
