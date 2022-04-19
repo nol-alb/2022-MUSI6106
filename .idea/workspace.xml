@@ -21,9 +21,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae03ac04-c42d-406e-b250-785254538fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FastConv_TestCode.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/FastConv_TestCode.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +57,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.advertisement.text.has.clang-format" value="true" />
     <property name="cf.first.check.clang-format" value="false" />
@@ -114,14 +115,14 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Google Test.FastConv.TimeDomainIdentifyTest" />
-      <item itemvalue="Google Test.TestExec" />
-      <item itemvalue="CMake Application.AudioFileIO" />
-      <item itemvalue="CMake Application.MUSI6106Exec" />
-      <item itemvalue="CMake Application.Vibrato" />
       <item itemvalue="CMake Application.gtest" />
       <item itemvalue="CMake Application.gtest_main" />
       <item itemvalue="CMake Application.sndlib" />
+      <item itemvalue="CMake Application.AudioFileIO" />
+      <item itemvalue="CMake Application.MUSI6106Exec" />
+      <item itemvalue="CMake Application.Vibrato" />
+      <item itemvalue="Google Test.TestExec" />
+      <item itemvalue="Google Test.FastConv.TimeDomainIdentifyTest" />
     </list>
     <recent_temporary>
       <list>
@@ -149,6 +150,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -158,19 +170,9 @@
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>19</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>8</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>27</line>
-          <option name="timeStamp" value="43" />
+          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
+          <line>114</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

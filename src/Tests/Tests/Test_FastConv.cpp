@@ -55,13 +55,14 @@ namespace fastconv_test {
         TestInput[0] = 1;
         for (int i = 0; i < 12; i++)
         {
-            TestImpulse[i] = i;
+           TestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
         }
 
         m_pCFastConv->init(TestImpulse, 12, 0, CFastConv::kTimeDomain);
         m_pCFastConv->process(TestOutput, TestInput, 10);
 
         CHECK_ARRAY_CLOSE(TestOutput, TestImpulse, 7, 1e-3);
+        //TODO: Delete memory allocated for tests
     }
     TEST_F(FastConv, TimeDomainFlushIdentifyTest)
     {
@@ -73,7 +74,7 @@ namespace fastconv_test {
         for (int i = 0; i < 51; i++)
         {
             // todo: add random values -MIR
-            TestImpulse[i] = i;
+            TestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
         }
 
         m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
@@ -82,6 +83,40 @@ namespace fastconv_test {
 
         CHECK_ARRAY_CLOSE(TestOutput + 3, TestImpulse, 7, 1e-3);
         CHECK_ARRAY_CLOSE(TestFlush, TestImpulse + 7, 51 - 7, 1e-3);
+    }
+    TEST_F(FastConv, TimeDomainBlockingTest)
+    {
+        float* TestImpulse = new float[51];
+        for (int i=0; i<51;i++)
+        {
+            TestImpulse[i]=0;
+        }
+        float* TestInput =  new float[10000];
+        float* TestOutput = new float[10000];
+        for (int i=0; i<10000;i++)
+        {
+            TestInput[i]=0;
+            TestOutput[i]=0;
+        }
+        int BufferSize[8] = {1, 13, 1023, 2048, 1, 17, 5000, 1897 };
+        int InputStartIdx[8] = { 0 }; // All of the buffersizes add up to 10000, so we can just start the reading of the input at shifted positions
+        for (int i=0; i<8;i++)
+        {
+            InputStartIdx[i] = InputStartIdx[i-1]+BufferSize[i-1];
+        }
+        TestInput[3] = 1;
+        for (int i = 0; i < 51; i++)
+        {
+            TestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
+        }
+        m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
+        for (int i = 0; i < 8; i++)
+        {
+            m_pCFastConv->process(TestOutput + InputStartIdx[i], TestInput + InputStartIdx[i], BufferSize[i]);
+        }
+        CHECK_ARRAY_CLOSE(TestOutput + 3, TestImpulse, 10000 - 3, 1e-3);
+
+
     }
 }
 
