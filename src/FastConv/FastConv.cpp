@@ -104,14 +104,6 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
         m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
     }
 
-
-
-
-
-
-
-
-
     return Error_t::kNoError;
 }
 //TODO: [10] Implement the 'flushBuffer' function that will return the remaining result (reverb tail) after the last sample has been processed (end of input signal).
@@ -120,10 +112,11 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
 
 Error_t CFastConv::flushBuffer(float* pfOutputBuffer)
 {
+    float accum = 0;
     for(int i=0; i<m_lengthofIR-1;i++){
         m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1);
         m_pCRingBuffer->putPostInc(0);
-        float accum = 0;
+        accum = 0;
         for(int j =m_lengthofIR-1; j>=0;j--){
             accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
         }

@@ -72,6 +72,7 @@ namespace fastconv_test {
         TestInput[3] = 1;
         for (int i = 0; i < 51; i++)
         {
+            // todo: add random values -MIR
             TestImpulse[i] = i;
         }
 
