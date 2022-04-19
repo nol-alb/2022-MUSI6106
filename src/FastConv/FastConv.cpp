@@ -64,11 +64,11 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
 }
 
 Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
-
+    float accum;
     for (int i =0; i<iLengthOfBuffers; i++){
-        m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1);
+        m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1); //Ensures you multiply the first sample Input with the first sample of the flipped impulse response
         m_pCRingBuffer->putPostInc(pfInputBuffer[i]);
-        float accum = 0;
+        accum = 0;
         for(int j =m_lengthofIR-1; j>=0;j--){
             accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
         }

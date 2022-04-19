@@ -24,8 +24,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FastConv_TestCode.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/FastConv_TestCode.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inc/FastConv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/FastConv.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,14 +114,14 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application.gtest" />
-      <item itemvalue="CMake Application.gtest_main" />
-      <item itemvalue="CMake Application.sndlib" />
+      <item itemvalue="Google Test.FastConv.TimeDomainIdentifyTest" />
+      <item itemvalue="Google Test.TestExec" />
       <item itemvalue="CMake Application.AudioFileIO" />
       <item itemvalue="CMake Application.MUSI6106Exec" />
       <item itemvalue="CMake Application.Vibrato" />
-      <item itemvalue="Google Test.TestExec" />
-      <item itemvalue="Google Test.FastConv.TimeDomainIdentifyTest" />
+      <item itemvalue="CMake Application.gtest" />
+      <item itemvalue="CMake Application.gtest_main" />
+      <item itemvalue="CMake Application.sndlib" />
     </list>
     <recent_temporary>
       <list>
