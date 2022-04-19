@@ -16,6 +16,7 @@ CFastConv::~CFastConv( void )
 
 Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
+    this->reset();
     //TODO: Set BIsInitialized
     m_pImpulseResponse = new float[iLengthOfIr];
     m_lengthofIR = iLengthOfIr;
@@ -89,21 +90,39 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     //Create the IR Matrix to pre-calculate the freq domain representation
     float** ppfBlockedIR = new float* [numOfIRBlocks];
     CFft::complex_t** ppFreqBlockedIR = nullptr;
+    float ** ppfRealBlockedIR = nullptr;
+    float ** ppfImagBlockedIR = nullptr;
     ppFreqBlockedIR = new CFft::complex_t*[numOfIRBlocks];
+    ppfRealBlockedIR = new float*[numOfIRBlocks];
+    ppfImagBlockedIR = new float *[numOfIRBlocks];
+    long long ldbBlockLength;
+    long long sBlockLength;
+    sBlockLength = m_BlockLength;
+    ldbBlockLength = 2*m_BlockLength;
 
-    // Calculate the freq domain representation of the Impulse Response
+
+    // Calculate the freq domain representation of the Impulse Response and split into real and imaginary
     for(int i=0;i<numOfIRBlocks;i++)
     {
         ppfBlockedIR[i] = new float[(2*m_BlockLength)];
-        long long ldbBlockLength;
-        long long sBlockLength;
-        sBlockLength = m_BlockLength;
-        ldbBlockLength = 2*m_BlockLength;
         CVectorFloat::setZero(ppfBlockedIR[i],ldbBlockLength); //Zero padding so the size of each block is 2M
         CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
         ppFreqBlockedIR[i]=new CFft::complex_t[(2*m_BlockLength)];
         m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
+        ppfImagBlockedIR[i] = new float[(2*m_BlockLength)];
+        ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
+        m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
     }
+    float* pfInputProcessing=nullptr;
+    pfInputProcessing = new float[(2*m_BlockLength)];
+    CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
+
+    for (int i=0; i<iLengthOfBuffers; i++)
+    {
+
+    }
+
+
 
     return Error_t::kNoError;
 }
