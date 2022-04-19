@@ -66,6 +66,9 @@ private:
     //Required pointers for fft handlers
     CFft* m_pCFft = nullptr;
 
+    Error_t complexMultiply(float* realInput, float* imagInput, float* realInput2, float* imagInput2, float* realOutput, float* imagOutput, int outputLength);
+
+
 
 };
 

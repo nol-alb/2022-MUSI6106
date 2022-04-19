@@ -83,6 +83,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
 
     //Calculate Number of Blocks in the Impulse Response
     int numOfIRBlocks = 0;
+    // CHECK ROUMDOMG
     numOfIRBlocks = static_cast<int>(m_lengthofIR / m_BlockLength);
 
     //Create the IR Matrix to pre-calculate the freq domain representation
@@ -106,6 +107,18 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
 
     return Error_t::kNoError;
 }
+
+//FUNCTION TO MAKE COMPLEX MULTIPLICAION, GIVEN COMPLEX_T
+//splitRealImag
+
+Error_t CFastConv::complexMultiply(float* realInput1, float* imagInput1, float* realInput2, float* imagInput2, float* realOutput, float* imagOutput, int outputLength ) {
+    for (int i = 0; i < outputLength; i++) {
+        realOutput[i] = (realInput1[i] * realInput2[i]) - (imagInput1[i] * imagInput2[i]);
+        imagOutput[i] = (realInput2[i] * imagInput1[i]) + (realInput1[i] * imagInput2[i]);
+    }
+}
+
+
 //TODO: [10] Implement the 'flushBuffer' function that will return the remaining result (reverb tail) after the last sample has been processed (end of input signal).
 // flushBuffer is to be called once after the last process call. Question: How will you make it clear to the user what amount of memory to allocate for the output?
 // Do you need an additional API function?

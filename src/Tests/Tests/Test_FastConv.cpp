@@ -115,9 +115,11 @@ namespace fastconv_test {
 
         //create 8 arrays and memcpy each with the contents of testimpulse
 
-        m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
+        m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kTimeDomain);
         for (int i = 0; i < 8; i++)
         {
+            m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kTimeDomain);
+
             TestInput[InputStartIdx[i]] = 1;
             m_pCFastConv->process(TestOutput + InputStartIdx[i], TestInput + InputStartIdx[i], BufferSize[i]);
             CHECK_ARRAY_CLOSE(TestOutput+InputStartIdx[i], TestImpulse, BufferSize[i]-1, 1e-3);
