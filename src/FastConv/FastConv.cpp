@@ -113,8 +113,15 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
         ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
         m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
     }
-    int PointOfWrite = 0;
+    int PointOfWrite,PointOfRead = 0;
+    int BlockNoWriting, BlockNoReading=0;
     float* pfInputProcessing=nullptr;
+    float** ppfProcessedOutputBlocks = new float*[numOfIRBlocks];
+    for (int i=0; i<numOfIRBlocks;i++)
+    {
+        ppfProcessedOutputBlocks[i]=new float[(m_BlockLength)];
+        CVectorFloat::setZero(ppfProcessedOutputBlocks[i],sBlockLength);
+    }
     pfInputProcessing = new float[(2*m_BlockLength)];
     CFft::complex_t* pfreqInputProcessing = nullptr;
     float* pfRealInputProcessing = nullptr;
@@ -128,6 +135,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     {
         //Set the second half of the inputBuffer with the input process values
         pfInputProcessing[PointOfWrite+m_BlockLength] = pfInputBuffer[i];
+        pfOutputBuffer[i] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
         PointOfWrite++;
         if(PointOfWrite==m_BlockLength)
         {

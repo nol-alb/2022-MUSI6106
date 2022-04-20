@@ -38,7 +38,7 @@ namespace fastconv_test {
            m_pCFastConv = new CFastConv;
         }
 
-        virtual void TearDown()
+        virtual void TearDown() override
         {
             delete m_pCFastConv;
             m_pCFastConv = 0;
@@ -130,7 +130,7 @@ namespace fastconv_test {
 //
 
     }
-}
+
 
 #endif //WITH_TESTS
 
