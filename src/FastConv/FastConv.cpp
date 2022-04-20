@@ -126,6 +126,10 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     CFft::complex_t* pfreqInputProcessing = nullptr;
     float* pfRealInputProcessing = nullptr;
     float* pfImagInputProcessing = nullptr;
+    float* pfProductReal = nullptr;
+    float* pfProductImag = nullptr;
+    pfProductImag = new float [(2*m_BlockLength)];
+    pfProductReal = new float [(2*m_BlockLength)];
     pfRealInputProcessing = new float[(2*m_BlockLength)];
     pfImagInputProcessing = new float[(2*m_BlockLength)];
     pfreqInputProcessing = new float[(2*m_BlockLength)];
@@ -142,6 +146,12 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
             PointOfWrite=0;
             m_pCFft->doFft(pfreqInputProcessing,pfInputProcessing);
             m_pCFft->splitRealImag(pfRealInputProcessing,pfImagInputProcessing,pfreqInputProcessing);
+            for (int j = 0; j<numOfIRBlocks; j++)
+            {
+                complexMultiply(pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],pfProductReal,pfProductImag,m_lengthofIR);
+                
+
+            }
             
 
         }

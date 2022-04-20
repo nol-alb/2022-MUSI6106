@@ -23,7 +23,6 @@
     <list default="true" id="ae03ac04-c42d-406e-b250-785254538fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +138,7 @@
       <workItem from="1646083374633" duration="51000" />
       <workItem from="1646085113984" duration="13871000" />
       <workItem from="1649835435599" duration="19966000" />
-      <workItem from="1650417118215" duration="1000" />
+      <workItem from="1650417118215" duration="855000" />
     </task>
     <servers />
   </component>
