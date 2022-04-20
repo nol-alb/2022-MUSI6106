@@ -240,15 +240,33 @@ Error_t CFastConv::complexMultiply(float* realInput1, float* imagInput1, float* 
 
 Error_t CFastConv::flushBuffer(float* pfOutputBuffer)
 {
-    float accum = 0;
-    for(int i=0; i<m_lengthofIR-1;i++){
-        m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1);
-        m_pCRingBuffer->putPostInc(0);
-        accum = 0;
-        for(int j =m_lengthofIR-1; j>=0;j--){
-            accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
-        }
-        pfOutputBuffer[i] = accum;
+    if(type == kTimeDomain)
+    {
+        float *pfInputFlush = new float[m_lengthofIR - 1];
+        long long int sbufferlength = m_lengthofIR;
+        CVectorFloat::setZero(pfInputFlush, sbufferlength);
+        process(pfOutputBuffer, pfInputFlush, m_lengthofIR - 1);
+        delete[] pfInputFlush;
     }
+    if(type == kFreqDomain)
+    {
+        float *pfInputFlush = new float[m_BlockLength + m_lengthofIR - 1]; //Think about the initial delay of the zeros of blocksize
+        long long int sbufferlength = m_lengthofIR + m_BlockLength;
+        CVectorFloat::setZero(pfInputFlush, sbufferlength);
+        process(pfOutputBuffer, pfInputFlush, m_BlockLength+m_lengthofIR - 1);
+        delete[] pfInputFlush;
+
+    }
+
+//    float accum = 0;
+//    for(int i=0; i<m_lengthofIR-1;i++){
+//        m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1);
+//        m_pCRingBuffer->putPostInc(0);
+//        accum = 0;
+//        for(int j =m_lengthofIR-1; j>=0;j--){
+//            accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
+//        }
+//        pfOutputBuffer[i] = accum;
+//    }
     return Error_t::kNoError;
 }
