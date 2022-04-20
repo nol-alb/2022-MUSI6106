@@ -129,51 +129,7 @@ namespace fastconv_test {
         }
     }
 
-    //TEST_F(FastConv, TimeDomainBlockingTest)
-    //{
-    //    float* TestImpulse = new float[51];
-    //    for (int i=0; i<51;i++)
-    //    {
-    //        TestImpulse[i]=0;
-    //    }
-    //    float* TestInput =  new float[10000];
-    //    float* TestOutput = new float[10000];
-    //    for (int i=0; i<10000;i++)
-    //    {
-    //        TestInput[i]=0;
-    //        TestOutput[i]=0;
-    //    }
-    //    int BufferSize[8] = {1, 13, 1023, 2048, 1, 17, 5000, 1897 };
-    //    int InputStartIdx[8] = { 0 }; // All of the buffersizes add up to 10000, so we can just start the reading of the input at shifted positions
-    //    for (int i=1; i<8;i++)
-    //    {
-    //        InputStartIdx[i] = InputStartIdx[i-1]+BufferSize[i-1];
-    //    }
-    //   
-    //    for (int i = 0; i < 51; i++)
-    //    {
-    //        TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-    //        TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
-    //    }
 
-    //    for (int i = 0; i < 8; i++)
-    //    {
-    //        m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kTimeDomain);
-
-    //        TestInput[InputStartIdx[i]] = 1;
-    //        m_pCFastConv->process(TestOutput + InputStartIdx[i], TestInput + InputStartIdx[i], BufferSize[i]);
-    //        CHECK_ARRAY_CLOSE(TestOutput+InputStartIdx[i], TestImpulse, BufferSize[i]-1, 1e-3);
-
-    //    }
-    //    delete [] TestInput;
-    //    delete [] TestImpulse;
-    //    delete [] TestOutput;
-    //    TestImpulse = nullptr;
-    //    TestInput = nullptr;
-    //    TestOutput= nullptr;
-
-
-    //}
 }
 
 #endif //WITH_TESTS
