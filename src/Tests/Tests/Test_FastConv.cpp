@@ -157,7 +157,7 @@ namespace fastconv_test {
         }
 
 
-        m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kFreqDomain);
+        m_pCFastConv->init(TestImpulse, 51, 10, CFastConv::kFreqDomain);
         m_pCFastConv->process(TestOutput, TestInput, 10);
 
 

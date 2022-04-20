@@ -86,7 +86,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     //Calculate Number of Blocks in the Impulse Response
     int numOfIRBlocks = 0;
     // CHECK ROUMDOMG
-    numOfIRBlocks = static_cast<int>(m_lengthofIR / m_BlockLength);
+    numOfIRBlocks = std::max(static_cast<int>(std::ceil(m_lengthofIR / m_BlockLength)),1);
 
     //Create the IR Matrix to pre-calculate the freq domain representation
     float** ppfBlockedIR = new float* [numOfIRBlocks];
@@ -110,7 +110,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
         CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
         ppFreqBlockedIR[i]=new CFft::complex_t[(2*m_BlockLength)];
         m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
-        ppfImagBlockedIR[i] = new float[(2*m_BlockLength)];
+        ppfRealBlockedIR[i] = new float[(2*m_BlockLength)];
         ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
         m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
     }
@@ -176,46 +176,45 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
             BlockNoWriting=(BlockNoWriting+1)%numOfIRBlocks;
         }
 
-        CFft::destroyInstance(m_pCFft);
-        m_pCFft=0;
-        for (int i=0; i<numOfIRBlocks;i++)
-        {
-            delete[] ppfBlockedIR;
-            delete[] ppfImagBlockedIR;
-            delete[] ppfProcessedOutputBlocks;
-            delete[] ppFreqBlockedIR;
-            delete[] ppfRealBlockedIR;
-        }
-        delete[] ppfBlockedIR;
-        delete[] ppfImagBlockedIR;
-        delete[] ppfProcessedOutputBlocks;
-        delete[] ppFreqBlockedIR;
-        delete[] ppfRealBlockedIR;
-        ppfBlockedIR =nullptr;
-        ppfImagBlockedIR=nullptr;
-        ppfProcessedOutputBlocks=nullptr;
-        ppFreqBlockedIR=nullptr;
-        ppfRealBlockedIR=nullptr;
-
-        delete[] pfInputProcessing;
-        delete[] pfreqInputProcessing;
-        delete[] pfInvFFtProcessing;
-        delete[] pfProductImag;
-        delete[] pfProductReal;
-        delete[] pfRealInputProcessing;
-        delete[] pfImagInputProcessing;
-        delete[] pfInvFFtProcessing;
-
-        pfInputProcessing=0;
-        pfreqInputProcessing=0;
-        pfInvFFtProcessing=0;
-        pfProductImag=0;
-        pfProductReal=0;
-        pfRealInputProcessing=0;
-        pfImagInputProcessing=0;
-        pfInvFFtProcessing=0;
-
     }
+
+    CFft::destroyInstance(m_pCFft);
+    m_pCFft=0;
+    for (int i=0; i<numOfIRBlocks;i++)
+    {
+        delete[] ppfBlockedIR[i];
+        delete[] ppfImagBlockedIR[i];
+        delete[] ppfProcessedOutputBlocks[i];
+        delete[] ppFreqBlockedIR[i];
+        delete[] ppfRealBlockedIR[i];
+    }
+    delete[] ppfBlockedIR;
+    delete[] ppfImagBlockedIR;
+    delete[] ppfProcessedOutputBlocks;
+    delete[] ppFreqBlockedIR;
+    delete[] ppfRealBlockedIR;
+    ppfBlockedIR =nullptr;
+    ppfImagBlockedIR=nullptr;
+    ppfProcessedOutputBlocks=nullptr;
+    ppFreqBlockedIR=nullptr;
+    ppfRealBlockedIR=nullptr;
+
+    delete[] pfInputProcessing;
+    delete[] pfreqInputProcessing;
+    delete[] pfInvFFtProcessing;
+    delete[] pfProductImag;
+    delete[] pfProductReal;
+    delete[] pfRealInputProcessing;
+    delete[] pfImagInputProcessing;
+
+    pfInputProcessing=0;
+    pfreqInputProcessing=0;
+    pfInvFFtProcessing=0;
+    pfProductImag=0;
+    pfProductReal=0;
+    pfRealInputProcessing=0;
+    pfImagInputProcessing=0;
+    pfInvFFtProcessing=0;
 
 
 
