@@ -150,6 +150,9 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
             {
                 complexMultiply(pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],pfProductReal,pfProductImag,m_lengthofIR);
                 
+                // merge
+
+                // inv fft
 
             }
             
@@ -171,6 +174,7 @@ Error_t CFastConv::complexMultiply(float* realInput1, float* imagInput1, float* 
         realOutput[i] = (realInput1[i] * realInput2[i]) - (imagInput1[i] * imagInput2[i]);
         imagOutput[i] = (realInput2[i] * imagInput1[i]) + (realInput1[i] * imagInput2[i]);
     }
+    return Error_t::kNoError;
 }
 
 
