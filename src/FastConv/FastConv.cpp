@@ -114,8 +114,10 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
         ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
         m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
     }
-    int PointOfWrite,PointOfRead = 0;
-    int BlockNoWriting, BlockNoReading=0;
+    int PointOfWrite = 0;
+    int PointOfRead = 0;
+    int BlockNoWriting = 0;
+    int BlockNoReading=0;
     float* pfInputProcessing=nullptr;
     float** ppfProcessedOutputBlocks = new float*[numOfIRBlocks];
     for (int i=0; i<numOfIRBlocks;i++)
