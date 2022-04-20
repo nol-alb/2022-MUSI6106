@@ -49,20 +49,20 @@ namespace fastconv_test {
 
     TEST_F(FastConv, TimeDomainIdentifyTest)
     {
-        float TestImpulse[12] = { 0 };
-        float TestInput[10] = { 0 };
-        float TestOutput[10] = { 0 };
-        TestInput[0] = 1;
-        for (int i = 0; i < 12; i++)
+        float TestImpulse[51] = { 0 };
+        float TestInput[1024] = { 0 };
+        float TestOutput[1024] = { 0 };
+        TestInput[4] = 1;
+        for (int i = 0; i < 51; i++)
         {
             TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
             TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
         }
 
-        m_pCFastConv->init(TestImpulse, 12, 0, CFastConv::kTimeDomain);
-        m_pCFastConv->process(TestOutput, TestInput, 10);
+        m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kTimeDomain);
+        m_pCFastConv->process(TestOutput, TestInput, 1024);
 
-        CHECK_ARRAY_CLOSE(TestOutput, TestImpulse, 7, 1e-3);
+        CHECK_ARRAY_CLOSE(TestOutput+4, TestImpulse, 12, 1e-3);
         //TODO: Delete memory allocated for tests
     }
     TEST_F(FastConv, TimeDomainFlushIdentifyTest)
