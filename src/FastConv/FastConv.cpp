@@ -149,7 +149,9 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     {
         //TODO: ADD ASSERTS FOR LESS BUFFERSIZE COMPARED TO BLOCKlENGTH
         //Set the second half of the inputBuffer with the input process values
+        //PointofWrite sets the new input block x1,x2 from center of pfInputBuffer
         pfInputProcessing[PointOfWrite+m_BlockLength] = pfInputBuffer[i];
+        //TheBlockNoReading, helps us control the shift in blocks while overlap
         pfOutputBuffer[i] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
         PointOfWrite++;
         if(PointOfWrite==m_BlockLength)
@@ -162,7 +164,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
                 complexMultiply(pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],pfProductReal,pfProductImag,m_lengthofIR);
                 m_pCFft->mergeRealImag(pFFTProductProcess,pfProductReal,pfProductImag);
                 m_pCFft->doInvFft(pfInvFFtProcessing,pFFTProductProcess);
-                int process_writeIdx = (BlockNoWriting + j) % numOfIRBlocks;
+                int process_writeIdx = (BlockNoWriting + j) % numOfIRBlocks; //A temporary variable to help write the convolution sum with each block of the IR
                 for (int k =0; k<m_BlockLength;k++)
                 {
                     ppfProcessedOutputBlocks[process_writeIdx][k] += pfInvFFtProcessing[k+m_BlockLength];
@@ -172,6 +174,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
             {
                 pfInputProcessing[k] = pfInputProcessing[k+m_BlockLength];
             }
+            //Make the 2 dimensional processblocks behave like a ringbuffer (Can just use the ringbuffer to control these shifts
             BlockNoReading=BlockNoWriting;
             BlockNoWriting=(BlockNoWriting+1)%numOfIRBlocks;
         }
