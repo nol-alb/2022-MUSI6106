@@ -66,6 +66,7 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
 
 Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
     float accum;
+    CVectorFloat::setZero(pfOutputBuffer,iLengthOfBuffers);
     for (int i =0; i<iLengthOfBuffers; i++){
         m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1); //Ensures you multiply the first sample Input with the first sample of the flipped impulse response
         m_pCRingBuffer->putPostInc(pfInputBuffer[i]);
@@ -123,11 +124,18 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
         CVectorFloat::setZero(ppfProcessedOutputBlocks[i],sBlockLength);
     }
     pfInputProcessing = new float[(2*m_BlockLength)];
+    CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
     CFft::complex_t* pfreqInputProcessing = nullptr;
+    CFft::complex_t* pFFTProductProcess = nullptr;
     float* pfRealInputProcessing = nullptr;
     float* pfImagInputProcessing = nullptr;
     float* pfProductReal = nullptr;
     float* pfProductImag = nullptr;
+    float* pfInvFFtProcessing = nullptr;
+
+    pfInvFFtProcessing = new float [(2*m_BlockLength)];
+    pfreqInputProcessing = new CFft::complex_t [(2*m_BlockLength)];
+    pFFTProductProcess = new CFft::complex_t [(2*m_BlockLength)];
     pfProductImag = new float [(2*m_BlockLength)];
     pfProductReal = new float [(2*m_BlockLength)];
     pfRealInputProcessing = new float[(2*m_BlockLength)];
@@ -137,6 +145,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
 
     for (int i=0; i<iLengthOfBuffers; i++)
     {
+        //TODO: ADD ASSERTS FOR LESS BUFFERSIZE COMPARED TO BLOCKlENGTH
         //Set the second half of the inputBuffer with the input process values
         pfInputProcessing[PointOfWrite+m_BlockLength] = pfInputBuffer[i];
         pfOutputBuffer[i] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
@@ -149,15 +158,60 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
             for (int j = 0; j<numOfIRBlocks; j++)
             {
                 complexMultiply(pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],pfProductReal,pfProductImag,m_lengthofIR);
-                
-                // merge
-
-                // inv fft
-
+                m_pCFft->mergeRealImag(pFFTProductProcess,pfProductReal,pfProductImag);
+                m_pCFft->doInvFft(pfInvFFtProcessing,pFFTProductProcess);
+                int process_writeIdx = (BlockNoWriting + j) % numOfIRBlocks;
+                for (int k =0; k<m_BlockLength;k++)
+                {
+                    ppfProcessedOutputBlocks[process_writeIdx][k] += pfInvFFtProcessing[k+m_BlockLength];
+                }
             }
-            
-
+            for (int k = 0; k<m_BlockLength;k++)
+            {
+                pfInputProcessing[k] = pfInputProcessing[k+m_BlockLength];
+            }
+            BlockNoReading=BlockNoWriting;
+            BlockNoWriting=(BlockNoWriting+1)%numOfIRBlocks;
         }
+
+        CFft::destroyInstance(m_pCFft);
+        m_pCFft=0;
+        for (int i=0; i<numOfIRBlocks;i++)
+        {
+            delete[] ppfBlockedIR;
+            delete[] ppfImagBlockedIR;
+            delete[] ppfProcessedOutputBlocks;
+            delete[] ppFreqBlockedIR;
+            delete[] ppfRealBlockedIR;
+        }
+        delete[] ppfBlockedIR;
+        delete[] ppfImagBlockedIR;
+        delete[] ppfProcessedOutputBlocks;
+        delete[] ppFreqBlockedIR;
+        delete[] ppfRealBlockedIR;
+        ppfBlockedIR =nullptr;
+        ppfImagBlockedIR=nullptr;
+        ppfProcessedOutputBlocks=nullptr;
+        ppFreqBlockedIR=nullptr;
+        ppfRealBlockedIR=nullptr;
+
+        delete[] pfInputProcessing;
+        delete[] pfreqInputProcessing;
+        delete[] pfInvFFtProcessing;
+        delete[] pfProductImag;
+        delete[] pfProductReal;
+        delete[] pfRealInputProcessing;
+        delete[] pfImagInputProcessing;
+        delete[] pfInvFFtProcessing;
+
+        pfInputProcessing=0;
+        pfreqInputProcessing=0;
+        pfInvFFtProcessing=0;
+        pfProductImag=0;
+        pfProductReal=0;
+        pfRealInputProcessing=0;
+        pfImagInputProcessing=0;
+        pfInvFFtProcessing=0;
 
     }
 
