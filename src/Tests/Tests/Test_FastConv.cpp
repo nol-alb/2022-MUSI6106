@@ -71,6 +71,8 @@ namespace fastconv_test {
 
 
         CHECK_ARRAY_CLOSE(CheckOutput, TestOutput, 10, 1e-3);
+        m_pCFastConv->reset();
+
     }
     TEST_F(FastConv, TimeDomainFlushBufferTest)
     {
@@ -94,6 +96,7 @@ namespace fastconv_test {
 
         CHECK_ARRAY_CLOSE(TestOutput, CheckOutput, 10, 1e-3);
         CHECK_ARRAY_CLOSE(TestFlush, TestImpulse + 7, 51 - 7, 1e-3);
+        m_pCFastConv->reset();
 
     }
 
@@ -131,6 +134,8 @@ namespace fastconv_test {
             CHECK_ARRAY_CLOSE(TestOutput + InputStartIdx[i], TestImpulse, std::min(BufferSize[i], 51), 1e-3);
 
         }
+        m_pCFastConv->reset();
+
     }
 
     ////////////////////////////////////////////////////
@@ -157,6 +162,8 @@ namespace fastconv_test {
 
 
         CHECK_ARRAY_CLOSE(CheckOutput, TestOutput, 10, 1e-3);
+        m_pCFastConv->reset();
+
     }
     TEST_F(FastConv, FreqDomainFlushBufferTest)
     {
@@ -180,6 +187,8 @@ namespace fastconv_test {
 
         CHECK_ARRAY_CLOSE(TestOutput, CheckOutput, 10, 1e-3);
         CHECK_ARRAY_CLOSE(TestFlush, TestImpulse + 7, 51 - 7, 1e-3);
+
+        m_pCFastConv->reset();
 
     }
 
@@ -217,6 +226,8 @@ namespace fastconv_test {
             CHECK_ARRAY_CLOSE(TestOutput + InputStartIdx[i], TestImpulse, std::min(BufferSize[i], 51), 1e-3);
 
         }
+        m_pCFastConv->reset();
+
     }
 
 
