@@ -33,7 +33,7 @@ namespace fastconv_test {
     class FastConv : public testing::Test
     {
     protected:
-        void SetUp() override
+        virtual void SetUp() 
         {
             m_pCFastConv = new CFastConv;
  
@@ -44,7 +44,7 @@ namespace fastconv_test {
             }
         }
 
-        virtual void TearDown() override
+        virtual void TearDown() 
         {
             delete m_pCFastConv;
             m_pCFastConv = 0;
@@ -118,12 +118,6 @@ namespace fastconv_test {
         int BufferSize[8] = { 1, 13, 1023, 2048, 1, 17, 5000, 1897 };
         int InputStartIdx[8] = { 0 }; // All of the buffersizes add up to 10000, so we can just start the reading of the input at shifted positions
 
-        // generate IR of length 51 samples
-        for (int i = 0; i < 51; i++)
-        {
-        //    TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-          //  TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
-        }
 
         m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
         for (int i = 0; i < 8; i++)
@@ -160,8 +154,6 @@ namespace fastconv_test {
         TestInput[3] = 1;
         for (int i = 0; i < 51; i++)
         {
-         //   TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-         //   TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
             if (i < (51 - 23)) {
                 CheckOutput[i + 3 + 20] = TestImpulse[i];
             }
