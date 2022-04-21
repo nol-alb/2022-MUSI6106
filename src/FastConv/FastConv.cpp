@@ -193,7 +193,40 @@ Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInput
 }
 Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
 
+    ///PseudoCode
+    // outer loop iterates through the ilength of Buffers
+    //Set a readBlockIDx=0 and set WriteBlockIdx = 0, for shift counters in the algorithm
+    //We setup a 2M size input buffer and fill it from 0:M with zeros for block1 and M-2M with x1
+    //We have a processed output matrix of size ypro[No of IR blocks][M], initialized with zeros
+    //The output y[write] = ypro[ReadBlockIdx][write]  (Note: For first block M we will get zeros (Latency of the system))
+    //Once the inputBuffer is filled to 2M we perform the convolution multiplication operation
+    //Innerloop
+    //We receive and processed output of ----
 
+                                // 0 + x1*h1  <---- ReadIdx, WriteIdx
+                                // 0 + x1*h2
+                                // 0 + x1*h3
+                                // 0 + x1*h4
+    //Shift second half of the input to the left, to make room for new input Xprocess = [x1:x1]
+
+    //Increment Write Idx, but before you do make sure the readIdx is equal to the write Idx
+    //ReadIdx = 0, WriteIdx = 1
+    //Repeat outer loop process
+    //Have to setup the yprocessed[ReadIdx] = 0, to account for the last process being added to empty mem in the algorithm
+    //After process the processed output is ----
+
+                                                //0 +x2h4 <---ReadIdx
+                                                //x1h2+x2h1 <---- WriteIdx
+                                                //x1h3+x2h2
+                                                //x1h4+x2h3
+    //Shift the processed input again [x2:x2]
+    //Increment the Write Idx
+    //ReadIdx = 1, WriteIdx = 2
+    // Now
+            //0 +x2h4
+            //x1h2+x2h1 <---ReadIdx
+            //x1h3+x2h2 <---- WriteIdx
+            //x1h4+x2h3
     for (int i=0; i<iLengthOfBuffers; i++)
     {
         //TODO: ADD ASSERTS FOR LESS BUFFERSIZE COMPARED TO BLOCKlENGTH
@@ -205,6 +238,10 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
         PointOfWrite++;
         if(PointOfWrite==m_BlockLength)
         {
+            for (int j=0;j<m_BlockLength;j++)
+            {
+                ppfProcessedOutputBlocks[BlockNoReading][j]=0;
+            }
             PointOfWrite=0;
             m_pCFft->doFft(pfreqInputProcessing,pfInputProcessing);
             m_pCFft->splitRealImag(pfRealInputProcessing,pfImagInputProcessing,pfreqInputProcessing);
