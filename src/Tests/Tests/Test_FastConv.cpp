@@ -36,15 +36,27 @@ namespace fastconv_test {
         void SetUp() override
         {
             m_pCFastConv = new CFastConv;
+ 
+            for (int i = 0; i < 51; i++)
+            {
+                TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+                TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
+            }
         }
 
         virtual void TearDown() override
         {
             delete m_pCFastConv;
             m_pCFastConv = 0;
+            for (int i = 0; i < 51; i++) {
+                TestImpulse[i] = 0;
+            }
         }
 
         CFastConv* m_pCFastConv = 0;
+        float TestImpulse[51] = { 0 };
+
+
     };
 
 
@@ -53,15 +65,15 @@ namespace fastconv_test {
     ////////////////////////////////////////////////////
     TEST_F(FastConv, TimeDomainIdentityTest)
     {
-        float TestImpulse[51] = { 0 };
+        // float TestImpulse[51] = { 0 };
         float TestInput[10] = { 0 };
         float TestOutput[10] = { 0 };
         float CheckOutput[60] = { 0 };
         TestInput[3] = 1;
         for (int i = 0; i < 51; i++)
         {
-            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-            TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
+        //    TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+          //  TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
             CheckOutput[i + 3] = TestImpulse[i];
         }
 
@@ -75,7 +87,7 @@ namespace fastconv_test {
     }
     TEST_F(FastConv, TimeDomainFlushBufferTest)
     {
-        float TestImpulse[51] = { 0 };
+       // float TestImpulse[51] = { 0 };
         float TestInput[10] = { 0 };
         float TestOutput[10] = { 0 };
         float TestFlush[50] = { 0 };
@@ -83,8 +95,8 @@ namespace fastconv_test {
         TestInput[3] = 1;
         for (int i = 0; i < 51; i++)
         {
-            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-            TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
+       //     TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+         //   TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
             CheckOutput[i + 3] = TestImpulse[i];
         }
 
@@ -100,7 +112,7 @@ namespace fastconv_test {
 
     TEST_F(FastConv, TimeDomainBlockSizeTest)
     {
-        float TestImpulse[51] = { 0 };
+      //  float TestImpulse[51] = { 0 };
         float TestInput[10000] = { 0 };
         float TestOutput[10000] = { 0 };
         int BufferSize[8] = { 1, 13, 1023, 2048, 1, 17, 5000, 1897 };
@@ -109,8 +121,8 @@ namespace fastconv_test {
         // generate IR of length 51 samples
         for (int i = 0; i < 51; i++)
         {
-            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-            TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
+        //    TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+          //  TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
         }
 
         m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
@@ -141,16 +153,18 @@ namespace fastconv_test {
 
     TEST_F(FastConv, FreqDomainIdentityTest)
     {
-        float TestImpulse[51] = { 0 };
+        //float TestImpulse[51] = { 0 };
         float TestInput[10] = { 0 };
         float TestOutput[10] = { 0 };
         float CheckOutput[60] = { 0 };
         TestInput[3] = 1;
         for (int i = 0; i < 51; i++)
         {
-            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-            TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
-            CheckOutput[i + 3+20] = TestImpulse[i];
+         //   TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+         //   TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
+            if (i < (51 - 23)) {
+                CheckOutput[i + 3 + 20] = TestImpulse[i];
+            }
         }
 
 
@@ -161,7 +175,31 @@ namespace fastconv_test {
 
     }
 
+    TEST_F(FastConv, FreqDomainFlushBufferTest)
+    {
+        // float TestImpulse[51] = { 0 };
+        float TestInput[10] = { 0 };
+        float TestOutput[10] = { 0 };
+        float TestFlush[51+10-1] = { 0 };
+        float CheckOutput[60] = { 0 };
+        TestInput[3] = 1;
+        for (int i = 0; i < 51; i++)
+        {
+            //     TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
+              //   TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
+            CheckOutput[i + 3] = TestImpulse[i];
+        }
 
+
+        m_pCFastConv->init(TestImpulse, 51, 10, CFastConv::kFreqDomain);
+        m_pCFastConv->process(TestOutput, TestInput, 10);
+        m_pCFastConv->flushBuffer(TestFlush);
+
+        CHECK_ARRAY_CLOSE(TestOutput, CheckOutput, 10, 1e-3);
+        CHECK_ARRAY_CLOSE(TestFlush, TestImpulse + 7, 51 - 7, 1e-3);
+
+        // something is not deleting right...
+    }
 //
     TEST_F(FastConv, FreqDomainBlockSizeTest)
     {
@@ -199,10 +237,10 @@ namespace fastconv_test {
         }
 
     }
-
-
-
-
+//
+//
+//
+//
 }
 
 #endif //WITH_TESTS
