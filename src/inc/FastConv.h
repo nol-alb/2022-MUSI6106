@@ -57,6 +57,7 @@ public:
 
 private:
     CRingBuffer<float>  *m_pCRingBuffer=0;
+    bool bIsInitialized;
     float *m_pImpulseResponse=0;
     int m_lengthofIR=0;
     int m_BlockLength=0;
