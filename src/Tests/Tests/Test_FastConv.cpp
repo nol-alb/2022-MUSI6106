@@ -170,8 +170,8 @@ namespace fastconv_test {
     TEST_F(FastConv, FreqDomainFlushBufferTest)
     {
         // float TestImpulse[51] = { 0 };
-        float TestInput[10] = { 0 };
-        float TestOutput[10] = { 0 };
+        float TestInput[128] = { 0 };
+        float TestOutput[128] = { 0 };
         float TestFlush[51+10-1] = { 0 };
         float CheckOutput[60] = { 0 };
         TestInput[3] = 1;
@@ -184,10 +184,10 @@ namespace fastconv_test {
 
 
         m_pCFastConv->init(TestImpulse, 51, 10, CFastConv::kFreqDomain);
-        m_pCFastConv->process(TestOutput, TestInput, 10);
+        m_pCFastConv->process(TestOutput, TestInput, 128);
         m_pCFastConv->flushBuffer(TestFlush);
 
-        CHECK_ARRAY_CLOSE(TestOutput, CheckOutput, 10, 1e-3);
+        CHECK_ARRAY_CLOSE(TestOutput, CheckOutput, 128-3, 1e-3);
         CHECK_ARRAY_CLOSE(TestFlush, TestImpulse + 7, 51 - 7, 1e-3);
 
         // something is not deleting right...

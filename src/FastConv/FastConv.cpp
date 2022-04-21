@@ -191,46 +191,123 @@ Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInput
     }
     return Error_t::kNoError;
 }
-Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
+Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers)
+{
+
+    ///PseudoCode
+        // outer loop iterates through the ilength of Buffers
+        //Set a readBlockIDx=0 and set WriteBlockIdx = 0, for shift counters in the algorithm
+        //We setup a 2M size input buffer and fill it from 0:M with zeros for block1 and M-2M with x1
+        //We have a processed output matrix of size ypro[No of IR blocks][M], initialized with zeros
+        //The output y[write] = ypro[ReadBlockIdx][write]  (Note: For first block M we will get zeros (Latency of the system))
+        //Once the inputBuffer is filled to 2M we perform the convolution multiplication operation
+        //Innerloop
+        //We receive and processed output of ----
+                                                // 0 + x1*h1  <---- ReadIdx, WriteIdx
+                                                // 0 + x1*h2
+                                                // 0 + x1*h3
+                                                // 0 + x1*h4
+        //Shift second half of the input to the left, to make room for new input Xprocess = [x1:x1]
+
+        //Increment Write Idx, but before you do make sure the readIdx is equal to the write Idx
+                    //ReadIdx = 0, WriteIdx = 1
+        //Repeat outer loop process
+        //Have to setup the yprocessed[ReadIdx] = 0, to account for the last process being added to empty mem in the algorithm
+        //After process the processed output is ----
+                                                    //0 +x2h4 <---ReadIdx
+                                                    //x1h2+x2h1 <---- WriteIdx
+                                                    //x1h3+x2h2
+                                                    //x1h4+x2h3
+        //Shift the processed input again [x2:x2]
+        //Increment the Write Idx
+                        //ReadIdx = 1, WriteIdx = 2
+                        // Now
+                                        //0 +x2h4
+                                        //x1h2+x2h1 <---ReadIdx
+                                        //x1h3+x2h2 <---- WriteIdx
+                                        //x1h4+x2h3
+      for (int i=0; i<iLengthOfBuffers; i++)
+      {
+          pfInputProcessing[PointOfWrite+m_BlockLength]=pfInputBuffer[PointOfWrite]; //Writing into the second half of the buffer
+          PointOfWrite++;
+          pfOutputBuffer[PointOfWrite] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
+          if(PointOfWrite==m_BlockLength)
+          {
+              PointOfWrite=0;
+              for(int j=0; j<m_BlockLength;j++)
+              {
+                  ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite]=0;
+              }
+              //FFT Of the Input Block
+              m_pCFft->doFft(pfreqInputProcessing,pfInputProcessing);
+              m_pCFft->splitRealImag(pfRealInputProcessing,pfImagInputProcessing,pfreqInputProcessing);
+              for (int j=0;j<numOfIRBlocks;j++)
+              {
+                  complexMultiply(pfProductReal,pfProductImag,pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],m_BlockLength);
+                  //Convolution Process
+                  m_pCFft->mergeRealImag(pFFTProductProcess,pfProductReal,pfProductImag);
+                  m_pCFft->doInvFft(pfInvFFtProcessing,pFFTProductProcess);
+                  const int temp_writeIdx = (BlockNoWriting+j)%numOfIRBlocks;
+                  for (int k = 0; k<m_BlockLength;k++)
+                  {
+                      ppfProcessedOutputBlocks[temp_writeIdx][k] += pfInvFFtProcessing[k];
+                  }
+
+              }
+
+              CVectorFloat::moveInMem(pfInputProcessing,0,m_BlockLength,sBlockLength);
+              BlockNoReading=BlockNoWriting;
+              BlockNoWriting=(BlockNoWriting+1) % m_BlockLength;
 
 
-    for (int i=0; i<iLengthOfBuffers; i++)
-    {
-        //TODO: ADD ASSERTS FOR LESS BUFFERSIZE COMPARED TO BLOCKlENGTH
-        //Set the second half of the inputBuffer with the input process values
-        //PointofWrite sets the new input block x1,x2 from center of pfInputBuffer
-        pfInputProcessing[PointOfWrite+m_BlockLength] = pfInputBuffer[i];
-        //TheBlockNoReading, helps us control the shift in blocks while overlap
-        pfOutputBuffer[i] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
-        PointOfWrite++;
-        if(PointOfWrite==m_BlockLength)
-        {
-            PointOfWrite=0;
-            m_pCFft->doFft(pfreqInputProcessing,pfInputProcessing);
-            m_pCFft->splitRealImag(pfRealInputProcessing,pfImagInputProcessing,pfreqInputProcessing);
-            for (int j = 0; j<numOfIRBlocks; j++)
-            {
-                complexMultiply(pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],pfProductReal,pfProductImag,m_lengthofIR);
-                m_pCFft->mergeRealImag(pFFTProductProcess,pfProductReal,pfProductImag);
-                m_pCFft->doInvFft(pfInvFFtProcessing,pFFTProductProcess);
-                int process_writeIdx = (BlockNoWriting + j) % numOfIRBlocks; //A temporary variable to help write the convolution sum with each block of the IR
-                for (int k =0; k<m_BlockLength;k++)
-                {
-                    ppfProcessedOutputBlocks[process_writeIdx][k] += pfInvFFtProcessing[k+m_BlockLength];
-                }
-            }
-            BlockNoReading=BlockNoWriting;
-            //Shift the current input block to the left to make room for the new x2
-            for (int k = 0; k<m_BlockLength;k++)
-            {
-                pfInputProcessing[k] = pfInputProcessing[k+m_BlockLength];
-            }
-            //Make the 2 dimensional processblocks behave like a ringbuffer (Can just use the ringbuffer to control these shifts)
 
-            BlockNoWriting=(BlockNoWriting+1)%numOfIRBlocks;
-        }
+          }
 
-    }
+      }
+
+
+//    for (int i=0; i<iLengthOfBuffers; i++)
+//    {
+//        //TODO: ADD ASSERTS FOR LESS BUFFERSIZE COMPARED TO BLOCKlENGTH
+//        //Set the second half of the inputBuffer with the input process values
+//        //PointofWrite sets the new input block x1,x2 from center of pfInputBuffer
+//        pfInputProcessing[PointOfWrite+m_BlockLength] = pfInputBuffer[i];
+//        //TheBlockNoReading, helps us control the shift in blocks while overlap
+//        pfOutputBuffer[i] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
+//        PointOfWrite++;
+//        if(PointOfWrite==m_BlockLength)
+//        {
+//            PointOfWrite=0;
+//            for (int j =0; j<m_BlockLength;j++)
+//            {
+//                ppfProcessedOutputBlocks[BlockNoReading][j]=0;
+//            }
+//            m_pCFft->doFft(pfreqInputProcessing,pfInputProcessing);
+//            m_pCFft->splitRealImag(pfRealInputProcessing,pfImagInputProcessing,pfreqInputProcessing);
+//            for (int j = 0; j<numOfIRBlocks; j++)
+//            {
+//                ///---Process of FFT Convolve----///
+//                complexMultiply(pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],pfProductReal,pfProductImag,m_lengthofIR);
+//                m_pCFft->mergeRealImag(pFFTProductProcess,pfProductReal,pfProductImag);
+//                m_pCFft->doInvFft(pfInvFFtProcessing,pFFTProductProcess);
+//                int process_writeIdx = (BlockNoWriting + j) % numOfIRBlocks; //A temporary variable to help write the convolution sum with each block of the IR
+//                for (int k =0; k<m_BlockLength;k++)
+//                {
+//                    /// Writing each processed input blockn*convolutionblockp
+//                    ppfProcessedOutputBlocks[process_writeIdx][k] += pfInvFFtProcessing[k+m_BlockLength];
+//                }
+//            }
+//            BlockNoReading=BlockNoWriting;
+//            //Shift the current input block to the left to make room for the new x2
+//            for (int k = 0; k<m_BlockLength;k++)
+//            {
+//                pfInputProcessing[k] = pfInputProcessing[k+m_BlockLength];
+//            }
+//            //Make the 2 dimensional processblocks behave like a ringbuffer (Can just use the ringbuffer to control these shifts)
+//
+//            BlockNoWriting=(BlockNoWriting+1)%numOfIRBlocks;
+//        }
+
 
 
 
@@ -238,13 +315,18 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     return Error_t::kNoError;
 }
 
-//FUNCTION TO MAKE COMPLEX MULTIPLICAION, GIVEN COMPLEX_T
-//splitRealImag
 
-Error_t CFastConv::complexMultiply(float* realInput1, float* imagInput1, float* realInput2, float* imagInput2, float* realOutput, float* imagOutput, int outputLength ) {
-    for (int i = 0; i < outputLength; i++) {
-        realOutput[i] = (realInput1[i] * realInput2[i]) - (imagInput1[i] * imagInput2[i]);
-        imagOutput[i] = (realInput2[i] * imagInput1[i]) + (realInput1[i] * imagInput2[i]);
+
+Error_t CFastConv::complexMultiply(float* realOutput, float* imagOutput,float* realInput1, float* imagInput1, float* realInput2, float* imagInput2, int outputLength ) {
+    for (int i = 0; i < outputLength; i++)
+    {
+        float realA = realInput1[i];
+        float ImagB = imagInput1[i];
+        float realC = realInput2[i];
+        float ImagD = imagInput2[i];
+        // (a+ib)*(c+id) = (ac-bd) + (bc+ad)
+        realOutput[i] = (realA*realC)-(ImagB*ImagD);
+        imagOutput[i] = (ImagB*realC) + (realA*ImagD);
     }
     return Error_t::kNoError;
 }
