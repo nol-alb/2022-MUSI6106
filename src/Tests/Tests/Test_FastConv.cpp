@@ -166,31 +166,23 @@ namespace fastconv_test {
         CHECK_ARRAY_CLOSE(CheckOutput, TestOutput, 10, 1e-3);
 
     }
-
-    TEST_F(FastConv, FreqDomainFlushBufferTest)
+    TEST_F(FastConv, FreqDomainFlushIdentifyTest)
     {
-        // float TestImpulse[51] = { 0 };
-        float TestInput[10] = { 0 };
-        float TestOutput[10] = { 0 };
-        float TestFlush[51+10-1] = { 0 };
-        float CheckOutput[60] = { 0 };
-        TestInput[3] = 1;
+        float pfTestImpulse[51] = { 0 };
+        float pfTestInput[128] = { 0 };
+        float pfTestOutput[128] = { 0 };
+        float pfTestFlush[82] = { 0 };
+        pfTestInput[3] = 1;
         for (int i = 0; i < 51; i++)
         {
-            //     TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-              //   TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
-            CheckOutput[i + 3] = TestImpulse[i];
+            pfTestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
         }
 
+        m_pCFastConv->init(pfTestImpulse, 51, 32, CFastConv::kFreqDomain);
+        m_pCFastConv->process(pfTestOutput, pfTestInput, 128);
+        m_pCFastConv->flushBuffer(pfTestFlush);
 
-        m_pCFastConv->init(TestImpulse, 51, 10, CFastConv::kFreqDomain);
-        m_pCFastConv->process(TestOutput, TestInput, 10);
-        m_pCFastConv->flushBuffer(TestFlush);
-
-        CHECK_ARRAY_CLOSE(TestOutput, CheckOutput, 10, 1e-3);
-        CHECK_ARRAY_CLOSE(TestFlush, TestImpulse + 7, 51 - 7, 1e-3);
-
-        // something is not deleting right...
+        CHECK_ARRAY_CLOSE(pfTestFlush + 3 + 32 - 10, pfTestImpulse, 51, 1e-3);
     }
 //
 //    TEST_F(FastConv, FreqDomainBlockSizeTest)

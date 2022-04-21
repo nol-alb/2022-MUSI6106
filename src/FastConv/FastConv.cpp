@@ -32,11 +32,23 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
     else if(eCompMode==kFreqDomain)
     {
         this->reset();
-        m_pImpulseResponse = new float[iLengthOfIr];
         m_lengthofIR = iLengthOfIr;
         m_BlockLength = iBlockLength;
-        for (int i = 0; i < iLengthOfIr; i++) {
-            m_pImpulseResponse[i] = pfImpulseResponse[i];
+        numOfIRBlocks = std::max(static_cast<int>(std::ceil(static_cast<float>(m_lengthofIR)/ static_cast<float>(m_BlockLength))),1);
+        m_pImpulseResponse = new float[m_BlockLength*numOfIRBlocks];
+        long long int FullImpulseSize =  m_BlockLength*numOfIRBlocks;
+        CVectorFloat::setZero(m_pImpulseResponse,FullImpulseSize);
+
+        for (int j=0; j<numOfIRBlocks; j++)
+        {
+            for (int i = 0; i < m_BlockLength; i++) {
+                int check = j*m_BlockLength+i;
+                if(j*m_BlockLength+i < m_lengthofIR) {
+                    m_pImpulseResponse[j * m_BlockLength + i] = pfImpulseResponse[j * m_BlockLength + i];
+                }
+                else
+                    m_pImpulseResponse[j * m_BlockLength + i] = 0;
+            }
         }
         //Initialise the FFT
         type = eCompMode;
@@ -44,8 +56,6 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
         m_pCFft->initInstance(2*m_BlockLength,1,CFft::kWindowHann,CFft::kNoWindow);
 
         //Calculate Number of Blocks in the Impulse Response
-
-        numOfIRBlocks = std::max(static_cast<int>(std::ceil(m_lengthofIR / m_BlockLength)),1);
 
         //Create the IR Matrix to pre-calculate the freq domain representation
         ppFreqBlockedIR = new CFft::complex_t*[numOfIRBlocks];
@@ -234,11 +244,25 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
         //TODO: ADD ASSERTS FOR LESS BUFFERSIZE COMPARED TO BLOCKlENGTH
         //Set the second half of the inputBuffer with the input process values
         //PointofWrite sets the new input block x1,x2 from center of pfInputBuffer
-        pfInputProcessing[PointOfWrite+m_BlockLength] = pfInputBuffer[i];
-        //TheBlockNoReading, helps us control the shift in blocks while overlap
-        pfOutputBuffer[i] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
-        PointOfWrite++;
-        if(PointOfWrite==m_BlockLength)
+            pfInputProcessing[PointOfWrite + m_BlockLength] = pfInputBuffer[i];
+            //TheBlockNoReading, helps us control the shift in blocks while overlap
+            pfOutputBuffer[i] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
+            if(i==iLengthOfBuffers-1)
+            //Check if we've reached end of the buffer, but still have residue to load into the FFTConvolve
+            {
+                for (int chk = PointOfWrite; chk<m_BlockLength;chk++) {
+
+                    pfInputProcessing[PointOfWrite + m_BlockLength] = 0;
+                    PointOfWrite++;
+                }
+            }
+            else
+            {
+                PointOfWrite++;
+            }
+
+
+    if(PointOfWrite==m_BlockLength)
         {
             for (int j=0;j<m_BlockLength;j++)
             {

@@ -66,8 +66,20 @@
     <property name="ctest.advertisement.all.test.configuration.is.created" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Google Test.FastConv">
+  <component name="RunManager" selected="Google Test.TestExec">
     <configuration name="FastConv" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FastConv.FreqDomainFlushBufferTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="FreqDomainFlushBufferTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FastConv.FreqDomainIdentityTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="FreqDomainIdentityTest" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -125,9 +137,13 @@
       <item itemvalue="Google Test.TestExec" />
       <item itemvalue="Google Test.FastConv.TimeDomainIdentifyTest" />
       <item itemvalue="Google Test.FastConv" />
+      <item itemvalue="Google Test.FastConv.FreqDomainIdentityTest" />
+      <item itemvalue="Google Test.FastConv.FreqDomainFlushBufferTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.FastConv.FreqDomainFlushBufferTest" />
+        <item itemvalue="Google Test.FastConv.FreqDomainIdentityTest" />
         <item itemvalue="Google Test.FastConv" />
         <item itemvalue="Google Test.FastConv.TimeDomainIdentifyTest" />
       </list>
@@ -172,41 +188,6 @@
           <url>file://$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp</url>
           <line>18</line>
           <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
-          <line>162</line>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>68</line>
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
-          <line>164</line>
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>246</line>
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>254</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>62</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>41</line>
-          <option name="timeStamp" value="114" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
