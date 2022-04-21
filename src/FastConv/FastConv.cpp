@@ -2,42 +2,146 @@
 #include "FastConv.h"
 
 
-CFastConv::CFastConv( void ):m_pCRingBuffer(0), m_pImpulseResponse(0),
-m_lengthofIR(0),
-m_BlockLength(0)
+CFastConv::CFastConv( void )
 {
     this->reset();
 }
 
 CFastConv::~CFastConv( void )
 {
-    reset();
+    this->reset();
 }
 
 Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
-    this->reset();
-    //TODO: Set BIsInitialized
-    m_pImpulseResponse = new float[iLengthOfIr];
-    m_lengthofIR = iLengthOfIr;
-    m_BlockLength = iBlockLength;
-    for (int i=0; i < iLengthOfIr;i++){
-        m_pImpulseResponse[i] = pfImpulseResponse[i];
-    }
+    if(eCompMode==kTimeDomain) {
+        this->reset();
+        //TODO: Set BIsInitialized
+        m_pImpulseResponse = new float[iLengthOfIr];
+        m_lengthofIR = iLengthOfIr;
+        m_BlockLength = iBlockLength;
+        for (int i = 0; i < iLengthOfIr; i++) {
+            m_pImpulseResponse[i] = pfImpulseResponse[i];
+        }
 //    std::memcpy(m_pImpulseResponse, pfImpulseResponse, sizeof(float) * m_lengthofIR);
-    m_pCRingBuffer = new CRingBuffer<float>(iLengthOfIr);
-    type = eCompMode;
-    return Error_t::kNoError;
+        m_pCRingBuffer = new CRingBuffer<float>(iLengthOfIr);
+        type = eCompMode;
+        return Error_t::kNoError;
+    }
+    else if(eCompMode==kFreqDomain)
+    {
+        m_pImpulseResponse = new float[iLengthOfIr];
+        m_lengthofIR = iLengthOfIr;
+        m_BlockLength = iBlockLength;
+        for (int i = 0; i < iLengthOfIr; i++) {
+            m_pImpulseResponse[i] = pfImpulseResponse[i];
+        }
+        //Initialise the FFT
+        type = eCompMode;
+        CFft::createInstance(m_pCFft);
+        m_pCFft->initInstance(2*m_BlockLength,1,CFft::kWindowHann,CFft::kNoWindow);
+
+        //Calculate Number of Blocks in the Impulse Response
+
+        numOfIRBlocks = std::max(static_cast<int>(std::ceil(m_lengthofIR / m_BlockLength)),1);
+
+        //Create the IR Matrix to pre-calculate the freq domain representation
+        ppFreqBlockedIR = new CFft::complex_t*[numOfIRBlocks];
+        ppfRealBlockedIR = new float*[numOfIRBlocks];
+        ppfImagBlockedIR = new float *[numOfIRBlocks];
+        sBlockLength = m_BlockLength;
+        ldbBlockLength = 2*m_BlockLength;
+        ppfBlockedIR = new float* [numOfIRBlocks];
+        for(int i=0;i<numOfIRBlocks;i++)
+        {
+
+            ppfBlockedIR[i] = new float[(2*m_BlockLength)];
+            CVectorFloat::setZero(ppfBlockedIR[i],ldbBlockLength); //Zero padding so the size of each block is 2M
+            CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
+            ppFreqBlockedIR[i]=new CFft::complex_t[(2*m_BlockLength)];
+            m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
+            ppfRealBlockedIR[i] = new float[(2*m_BlockLength)];
+            ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
+            m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
+        }
+        ppfProcessedOutputBlocks = new float*[numOfIRBlocks];
+        for (int i=0; i<numOfIRBlocks;i++)
+        {
+            ppfProcessedOutputBlocks[i]=new float[(m_BlockLength)];
+            CVectorFloat::setZero(ppfProcessedOutputBlocks[i],sBlockLength);
+        }
+        pfInputProcessing = new float[(2*m_BlockLength)];
+        CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
+
+        pfInvFFtProcessing = new float [(2*m_BlockLength)];
+        pfreqInputProcessing = new CFft::complex_t [(2*m_BlockLength)];
+        pFFTProductProcess = new CFft::complex_t [(2*m_BlockLength)];
+        pfProductImag = new float [(2*m_BlockLength)];
+        pfProductReal = new float [(2*m_BlockLength)];
+        pfRealInputProcessing = new float[(2*m_BlockLength)];
+        pfImagInputProcessing = new float[(2*m_BlockLength)];
+        pfreqInputProcessing = new float[(2*m_BlockLength)];
+        CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
+        return Error_t::kNoError;
+    }
 }
 
 Error_t CFastConv::reset()
 {
-    delete[] m_pImpulseResponse;
-    m_pImpulseResponse = 0;
-    delete m_pCRingBuffer;
-    m_pCRingBuffer = 0;
+    if(type==kTimeDomain) {
+        delete[] m_pImpulseResponse;
+        m_pImpulseResponse = 0;
+        delete m_pCRingBuffer;
+        m_pCRingBuffer = 0;
 
-    return Error_t::kNoError;
+
+        return Error_t::kNoError;
+    }
+    else if(type==kFreqDomain)
+    {
+        delete[] m_pImpulseResponse;
+        m_pImpulseResponse = 0;
+        CFft::destroyInstance(m_pCFft);
+        m_pCFft=0;
+        for (int i=0; i<numOfIRBlocks;i++)
+        {
+            delete[] ppfBlockedIR[i];
+            delete[] ppfImagBlockedIR[i];
+            delete[] ppfProcessedOutputBlocks[i];
+            delete[] ppFreqBlockedIR[i];
+            delete[] ppfRealBlockedIR[i];
+        }
+        delete[] ppfBlockedIR;
+        delete[] ppfImagBlockedIR;
+        delete[] ppfProcessedOutputBlocks;
+        delete[] ppFreqBlockedIR;
+        delete[] ppfRealBlockedIR;
+        ppfBlockedIR =nullptr;
+        ppfImagBlockedIR=nullptr;
+        ppfProcessedOutputBlocks=nullptr;
+        ppFreqBlockedIR=nullptr;
+        ppfRealBlockedIR=nullptr;
+
+        delete[] pfInputProcessing;
+        delete[] pfreqInputProcessing;
+        delete[] pfInvFFtProcessing;
+        delete[] pfProductImag;
+        delete[] pfProductReal;
+        delete[] pFFTProductProcess;
+        delete[] pfRealInputProcessing;
+        delete[] pfImagInputProcessing;
+
+        pfInputProcessing=0;
+        pFFTProductProcess=0;
+        pfreqInputProcessing=0;
+        pfInvFFtProcessing=0;
+        pfProductImag=0;
+        pfProductReal=0;
+        pfRealInputProcessing=0;
+        pfImagInputProcessing=0;
+        pfInvFFtProcessing=0;
+
+    }
 }
 //TODO: [10] Declare the necessary class members and implement a time domain convolution (simple time domain FIR filter)
 // in FastConv.cpp. This code should be executed if the flag kTimeDomain is set in init.
@@ -69,7 +173,7 @@ Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInput
     CVectorFloat::setZero(pfOutputBuffer,iLengthOfBuffers);
     for (int i =0; i<iLengthOfBuffers; i++){
         m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1); //Ensures you multiply the first sample Input with the first sample of the flipped impulse response
-        m_pCRingBuffer->putPostInc(pfInputBuffer[i]);
+        m_pCRingBuffer->putPostInc(pfInputBuffer[i]); //Move into the buffer and circularly shift for time convolution
         accum = 0;
         for(int j =m_lengthofIR-1; j>=0;j--){
             accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
@@ -79,71 +183,71 @@ Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInput
     return Error_t::kNoError;
 }
 Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
-    //Initialise the FFT
-    CFft::createInstance(m_pCFft);
-    m_pCFft->initInstance(2*m_BlockLength,1,CFft::kWindowHann,CFft::kNoWindow);
-
-    //Calculate Number of Blocks in the Impulse Response
-    int numOfIRBlocks = 0;
-    // CHECK ROUMDOMG
-    numOfIRBlocks = std::max(static_cast<int>(std::ceil(m_lengthofIR / m_BlockLength)),1);
-
-    //Create the IR Matrix to pre-calculate the freq domain representation
-    float** ppfBlockedIR = new float* [numOfIRBlocks];
-    CFft::complex_t** ppFreqBlockedIR = nullptr;
-    float ** ppfRealBlockedIR = nullptr;
-    float ** ppfImagBlockedIR = nullptr;
-    ppFreqBlockedIR = new CFft::complex_t*[numOfIRBlocks];
-    ppfRealBlockedIR = new float*[numOfIRBlocks];
-    ppfImagBlockedIR = new float *[numOfIRBlocks];
-    long long ldbBlockLength;
-    long long sBlockLength;
-    sBlockLength = m_BlockLength;
-    ldbBlockLength = 2*m_BlockLength;
+//    //Initialise the FFT
+//    CFft::createInstance(m_pCFft);
+//    m_pCFft->initInstance(2*m_BlockLength,1,CFft::kWindowHann,CFft::kNoWindow);
+//
+//    //Calculate Number of Blocks in the Impulse Response
+//    int numOfIRBlocks = 0;
+//    numOfIRBlocks = std::max(static_cast<int>(std::ceil(m_lengthofIR / m_BlockLength)),1);
+//
+//    //Create the IR Matrix to pre-calculate the freq domain representation
+//    float** ppfBlockedIR = new float* [numOfIRBlocks];
+//    CFft::complex_t** ppFreqBlockedIR = nullptr;
+//    float ** ppfRealBlockedIR = nullptr;
+//    float ** ppfImagBlockedIR = nullptr;
+//    ppFreqBlockedIR = new CFft::complex_t*[numOfIRBlocks];
+//    ppfRealBlockedIR = new float*[numOfIRBlocks];
+//    ppfImagBlockedIR = new float *[numOfIRBlocks];
+//    long long ldbBlockLength;
+//    long long sBlockLength;
+//    sBlockLength = m_BlockLength;
+//    ldbBlockLength = 2*m_BlockLength;
 
 
     // Calculate the freq domain representation of the Impulse Response and split into real and imaginary
-    for(int i=0;i<numOfIRBlocks;i++)
-    {
-        ppfBlockedIR[i] = new float[(2*m_BlockLength)];
-        CVectorFloat::setZero(ppfBlockedIR[i],ldbBlockLength); //Zero padding so the size of each block is 2M
-        CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
-        ppFreqBlockedIR[i]=new CFft::complex_t[(2*m_BlockLength)];
-        m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
-        ppfRealBlockedIR[i] = new float[(2*m_BlockLength)];
-        ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
-        m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
-    }
-    int PointOfWrite = 0;
-    int PointOfRead = 0;
-    int BlockNoWriting = 0;
-    int BlockNoReading=0;
-    float* pfInputProcessing=nullptr;
-    float** ppfProcessedOutputBlocks = new float*[numOfIRBlocks];
-    for (int i=0; i<numOfIRBlocks;i++)
-    {
-        ppfProcessedOutputBlocks[i]=new float[(m_BlockLength)];
-        CVectorFloat::setZero(ppfProcessedOutputBlocks[i],sBlockLength);
-    }
-    pfInputProcessing = new float[(2*m_BlockLength)];
-    CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
-    CFft::complex_t* pfreqInputProcessing = nullptr;
-    CFft::complex_t* pFFTProductProcess = nullptr;
-    float* pfRealInputProcessing = nullptr;
-    float* pfImagInputProcessing = nullptr;
-    float* pfProductReal = nullptr;
-    float* pfProductImag = nullptr;
-    float* pfInvFFtProcessing = nullptr;
+//    for(int i=0;i<numOfIRBlocks;i++)
+//    {
+//
+//        ppfBlockedIR[i] = new float[(2*m_BlockLength)];
+//        CVectorFloat::setZero(ppfBlockedIR[i],ldbBlockLength); //Zero padding so the size of each block is 2M
+//        CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
+//        ppFreqBlockedIR[i]=new CFft::complex_t[(2*m_BlockLength)];
+//        m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
+//        ppfRealBlockedIR[i] = new float[(2*m_BlockLength)];
+//        ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
+//        m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
+//    }
+//    int PointOfWrite = 0;
+//    int PointOfRead = 0;
+//    int BlockNoWriting = 0;
+//    int BlockNoReading=0;
+//    float* pfInputProcessing=nullptr;
+//    float** ppfProcessedOutputBlocks = new float*[numOfIRBlocks];
+//    for (int i=0; i<numOfIRBlocks;i++)
+//    {
+//        ppfProcessedOutputBlocks[i]=new float[(m_BlockLength)];
+//        CVectorFloat::setZero(ppfProcessedOutputBlocks[i],sBlockLength);
+//    }
+//    pfInputProcessing = new float[(2*m_BlockLength)];
+//    CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
+//    CFft::complex_t* pfreqInputProcessing = nullptr;
+//    CFft::complex_t* pFFTProductProcess = nullptr;
+//    float* pfRealInputProcessing = nullptr;
+//    float* pfImagInputProcessing = nullptr;
+//    float* pfProductReal = nullptr;
+//    float* pfProductImag = nullptr;
+//    float* pfInvFFtProcessing = nullptr;
 
-    pfInvFFtProcessing = new float [(2*m_BlockLength)];
-    pfreqInputProcessing = new CFft::complex_t [(2*m_BlockLength)];
-    pFFTProductProcess = new CFft::complex_t [(2*m_BlockLength)];
-    pfProductImag = new float [(2*m_BlockLength)];
-    pfProductReal = new float [(2*m_BlockLength)];
-    pfRealInputProcessing = new float[(2*m_BlockLength)];
-    pfImagInputProcessing = new float[(2*m_BlockLength)];
-    pfreqInputProcessing = new float[(2*m_BlockLength)];
-    CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
+//    pfInvFFtProcessing = new float [(2*m_BlockLength)];
+//    pfreqInputProcessing = new CFft::complex_t [(2*m_BlockLength)];
+//    pFFTProductProcess = new CFft::complex_t [(2*m_BlockLength)];
+//    pfProductImag = new float [(2*m_BlockLength)];
+//    pfProductReal = new float [(2*m_BlockLength)];
+//    pfRealInputProcessing = new float[(2*m_BlockLength)];
+//    pfImagInputProcessing = new float[(2*m_BlockLength)];
+//    pfreqInputProcessing = new float[(2*m_BlockLength)];
+//    CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
 
     for (int i=0; i<iLengthOfBuffers; i++)
     {
@@ -170,54 +274,56 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
                     ppfProcessedOutputBlocks[process_writeIdx][k] += pfInvFFtProcessing[k+m_BlockLength];
                 }
             }
+            BlockNoReading=BlockNoWriting;
+            //Shift the current input block to the left to make room for the new x2
             for (int k = 0; k<m_BlockLength;k++)
             {
                 pfInputProcessing[k] = pfInputProcessing[k+m_BlockLength];
             }
-            //Make the 2 dimensional processblocks behave like a ringbuffer (Can just use the ringbuffer to control these shifts
-            BlockNoReading=BlockNoWriting;
+            //Make the 2 dimensional processblocks behave like a ringbuffer (Can just use the ringbuffer to control these shifts)
+
             BlockNoWriting=(BlockNoWriting+1)%numOfIRBlocks;
         }
 
     }
 
-    CFft::destroyInstance(m_pCFft);
-    m_pCFft=0;
-    for (int i=0; i<numOfIRBlocks;i++)
-    {
-        delete[] ppfBlockedIR[i];
-        delete[] ppfImagBlockedIR[i];
-        delete[] ppfProcessedOutputBlocks[i];
-        delete[] ppFreqBlockedIR[i];
-        delete[] ppfRealBlockedIR[i];
-    }
-    delete[] ppfBlockedIR;
-    delete[] ppfImagBlockedIR;
-    delete[] ppfProcessedOutputBlocks;
-    delete[] ppFreqBlockedIR;
-    delete[] ppfRealBlockedIR;
-    ppfBlockedIR =nullptr;
-    ppfImagBlockedIR=nullptr;
-    ppfProcessedOutputBlocks=nullptr;
-    ppFreqBlockedIR=nullptr;
-    ppfRealBlockedIR=nullptr;
-
-    delete[] pfInputProcessing;
-    delete[] pfreqInputProcessing;
-    delete[] pfInvFFtProcessing;
-    delete[] pfProductImag;
-    delete[] pfProductReal;
-    delete[] pfRealInputProcessing;
-    delete[] pfImagInputProcessing;
-
-    pfInputProcessing=0;
-    pfreqInputProcessing=0;
-    pfInvFFtProcessing=0;
-    pfProductImag=0;
-    pfProductReal=0;
-    pfRealInputProcessing=0;
-    pfImagInputProcessing=0;
-    pfInvFFtProcessing=0;
+//    CFft::destroyInstance(m_pCFft);
+//    m_pCFft=0;
+//    for (int i=0; i<numOfIRBlocks;i++)
+//    {
+//        delete[] ppfBlockedIR[i];
+//        delete[] ppfImagBlockedIR[i];
+//        delete[] ppfProcessedOutputBlocks[i];
+//        delete[] ppFreqBlockedIR[i];
+//        delete[] ppfRealBlockedIR[i];
+//    }
+//    delete[] ppfBlockedIR;
+//    delete[] ppfImagBlockedIR;
+//    delete[] ppfProcessedOutputBlocks;
+//    delete[] ppFreqBlockedIR;
+//    delete[] ppfRealBlockedIR;
+//    ppfBlockedIR =nullptr;
+//    ppfImagBlockedIR=nullptr;
+//    ppfProcessedOutputBlocks=nullptr;
+//    ppFreqBlockedIR=nullptr;
+//    ppfRealBlockedIR=nullptr;
+//
+//    delete[] pfInputProcessing;
+//    delete[] pfreqInputProcessing;
+//    delete[] pfInvFFtProcessing;
+//    delete[] pfProductImag;
+//    delete[] pfProductReal;
+//    delete[] pfRealInputProcessing;
+//    delete[] pfImagInputProcessing;
+//
+//    pfInputProcessing=0;
+//    pfreqInputProcessing=0;
+//    pfInvFFtProcessing=0;
+//    pfProductImag=0;
+//    pfProductReal=0;
+//    pfRealInputProcessing=0;
+//    pfImagInputProcessing=0;
+//    pfInvFFtProcessing=0;
 
 
 
@@ -245,7 +351,7 @@ Error_t CFastConv::flushBuffer(float* pfOutputBuffer)
     if(type == kTimeDomain)
     {
         float *pfInputFlush = new float[m_lengthofIR - 1];
-        long long int sbufferlength = m_lengthofIR;
+        long long int sbufferlength = m_lengthofIR-1;
         CVectorFloat::setZero(pfInputFlush, sbufferlength);
         process(pfOutputBuffer, pfInputFlush, m_lengthofIR - 1);
         delete[] pfInputFlush;
@@ -253,7 +359,7 @@ Error_t CFastConv::flushBuffer(float* pfOutputBuffer)
     if(type == kFreqDomain)
     {
         float *pfInputFlush = new float[m_BlockLength + m_lengthofIR - 1]; //Think about the initial delay of the zeros of blocksize
-        long long int sbufferlength = m_lengthofIR + m_BlockLength;
+        long long int sbufferlength = m_lengthofIR + m_BlockLength-1;
         CVectorFloat::setZero(pfInputFlush, sbufferlength);
         process(pfOutputBuffer, pfInputFlush, m_BlockLength+m_lengthofIR - 1);
         delete[] pfInputFlush;
@@ -272,3 +378,4 @@ Error_t CFastConv::flushBuffer(float* pfOutputBuffer)
 //    }
     return Error_t::kNoError;
 }
+
