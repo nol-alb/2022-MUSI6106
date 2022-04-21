@@ -31,6 +31,7 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
     }
     else if(eCompMode==kFreqDomain)
     {
+        this->reset();
         m_pImpulseResponse = new float[iLengthOfIr];
         m_lengthofIR = iLengthOfIr;
         m_BlockLength = iBlockLength;
@@ -61,8 +62,8 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
             CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
             ppFreqBlockedIR[i]=new CFft::complex_t[(2*m_BlockLength)];
             m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
-            ppfRealBlockedIR[i] = new float[(2*m_BlockLength)];
-            ppfImagBlockedIR[i]= new float[(2*m_BlockLength)];
+            ppfRealBlockedIR[i] = new float[(m_BlockLength)];
+            ppfImagBlockedIR[i]= new float[(m_BlockLength)];
             m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
         }
         ppfProcessedOutputBlocks = new float*[numOfIRBlocks];
@@ -75,13 +76,12 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
         CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
 
         pfInvFFtProcessing = new float [(2*m_BlockLength)];
-        pfreqInputProcessing = new CFft::complex_t [(2*m_BlockLength)];
         pFFTProductProcess = new CFft::complex_t [(2*m_BlockLength)];
-        pfProductImag = new float [(2*m_BlockLength)];
-        pfProductReal = new float [(2*m_BlockLength)];
+        pfProductImag = new float [(m_BlockLength)];
+        pfProductReal = new float [(m_BlockLength)];
         pfRealInputProcessing = new float[(2*m_BlockLength)];
         pfImagInputProcessing = new float[(2*m_BlockLength)];
-        pfreqInputProcessing = new float[(2*m_BlockLength)];
+        pfreqInputProcessing = new CFft::complex_t [(2*m_BlockLength)];
         CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
         bIsInitialized= true;
         return Error_t::kNoError;
@@ -98,6 +98,7 @@ Error_t CFastConv::reset()
         m_pImpulseResponse = 0;
         delete m_pCRingBuffer;
         m_pCRingBuffer = 0;
+        bIsInitialized=false;
 
 
         return Error_t::kNoError;
@@ -145,6 +146,7 @@ Error_t CFastConv::reset()
         pfRealInputProcessing=0;
         pfImagInputProcessing=0;
         pfInvFFtProcessing=0;
+        bIsInitialized=false;
 
     }
 }
@@ -280,8 +282,8 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
 
 Error_t CFastConv::complexMultiply(float* realInput1, float* imagInput1, float* realInput2, float* imagInput2, float* realOutput, float* imagOutput, int outputLength ) {
     for (int i = 0; i < outputLength; i++) {
-        realOutput[i] = (realInput1[i] * realInput2[i]) - (imagInput1[i] * imagInput2[i]);
-        imagOutput[i] = (realInput2[i] * imagInput1[i]) + (realInput1[i] * imagInput2[i]);
+        realOutput[i] = (realInput1[i] * realInput2[i]) - (imagInput1[i] * imagInput2[i]) * 2 * m_BlockLength;
+        imagOutput[i] = (realInput2[i] * imagInput1[i]) + (realInput1[i] * imagInput2[i]) * 2 * m_BlockLength;
     }
     return Error_t::kNoError;
 }
