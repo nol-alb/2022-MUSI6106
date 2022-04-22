@@ -86,8 +86,7 @@ private:
     float* pfProductReal = nullptr;
     float* pfProductImag = nullptr;
     float* pfInvFFtProcessing = nullptr;
-
-    Error_t complexMultiply(float* realInput, float* imagInput, float* realInput2, float* imagInput2, float* realOutput, float* imagOutput, int outputLength);
+    Error_t complexMultiply(float* realInput1, float* imagInput1, float* realInput2, float* imagInput2, float* realOutput, float* imagOutput, int outputLength );
 
 
 

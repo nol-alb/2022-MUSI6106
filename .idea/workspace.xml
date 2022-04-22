@@ -24,6 +24,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/FastConv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/FastConv.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,6 +189,46 @@
           <url>file://$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp</url>
           <line>18</line>
           <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_Fft.cpp</url>
+          <line>65</line>
+          <option name="timeStamp" value="147" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
+          <line>56</line>
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
+          <line>72</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
+          <line>54</line>
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
+          <line>166</line>
+          <option name="timeStamp" value="155" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
+          <line>273</line>
+          <option name="timeStamp" value="158" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
+          <line>293</line>
+          <option name="timeStamp" value="160" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
+          <line>284</line>
+          <option name="timeStamp" value="162" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
