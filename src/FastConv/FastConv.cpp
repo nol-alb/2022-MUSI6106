@@ -286,10 +286,10 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
                 m_pCFft->doInvFft(pfInvFFtProcessing,pFFTProductProcess);
                 float checkpInvFFT[128] = {0};
                 float checkpImpulse[128]={0};
-                for (int i=0; i<128;i++)
+                for (int i=0; i<64;i++)
                 {
                     checkpImpulse[i] = ppfBlockedIR[j][i];
-                    checkpInvFFT[i] = pfInvFFtProcessing[i];
+                    checkpInvFFT[i] = pfInvFFtProcessing[i+m_BlockLength];
                 }
                 int process_writeIdx = (BlockNoWriting + j) % numOfIRBlocks; //A temporary variable to help write the convolution sum with each block of the IR
                 for (int k =0; k<m_BlockLength;k++)
