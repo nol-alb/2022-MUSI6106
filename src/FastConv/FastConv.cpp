@@ -14,9 +14,17 @@ CFastConv::~CFastConv( void )
 
 Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
-    if(eCompMode==kTimeDomain) {
+    if(!pfImpulseResponse)
+    {
+        return Error_t::kFunctionIllegalCallError;
+    }
+    else if(iLengthOfIr<=0 || iBlockLength<=0)
+    {
+        return Error_t::kFunctionIllegalCallError;
+    }
+
+    else if(eCompMode==kTimeDomain) {
         this->reset();
-        //TODO: Set BIsInitialized
         m_pImpulseResponse = new float[iLengthOfIr];
         m_lengthofIR = iLengthOfIr;
         m_BlockLength = iBlockLength;
@@ -29,6 +37,7 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
         bIsInitialized= true;
         return Error_t::kNoError;
     }
+        //Can make switch statement
     else if(eCompMode==kFreqDomain)
     {
         this->reset();
@@ -73,9 +82,12 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
             CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
             ppFreqBlockedIR[i]=new CFft::complex_t[(ldbBlockLength)];
             m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
-            CVectorFloat::mulC_I(ppFreqBlockedIR[i], m_BlockLength * 2, ldbBlockLength);
-            ppfRealBlockedIR[i] = new float[(m_BlockLength)];
-            ppfImagBlockedIR[i]= new float[(m_BlockLength)];
+            CVectorFloat::mulC_I(ppFreqBlockedIR[i], ldbBlockLength, ldbBlockLength);
+//            CFft::complex_t* pfcheckBlockedIR;
+//            pfcheckBlockedIR = new CFft::complex_t[ldbBlockLength];
+//            m_pCFft->doInvFft(pfcheckBlockedIR,ppFreqBlockedIR[i]);
+            ppfRealBlockedIR[i] = new float[(m_BlockLength+1)];
+            ppfImagBlockedIR[i]= new float[(m_BlockLength+1)];
             m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
         }
         ppfProcessedOutputBlocks = new float*[numOfIRBlocks];
@@ -91,8 +103,8 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
         pFFTProductProcess = new CFft::complex_t [(ldbBlockLength)];
         pfProductImag = new float [(m_BlockLength)];
         pfProductReal = new float [(m_BlockLength)];
-        pfRealInputProcessing = new float[(ldbBlockLength)];
-        pfImagInputProcessing = new float[(ldbBlockLength)];
+        pfRealInputProcessing = new float[(m_BlockLength+1)];
+        pfImagInputProcessing = new float[(m_BlockLength+1)];
         pfreqInputProcessing = new CFft::complex_t [(ldbBlockLength)];
         CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
         bIsInitialized= true;
@@ -241,6 +253,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     //x1h2+x2h1 <---ReadIdx
     //x1h3+x2h2 <---- WriteIdx
     //x1h4+x2h3
+    //https://publications.rwth-aachen.de/record/466561/files/466561.pdf page: 105
     for (int i=0; i<iLengthOfBuffers; i++)
     {
         //TODO: ADD ASSERTS FOR LESS BUFFERSIZE COMPARED TO BLOCKlENGTH
@@ -273,20 +286,27 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
             PointOfWrite=0;
             m_pCFft->doFft(pfreqInputProcessing,pfInputProcessing);
             m_pCFft->splitRealImag(pfRealInputProcessing,pfImagInputProcessing,pfreqInputProcessing);
+//            CVectorFloat::mulC_I(pfRealInputProcessing, m_BlockLength * 2, sBlockLength);
+//            CVectorFloat::mulC_I(pfImagInputProcessing, m_BlockLength * 2, sBlockLength);
+//            m_pCFft->mergeRealImag(pfreqInputProcessing,pfRealInputProcessing,pfImagInputProcessing);
+//            m_pCFft->doInvFft(pfInvFFtProcessing,pfreqInputProcessing);
+
             for (int j = 0; j<numOfIRBlocks; j++)
             {
                 for (int k = 0; k < m_BlockLength; k++)
                 {
-                    pfProductReal[k] = (pfRealInputProcessing[k] * ppfRealBlockedIR[j][k]) - (pfImagInputProcessing[k] * ppfImagBlockedIR[j][k]);
-                    pfProductImag[k] = (ppfRealBlockedIR[j][i] * pfImagInputProcessing[k]) + (pfImagInputProcessing[k] * ppfRealBlockedIR[j][k]);
+                    pfProductReal[k] = ((pfRealInputProcessing[k] * ppfRealBlockedIR[j][k]) - (pfImagInputProcessing[k] * ppfImagBlockedIR[j][k]))*ldbBlockLength;
+                    pfProductImag[k] = ((ppfRealBlockedIR[j][i] * pfImagInputProcessing[k]) + (pfImagInputProcessing[k] * ppfRealBlockedIR[j][k]))*ldbBlockLength;
                 }
 
                 //complexMultiply(pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],pfProductReal,pfProductImag,m_lengthofIR);
                 m_pCFft->mergeRealImag(pFFTProductProcess,pfProductReal,pfProductImag);
                 m_pCFft->doInvFft(pfInvFFtProcessing,pFFTProductProcess);
+                CVectorFloat::mulC_I(pfInvFFtProcessing, 1.0/ldbBlockLength, ldbBlockLength);
+
                 float checkpInvFFT[128] = {0};
                 float checkpImpulse[128]={0};
-                for (int i=0; i<64;i++)
+                for (int i=0; i<128;i++)
                 {
                     checkpImpulse[i] = ppfBlockedIR[j][i];
                     checkpInvFFT[i] = pfInvFFtProcessing[i+m_BlockLength];
