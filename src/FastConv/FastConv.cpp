@@ -64,6 +64,8 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
         type = eCompMode;
         CFft::createInstance(m_pCFft);
         m_pCFft->initInstance(2*m_BlockLength,1,CFft::kWindowHann,CFft::kNoWindow);
+        int LengthOfData=m_pCFft->getLength(CFft::kLengthData);
+
 
         //Calculate Number of Blocks in the Impulse Response
 
@@ -206,14 +208,21 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
 Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
     float accum;
     CVectorFloat::setZero(pfOutputBuffer,iLengthOfBuffers);
-    for (int i =0; i<iLengthOfBuffers; i++){
-        m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1); //Ensures you multiply the first sample Input with the first sample of the flipped impulse response
-        m_pCRingBuffer->putPostInc(pfInputBuffer[i]); //Move into the buffer and circularly shift for time convolution
-        accum = 0;
-        for(int j =m_lengthofIR-1; j>=0;j--){
-            accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
+//    for (int i =0; i<iLengthOfBuffers; i++){
+//        m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1); //Ensures you multiply the first sample Input with the first sample of the flipped impulse response
+//        m_pCRingBuffer->putPostInc(pfInputBuffer[i]); //Move into the buffer and circularly shift for time convolution
+//        accum = 0;
+//        for(int j =m_lengthofIR-1; j>=0;j--){
+//            accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
+//        }
+//        pfOutputBuffer[i] = accum;
+//    }
+    for (int i=0; i<iLengthOfBuffers; i++)
+    {
+        for (int j=0; j<m_lengthofIR && j<=i; j++)
+        {
+            pfOutputBuffer[i] += pfInputBuffer[i-j]*m_pImpulseResponse[j];
         }
-        pfOutputBuffer[i] = accum;
     }
     return Error_t::kNoError;
 }
@@ -298,8 +307,6 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
                     pfProductReal[k] = ((pfRealInputProcessing[k] * ppfRealBlockedIR[j][k]) - (pfImagInputProcessing[k] * ppfImagBlockedIR[j][k]))*ldbBlockLength;
                     pfProductImag[k] = ((ppfRealBlockedIR[j][i] * pfImagInputProcessing[k]) + (pfImagInputProcessing[k] * ppfRealBlockedIR[j][k]))*ldbBlockLength;
                 }
-
-                //complexMultiply(pfRealInputProcessing,pfImagInputProcessing,ppfRealBlockedIR[j],ppfImagBlockedIR[j],pfProductReal,pfProductImag,m_lengthofIR);
                 m_pCFft->mergeRealImag(pFFTProductProcess,pfProductReal,pfProductImag);
                 m_pCFft->doInvFft(pfInvFFtProcessing,pFFTProductProcess);
                 CVectorFloat::mulC_I(pfInvFFtProcessing, 1.0/ldbBlockLength, ldbBlockLength);
@@ -339,13 +346,13 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
 //FUNCTION TO MAKE COMPLEX MULTIPLICAION, GIVEN COMPLEX_T
 //splitRealImag
 
-Error_t CFastConv::complexMultiply(float* realOutput, float* imagOutput, float* realInput1, float* imagInput1, float* realInput2, float* imagInput2,  int outputLength ) {
-    for (int i = 0; i < outputLength; i++) {
-        realOutput[i] = (realInput1[i] * realInput2[i]) - (imagInput1[i] * imagInput2[i]);
-        imagOutput[i] = (realInput2[i] * imagInput1[i]) + (realInput1[i] * imagInput2[i]);
-    }
-    return Error_t::kNoError;
-}
+//Error_t CFastConv::complexMultiply(float* realOutput, float* imagOutput, float* realInput1, float* imagInput1, float* realInput2, float* imagInput2,  int outputLength ) {
+//    for (int i = 0; i < outputLength; i++) {
+//        realOutput[i] = (realInput1[i] * realInput2[i]) - (imagInput1[i] * imagInput2[i]);
+//        imagOutput[i] = (realInput2[i] * imagInput1[i]) + (realInput1[i] * imagInput2[i]);
+//    }
+//    return Error_t::kNoError;
+//}
 
 
 //TODO: [10] Implement the 'flushBuffer' function that will return the remaining result (reverb tail) after the last sample has been processed (end of input signal).

@@ -37,10 +37,10 @@ namespace fastconv_test {
         {
             m_pCFastConv = new CFastConv;
  
-            for (int i = 0; i < 51; i++)
+            for (int i = 0; i < 128; i++)
             {
                 TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-                TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
+                TestImpulse[i] = i;//TestImpulse[i] * 2.0 - 1.0;
             }
         }
 
@@ -48,13 +48,13 @@ namespace fastconv_test {
         {
             delete m_pCFastConv;
             m_pCFastConv = 0;
-            for (int i = 0; i < 51; i++) {
+            for (int i = 0; i < 128; i++) {
                 TestImpulse[i] = 0;
             }
         }
 
         CFastConv* m_pCFastConv = 0;
-        float TestImpulse[51] = { 0 };
+        float TestImpulse[128] = { 0 };
 
 
     };
@@ -78,7 +78,7 @@ namespace fastconv_test {
         }
 
 
-        m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kTimeDomain);
+        m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
         m_pCFastConv->process(TestOutput, TestInput, 10);
 
 
@@ -101,7 +101,7 @@ namespace fastconv_test {
         }
 
 
-        m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kTimeDomain);
+        m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
         m_pCFastConv->process(TestOutput, TestInput, 10);
         m_pCFastConv->flushBuffer(TestFlush);
 
@@ -148,8 +148,8 @@ namespace fastconv_test {
     TEST_F(FastConv, FreqDomainIdentityTest)
     {
         //float TestImpulse[51] = { 0 };
-        float TestInput[10] = { 0 };
-        float TestOutput[10] = { 0 };
+        float TestInput[128] = { 0 };
+        float TestOutput[128] = { 0 };
         float CheckOutput[60] = { 0 };
         TestInput[3] = 1;
         for (int i = 0; i < 51; i++)
@@ -160,9 +160,9 @@ namespace fastconv_test {
         }
 
 
-        m_pCFastConv->init(TestImpulse, 51, 20, CFastConv::kFreqDomain);
+        m_pCFastConv->init(TestImpulse, 128, 64, CFastConv::kFreqDomain);
 
-        m_pCFastConv->process(TestOutput, TestInput, 10);
+        m_pCFastConv->process(TestOutput, TestInput, 128);
         CHECK_ARRAY_CLOSE(CheckOutput, TestOutput, 10, 1e-3);
 
     }
