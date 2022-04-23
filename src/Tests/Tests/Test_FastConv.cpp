@@ -78,7 +78,7 @@ namespace fastconv_test {
         }
 
 
-        m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kTimeDomain);
+        m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
         m_pCFastConv->process(TestOutput, TestInput, 10);
 
 
@@ -101,7 +101,7 @@ namespace fastconv_test {
         }
 
 
-        m_pCFastConv->init(TestImpulse, 51, 0, CFastConv::kTimeDomain);
+        m_pCFastConv->init(TestImpulse, 51, 1024, CFastConv::kTimeDomain);
         m_pCFastConv->process(TestOutput, TestInput, 10);
         m_pCFastConv->flushBuffer(TestFlush);
 
@@ -145,28 +145,22 @@ namespace fastconv_test {
     // FREQ DOMAIN TESTS
     ////////////////////////////////////////////////////
 
-    TEST_F(FastConv, FreqDomainIdentityTest)
+    TEST_F(FastConv, FreqDomainIdentifyTest)
     {
-        //float TestImpulse[51] = { 0 };
-        float TestInput[256] = { 0 };
-        float TestOutput[256] = { 0 };
-        float CheckOutput[60] = { 0 };
-        float TestImpulse[128] = { 0 };
-        TestInput[0] = 1;
-        TestImpulse[0]=1;
+        float pfTestImpulse[51] = { 0 };
+        float pfTestInput[128] = { 0 };
+        float pfTestOutput[128] = { 0 };
+        pfTestInput[3] = 1;
+        std::srand(12);
+        for (int i = 0; i < 51; i++)
+        {
+            pfTestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
+        }
 
-//        for (int i = 0; i < 128; i++)
-//        {
-//            TestImpulse[i] = i;
-//
-//        }
+        m_pCFastConv->init(pfTestImpulse, 51, 32, CFastConv::kFreqDomain);
+        m_pCFastConv->process(pfTestOutput, pfTestInput, 128);
 
-
-        m_pCFastConv->init(TestImpulse, 128, 64, CFastConv::kFreqDomain);
-
-        m_pCFastConv->process(TestOutput, TestInput, 128);
-        CHECK_ARRAY_CLOSE(CheckOutput, TestOutput, 10, 1e-3);
-
+        CHECK_ARRAY_CLOSE(pfTestOutput + 32 + 3, pfTestImpulse, 51, 1e-3);
     }
     TEST_F(FastConv, FreqDomainFlushIdentifyTest)
     {
@@ -181,28 +175,45 @@ namespace fastconv_test {
         }
 
         m_pCFastConv->init(pfTestImpulse, 51, 32, CFastConv::kFreqDomain);
-        m_pCFastConv->process(pfTestOutput, pfTestInput, 128);
+        m_pCFastConv->process(pfTestOutput, pfTestInput, 10);
         m_pCFastConv->flushBuffer(pfTestFlush);
 
         CHECK_ARRAY_CLOSE(pfTestFlush + 3 + 32 - 10, pfTestImpulse, 51, 1e-3);
     }
-    TEST_F(FastConv, FreqDomainFlushIdentifyTest2)
+
+    TEST_F(FastConv, FreqDomainDifferBlockSize)
     {
-        float pfTestImpulse[51] = { 0 };
-        float pfTestInput[128] = { 0 };
-        float pfTestOutput[128] = { 0 };
-        float pfTestFlush[82] = { 0 };
+        const int blockSize = 1024;
+        float* pfTestImpulse{ new float[16384]{0} };
+        float* pfTestInput{ new float[10000]{0} };
+        float* pfTestOutput{ new float[10000]{0} };
+        float* pfTestFlush{ new float[16383 + blockSize]{0} };
+        int piBlockSizes[8] = { 1, 13, 1023, 2048, 1, 17, 5000, 1897 };
+        int piStartIdx[8] = { 0 };
+        for (int i = 1; i < 8; i++)
+        {
+            piStartIdx[i] = piStartIdx[i - 1] + piBlockSizes[i - 1];
+        }
         pfTestInput[3] = 1;
-        for (int i = 0; i < 51; i++)
+        for (int i = 0; i < 16384; i++)
         {
             pfTestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
         }
+        m_pCFastConv->init(pfTestImpulse, 16384, 1024, CFastConv::kFreqDomain);
 
-        m_pCFastConv->init(pfTestImpulse, 51, 32, CFastConv::kFreqDomain);
-        m_pCFastConv->process(pfTestOutput, pfTestInput, 128);
+        for (int i = 0; i < 8; i++)
+        {
+            m_pCFastConv->process(pfTestOutput + piStartIdx[i], pfTestInput + piStartIdx[i], piBlockSizes[i]);
+        }
+        CHECK_ARRAY_CLOSE(pfTestOutput + 3 + blockSize, pfTestImpulse, 10000 - 3 - blockSize, 1e-3);
         m_pCFastConv->flushBuffer(pfTestFlush);
+        CHECK_ARRAY_CLOSE(pfTestFlush + blockSize, pfTestImpulse + 10000 - 3, 16384 - (10000 - 3), 1e-3);
 
-        CHECK_ARRAY_CLOSE(pfTestFlush + 3 + 32 - 10, pfTestImpulse, 51, 1e-3);
+        delete[] pfTestImpulse;
+        delete[] pfTestInput;
+        delete[] pfTestOutput;
+        delete[] pfTestFlush;
+
     }
 
 
