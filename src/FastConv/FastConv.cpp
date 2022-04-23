@@ -85,9 +85,9 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
             ppFreqBlockedIR[i]=new CFft::complex_t[(ldbBlockLength)];
             m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
             CVectorFloat::mulC_I(ppFreqBlockedIR[i], ldbBlockLength, ldbBlockLength);
-//            CFft::complex_t* pfcheckBlockedIR;
-//            pfcheckBlockedIR = new CFft::complex_t[ldbBlockLength];
-//            m_pCFft->doInvFft(pfcheckBlockedIR,ppFreqBlockedIR[i]);
+            CFft::complex_t* pfcheckBlockedIR;
+            pfcheckBlockedIR = new CFft::complex_t[ldbBlockLength];
+            m_pCFft->doInvFft(pfcheckBlockedIR,ppFreqBlockedIR[i]);
             ppfRealBlockedIR[i] = new float[(m_BlockLength+1)];
             ppfImagBlockedIR[i]= new float[(m_BlockLength+1)];
             m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
@@ -103,8 +103,8 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
 
         pfInvFFtProcessing = new float [(ldbBlockLength)];
         pFFTProductProcess = new CFft::complex_t [(ldbBlockLength)];
-        pfProductImag = new float [(m_BlockLength)];
-        pfProductReal = new float [(m_BlockLength)];
+        pfProductImag = new float [(m_BlockLength+1)];
+        pfProductReal = new float [(m_BlockLength+1)];
         pfRealInputProcessing = new float[(m_BlockLength+1)];
         pfImagInputProcessing = new float[(m_BlockLength+1)];
         pfreqInputProcessing = new CFft::complex_t [(ldbBlockLength)];
@@ -208,22 +208,21 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
 Error_t CFastConv::timedomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
     float accum;
     CVectorFloat::setZero(pfOutputBuffer,iLengthOfBuffers);
-//    for (int i =0; i<iLengthOfBuffers; i++){
-//        m_pCRingBuffer->setReadIdx(m_pCRingBuffer->getWriteIdx()+1); //Ensures you multiply the first sample Input with the first sample of the flipped impulse response
-//        m_pCRingBuffer->putPostInc(pfInputBuffer[i]); //Move into the buffer and circularly shift for time convolution
-//        accum = 0;
-//        for(int j =m_lengthofIR-1; j>=0;j--){
-//            accum+= m_pImpulseResponse[j]* m_pCRingBuffer->getPostInc();
-//        }
-//        pfOutputBuffer[i] = accum;
-//    }
-    for (int i=0; i<iLengthOfBuffers; i++)
-    {
-        for (int j=0; j<m_lengthofIR && j<=i; j++)
-        {
-            pfOutputBuffer[i] += pfInputBuffer[i-j]*m_pImpulseResponse[j];
+    for (int i =0; i<iLengthOfBuffers; i++){
+        m_pCRingBuffer->putPostInc(pfInputBuffer[i]); //Move into the buffer and circularly shift for time convolution
+        accum = 0;
+        for(int j =0; j<=m_lengthofIR;j++){
+            pfOutputBuffer[i]+= m_pImpulseResponse[j]* m_pCRingBuffer->get(-j);
         }
+        m_pCRingBuffer->getPostInc();
     }
+//    for (int i=0; i<iLengthOfBuffers; i++)
+//    {
+//        for (int j=0; j<m_lengthofIR && j<=i; j++)
+//        {
+//            pfOutputBuffer[i] += pfInputBuffer[i-j]*m_pImpulseResponse[j];
+//        }
+//    }
     return Error_t::kNoError;
 }
 Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers) {
@@ -263,12 +262,13 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     //x1h3+x2h2 <---- WriteIdx
     //x1h4+x2h3
     //https://publications.rwth-aachen.de/record/466561/files/466561.pdf page: 105
+    CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
     for (int i=0; i<iLengthOfBuffers; i++)
     {
         //TODO: ADD ASSERTS FOR LESS BUFFERSIZE COMPARED TO BLOCKlENGTH
         //Set the second half of the inputBuffer with the input process values
         //PointofWrite sets the new input block x1,x2 from center of pfInputBuffer
-        pfInputProcessing[PointOfWrite + m_BlockLength] = pfInputBuffer[i];
+        pfInputProcessing[PointOfWrite+m_BlockLength] = pfInputBuffer[i];
         //TheBlockNoReading, helps us control the shift in blocks while overlap
         pfOutputBuffer[i] = ppfProcessedOutputBlocks[BlockNoReading][PointOfWrite];
         if(i==iLengthOfBuffers-1)
@@ -302,7 +302,7 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
 
             for (int j = 0; j<numOfIRBlocks; j++)
             {
-                for (int k = 0; k < m_BlockLength; k++)
+                for (int k = 0; k < m_BlockLength+1 ; k++)
                 {
                     pfProductReal[k] = ((pfRealInputProcessing[k] * ppfRealBlockedIR[j][k]) - (pfImagInputProcessing[k] * ppfImagBlockedIR[j][k]))*ldbBlockLength;
                     pfProductImag[k] = ((ppfRealBlockedIR[j][i] * pfImagInputProcessing[k]) + (pfImagInputProcessing[k] * ppfRealBlockedIR[j][k]))*ldbBlockLength;

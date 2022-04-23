@@ -36,11 +36,12 @@ namespace fastconv_test {
         virtual void SetUp() 
         {
             m_pCFastConv = new CFastConv;
+            TestImpulse[0]=1;
  
-            for (int i = 0; i < 128; i++)
+            for (int i = 1; i < 128; i++)
             {
                 TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-                TestImpulse[i] = i;//TestImpulse[i] * 2.0 - 1.0;
+                TestImpulse[i] = 0;//TestImpulse[i] * 2.0 - 1.0;
             }
         }
 
@@ -151,7 +152,7 @@ namespace fastconv_test {
         float TestInput[128] = { 0 };
         float TestOutput[128] = { 0 };
         float CheckOutput[60] = { 0 };
-        TestInput[3] = 1;
+        TestInput[8] = 1;
         for (int i = 0; i < 51; i++)
         {
             if (i < (51 - 23)) {
