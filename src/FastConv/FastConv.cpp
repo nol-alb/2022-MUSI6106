@@ -261,6 +261,8 @@ Error_t CFastConv::freqdomainprocess(float *pfOutputBuffer, const float *pfInput
     //x1h2+x2h1 <---ReadIdx
     //x1h3+x2h2 <---- WriteIdx
     //x1h4+x2h3
+    //Overlap and Save Implemented
+
     //https://publications.rwth-aachen.de/record/466561/files/466561.pdf page: 105
     CVectorFloat::setZero(pfInputProcessing,ldbBlockLength);
     for (int i=0; i<iLengthOfBuffers; i++)

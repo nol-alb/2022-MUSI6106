@@ -22,7 +22,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ae03ac04-c42d-406e-b250-785254538fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +66,7 @@
     <property name="ctest.advertisement.all.test.configuration.is.created" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Google Test.FastConv">
+  <component name="RunManager" selected="CMake Application.MUSI6106Exec">
     <configuration name="FastConv" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -170,7 +170,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp</url>
-          <line>18</line>
+          <line>19</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -185,28 +185,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>296</line>
-          <option name="timeStamp" value="183" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>309</line>
-          <option name="timeStamp" value="184" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>320</line>
-          <option name="timeStamp" value="185" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
-          <line>295</line>
-          <option name="timeStamp" value="187" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
           <line>89</line>
           <option name="timeStamp" value="188" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
+          <line>166</line>
+          <option name="timeStamp" value="191" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

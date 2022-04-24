@@ -36,12 +36,12 @@ namespace fastconv_test {
         virtual void SetUp() 
         {
             m_pCFastConv = new CFastConv;
-            TestImpulse[0]=1;
+            TestImpulse[0]=0;
  
-            for (int i = 1; i < 128; i++)
+            for (int i = 1; i < 51; i++)
             {
                 TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-                TestImpulse[i] = 0;//TestImpulse[i] * 2.0 - 1.0;
+               // TestImpulse[i] = i;//TestImpulse[i] * 2.0 - 1.0;
             }
         }
 
@@ -49,13 +49,13 @@ namespace fastconv_test {
         {
             delete m_pCFastConv;
             m_pCFastConv = 0;
-            for (int i = 0; i < 128; i++) {
+            for (int i = 0; i < 51; i++) {
                 TestImpulse[i] = 0;
             }
         }
 
         CFastConv* m_pCFastConv = 0;
-        float TestImpulse[128] = { 0 };
+        float TestImpulse[51] = { 0 };
 
 
     };
@@ -152,7 +152,7 @@ namespace fastconv_test {
         float TestInput[128] = { 0 };
         float TestOutput[128] = { 0 };
         float CheckOutput[60] = { 0 };
-        TestInput[8] = 1;
+        TestInput[20] = 1;
         for (int i = 0; i < 51; i++)
         {
             if (i < (51 - 23)) {
@@ -164,70 +164,67 @@ namespace fastconv_test {
         m_pCFastConv->init(TestImpulse, 128, 64, CFastConv::kFreqDomain);
 
         m_pCFastConv->process(TestOutput, TestInput, 128);
-        CHECK_ARRAY_CLOSE(CheckOutput, TestOutput, 10, 1e-3);
+        CHECK_ARRAY_CLOSE(CheckOutput, TestOutput, 51, 1e-3);
 
     }
 
-    TEST_F(FastConv, FreqDomainFlushBufferTest)
+    TEST_F(FastConv, FreqDomainFlushIdentifyTest)
     {
-        // float TestImpulse[51] = { 0 };
-        float TestInput[10] = { 0 };
-        float TestOutput[10] = { 0 };
-        float TestFlush[51+10-1] = { 0 };
-        float CheckOutput[60] = { 0 };
+        float TestInput[128] = { 0 };
+        float TestOutput[128] = { 0 };
+        float TestFlush[82] = { 0 };
         TestInput[3] = 1;
         for (int i = 0; i < 51; i++)
         {
-            //     TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-              //   TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
-            CheckOutput[i + 3] = TestImpulse[i];
+            TestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
         }
 
-
-        m_pCFastConv->init(TestImpulse, 51, 10, CFastConv::kFreqDomain);
-        m_pCFastConv->process(TestOutput, TestInput, 10);
+        m_pCFastConv->init(TestImpulse, 51, 32, CFastConv::kFreqDomain);
+        m_pCFastConv->process(TestOutput, TestInput, 128);
         m_pCFastConv->flushBuffer(TestFlush);
 
-        CHECK_ARRAY_CLOSE(TestOutput, CheckOutput, 10, 1e-3);
-        CHECK_ARRAY_CLOSE(TestFlush, TestImpulse + 7, 51 - 7, 1e-3);
-
-        // something is not deleting right...
+        CHECK_ARRAY_CLOSE(TestFlush + 3 + 32 - 10, TestImpulse, 51, 1e-3);
     }
 //
-    TEST_F(FastConv, FreqDomainBlockSizeTest)
+    TEST_F(FastConv, FreqDomainDifferBlockSize)
     {
-        float TestImpulse[51] = { 0 };
-        float TestInput[10000] = { 0 };
-        float TestOutput[10000] = { 0 };
-        int BufferSize[8] = { 1, 13, 1023, 2048, 1, 17, 5000, 1897 };
-        int InputStartIdx[8] = { 0 }; // All of the buffersizes add up to 10000, so we can just start the reading of the input at shifted positions
+        float* TestImpulse =  new float[16384];
+        CVectorFloat::setZero(TestImpulse,16384);
+        float* TestInput = new float[10000];
+        CVectorFloat::setZero(TestInput,10000);
+        float* TestOutput = new float[10000];
+        CVectorFloat::setZero(TestOutput,10000);
+        int Impulse_blockSize = 1024;
+        //(L-1 + Initial delay)
+        float* TestFlush = new float[16383 + Impulse_blockSize];
+        long long int fullSize = 16383 + Impulse_blockSize;
 
-        // generate IR of length 51 samples
-        for (int i = 0; i < 51; i++)
+        int BlockSizes[8] = { 1, 13, 1023, 2048, 1, 17, 5000, 1897 };
+        int StartIdx[8] = { 0 };
+        for (int i = 1; i < 8; i++)
         {
-            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
-            TestImpulse[i] = TestImpulse[i] * 2.0 - 1.0;
+            StartIdx[i] = StartIdx[i - 1] + BlockSizes[i - 1];
         }
+        TestInput[3] = 1;
+        for (int i = 0; i < 16384; i++)
+        {
+            TestImpulse[i] = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
+        }
+        m_pCFastConv->init(TestImpulse, 16384, 1024, CFastConv::kFreqDomain);
 
-       //` m_pCFastConv->init(TestImpulse, 51, 10, CFastConv::kFreqDomain);
         for (int i = 0; i < 8; i++)
         {
-            if (i == 0) {
-                InputStartIdx[i] = 0;
-            }
-            else {
-                InputStartIdx[i] = InputStartIdx[i - 1] + BufferSize[i - 1];
-            }
-
-            // set all beginnings of new block sizes to 1 for easy testing of convolution
-            TestInput[InputStartIdx[i]] = 1;
-            // reinitialize the convolution every time bc this is the easiest way to reset the pointers in the IR
-            m_pCFastConv->init(TestImpulse, 51, 10, CFastConv::kFreqDomain);
-
-            m_pCFastConv->process(TestOutput + InputStartIdx[i], TestInput + InputStartIdx[i], BufferSize[i]);
-            CHECK_ARRAY_CLOSE(TestOutput + InputStartIdx[i]+10, TestImpulse, std::min(BufferSize[i], 51), 1e-3);
-
+            m_pCFastConv->process(TestOutput + StartIdx[i], TestInput + StartIdx[i], BlockSizes[i]);
+            CHECK_ARRAY_CLOSE(TestOutput + 3 + Impulse_blockSize + StartIdx[i], TestImpulse, BlockSizes[i] - 3 - Impulse_blockSize, 1e-3);
         }
+
+        m_pCFastConv->flushBuffer(TestFlush);
+        CHECK_ARRAY_CLOSE(TestFlush + Impulse_blockSize, TestImpulse + 10000 - 3, 16384 - (10000 - 3), 1e-3);
+
+        delete[] TestImpulse;
+        delete[] TestInput;
+        delete[] TestOutput;
+        delete[] TestFlush;
 
     }
 //
