@@ -277,36 +277,37 @@ Error_t CConvFFT::reset()
 //    //https://publications.rwth-aachen.de/record/466561/files/466561.pdf page: 105
 Error_t CConvFFT::process(float *pfOutputBuffer, const float *pfInputBuffer, int iLengthBuffers)
 {
-    int iNumInputBlocks = static_cast<int>(iLengthBuffers / static_cast<float>(m_iBlockLength)) + 1;
-    for (int iInputBlock = 0; iInputBlock < iNumInputBlocks; iInputBlock++) {
-        int iInputBlockStart = iInputBlock * m_iBlockLength;
-        int iInputBlockEnd = (iInputBlock + 1) * m_iBlockLength;
-        int iInputLimitingLength = std::min<int>(iLengthBuffers, iInputBlockEnd);
+    int iNumofInputBlocks = static_cast<int>(iLengthBuffers / static_cast<float>(m_iBlockLength)) + 1;
+    for (int iInputBlock = 0; iInputBlock < iNumofInputBlocks; iInputBlock++) {
+        int iProcStartIdx = iInputBlock * m_iBlockLength;
+        int iProcessEndIdx = (iInputBlock + 1) * m_iBlockLength;
+        int processLength = std::min<int>(iLengthBuffers, iProcessEndIdx);
         CVectorFloat::setZero(m_pfInputBlockBuffer, m_iFftLength);
-        CVectorFloat::copy(m_pfInputBlockBuffer, pfInputBuffer + iInputBlockStart,
-                           iInputLimitingLength - iInputBlockStart);
+        CVectorFloat::copy(m_pfInputBlockBuffer, pfInputBuffer + iProcStartIdx,
+                           processLength - iProcStartIdx);
         CVectorFloat::setZero(pfComplexTemp, m_iFftLength);
-
-        // Get Spectrum of Input
+        //Perform FFT on the blocked Input Buffer
         m_pcFFT->doFft(pfComplexTemp, m_pfInputBlockBuffer);
-        // Split Spectrum
+        //Split the Real and Imaginary parts
         m_pcFFT->splitRealImag(pfCurrentBlockFFTReal, pfCurrentBlockFFTImag, pfComplexTemp);
+        //Perform complex multiplication on each block and overlap and add
         for (int iIrBlock = 0; iIrBlock < m_iIRBlockNum; iIrBlock++) {
             complexMultiplication(pfFFTRealTemp, pfFFTImagTemp,
                                   pfCurrentBlockFFTReal, pfCurrentBlockFFTImag,
                                   m_ppfIRFeqDomainReal[iIrBlock], m_ppfIRFreqDomainImag[iIrBlock]);
             CVectorFloat::setZero(pfComplexTemp, m_iFftLength);
+            //Merge Real and Imaginary parts
             m_pcFFT->mergeRealImag(pfComplexTemp, pfFFTRealTemp, pfFFTImagTemp);
 
-            // Get inverse Fft
             m_pcFFT->doInvFft(pfIFFTTemp, pfComplexTemp);
+            //Normalize fft output
             CVectorFloat::mulC_I(pfIFFTTemp, 1.0f / m_iFftLength, m_iFftLength);
 
-            int iIrBlockStart = iIrBlock * m_iBlockLength + iInputBlockStart;
+            //Based on position of iIrBlockStart overlap and add into pfOutputBuffer
+            int iIrBlockStart = iIrBlock * m_iBlockLength + iProcStartIdx;
             int iIrBlockEnd = m_iFftLength + iIrBlockStart;
             for (int i = iIrBlockStart; i < iIrBlockEnd; i++) {
                 if (i < iLengthBuffers) {
-                    // Fill up as much of output buffer as possible
                     pfOutputBuffer[i] += pfIFFTTemp[i - iIrBlockStart];
                 }
 
