@@ -76,6 +76,7 @@ private:
     int m_iBlockLength=0;
     int m_iIrLength=0;
     int m_iFftLength=0;
+    int m_iTailLength=0;
     float* m_pfImpulseResponse=0;
 
     int m_iReadBlockNo=0;
@@ -95,6 +96,7 @@ private:
 
     float* pfIRTemp = 0;
     float* pfIFFTTemp=0;
+    float* m_pfTail=0;
 
 
 
