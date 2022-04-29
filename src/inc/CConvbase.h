@@ -63,12 +63,12 @@ public:
     Error_t flushBuffer(float* pfOutputBuffer) override;
 
 private:
-    void complexMultiplication(float* pfOutReal, float* pfOutImag, const float* pfSignalReal, const float* pfSignalImag, const float* pfIRReal, const float* pfIRImag)
+    void complexMultiplication(float* pfOutputReal, float* pfOutputImag, const float* pfAReal, const float* pfAImag, const float* pfBReal, const float* pfBImag)
     {
         for (int i = 0; i < m_iBlockLength+1 ; i++)
         {
-            pfOutReal[i] = (pfSignalReal[i] * pfIRReal[i] - pfSignalImag[i] * pfIRImag[i]) * 2 * m_iBlockLength;
-            pfOutImag[i] = (pfSignalReal[i] * pfIRImag[i] + pfSignalImag[i] * pfIRReal[i]) * 2 * m_iBlockLength;
+            pfOutputReal[i] = (pfAReal[i] * pfBReal[i] - pfAImag[i] * pfBImag[i]) * 2 * m_iBlockLength;
+            pfOutputImag[i] = (pfAReal[i] * pfBImag[i] + pfAImag[i] * pfBReal[i]) * 2 * m_iBlockLength;
         }
     }
 
