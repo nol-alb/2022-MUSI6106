@@ -270,7 +270,7 @@ namespace fastconv_test {
             CVectorFloat::setZero(m_pfInput, m_iInputLength);
             m_pfInput[0] = 1;
 
-            //CSynthesis::generateNoise(m_pfIr, m_iIRLength);
+            CSynthesis::generateNoise(m_pfIr, m_iIRLength);
             CVectorFloat::setZero(m_pfIr, m_iInputLength);
             m_pfIr[0] = 1;
 
@@ -320,7 +320,7 @@ namespace fastconv_test {
     {
         // impulse with impulse
         int iBlockLength = 4;
-        m_pCFastConv->init(m_pfIr, 1, iBlockLength);
+        m_pCFastConv->init(m_pfIr, 2, iBlockLength);
 
         for (auto i = 0; i < 500; i++)
             m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
