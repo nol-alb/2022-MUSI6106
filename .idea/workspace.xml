@@ -22,7 +22,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ae03ac04-c42d-406e-b250-785254538fe0" name="Changes" comment="Refactored+Test working some">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FastConv/CConvBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/CConvBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/FastConv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/FastConv.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +182,7 @@
       <workItem from="1646085113984" duration="13871000" />
       <workItem from="1649835435599" duration="19966000" />
       <workItem from="1650417118215" duration="10081000" />
-      <workItem from="1651176961521" duration="34197000" />
+      <workItem from="1651176961521" duration="36150000" />
     </task>
     <servers />
   </component>
@@ -208,16 +209,6 @@
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
-          <line>167</line>
-          <option name="timeStamp" value="181" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
-          <line>168</line>
-          <option name="timeStamp" value="191" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
           <line>80</line>
           <option name="timeStamp" value="204" />
@@ -239,13 +230,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
-          <line>165</line>
-          <option name="timeStamp" value="224" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/CConvBase.cpp</url>
-          <line>145</line>
-          <option name="timeStamp" value="232" />
+          <line>184</line>
+          <option name="timeStamp" value="233" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
