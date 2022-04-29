@@ -17,7 +17,7 @@ list (APPEND PROJECT_INCLUDES ${CMAKE_SOURCE_DIR}/3rdparty/sndlib)
 add_inc_directories ()
 
 # build a static library
-add_library(${CurrLib} STATIC ${${CurrLib}_SOURCES} ${${CurrLib}_HEADERS})
+add_library(${CurrLib} STATIC ${${CurrLib}_SOURCES} ${${CurrLib}_HEADERS} ../inc/CConvbase.h)
 set_target_properties(${CurrLib} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 # set output name

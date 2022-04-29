@@ -11,6 +11,8 @@
 
 /*! \brief interface for fast convolution
 */
+class CConvbase;
+
 class CFastConv
 {
 public:
@@ -89,6 +91,7 @@ private:
 
     Error_t complexMultiply(float* realInput, float* imagInput, float* realInput2, float* imagInput2, float* realOutput, float* imagOutput, int outputLength);
 
+    CConvbase* m_pCConv = 0;
 
 
 };
