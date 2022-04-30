@@ -36,7 +36,7 @@ namespace fastconv_test {
         virtual void SetUp()
         {
             m_pCFastConv = new CFastConv;
-            TestImpulse[0]=0;
+            TestImpulse[3]=1;
 
             for (int i = 1; i < 51; i++)
             {

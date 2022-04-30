@@ -130,7 +130,7 @@ Error_t CConvFFT::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLeng
 
     // Memory required for Impulse Response
     m_pfImpulseResponse=pfImpulseResponse;
-    pfComplexTemp = new CFft::complex_t[m_iFftLength];
+    pfComplexTemp = new CFft::complex_t[m_iFftLength]();
     pfIRTemp = new float[2*m_iBlockLength];
     pfIFFTTemp= new float [m_iFftLength];
     long long int ldbBlockLength = 2*m_iBlockLength;
