@@ -114,34 +114,28 @@ Error_t CConvFFT::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLeng
     m_iIrLength = iLengthOfIr;
     m_iIRBlockNum = static_cast<int>(std::ceil(static_cast<float>(m_iIrLength) / static_cast<float>(m_iBlockLength)));
     CFft::createInstance(m_pcFFT);
-    m_pcFFT->initInstance(m_iBlockLength, 2, CFft::kWindowHann,CFft::kNoWindow);
+    m_pcFFT->initInstance(m_iFftLength, 1, CFft::kWindowHann,CFft::kNoWindow);
     m_iFftLength=m_pcFFT->getLength(CFft::kLengthFft);
     // Inputbuffer processor memory
-    pfFFTRealTemp = new float[m_iBlockLength + 1];
-    pfFFTImagTemp = new float[m_iBlockLength + 1];
-    pfCurrentBlockFFTReal = new float[m_iBlockLength + 1];
-    pfCurrentBlockFFTImag = new float[m_iBlockLength + 1];
-    m_ppfProcessedBlockBuffer = new float* [m_iIRBlockNum];
-    m_pfInputBlockBuffer = new float[m_iFftLength];
+    pfFFTRealTemp = new float[m_iBlockLength + 1]();
+    pfFFTImagTemp = new float[m_iBlockLength + 1]();
+    pfCurrentBlockFFTReal = new float[m_iBlockLength + 1]();
+    pfCurrentBlockFFTImag = new float[m_iBlockLength + 1]();
+    m_pfProcessedBlockBuffer = new float [(m_iIRBlockNum + 1) * m_iBlockLength]();
+    m_pfInputBlockBuffer = new float[m_iFftLength]();
 
     m_iTailLength = m_iBlockLength * m_iIRBlockNum + m_iBlockLength;
-    m_pfTail = new float[m_iTailLength];
-    CVectorFloat::setZero(m_pfTail, m_iTailLength);
+    m_pfTail = new float[m_iTailLength]();
 
     // Memory required for Impulse Response
     m_pfImpulseResponse=pfImpulseResponse;
-    pfComplexTemp = new CFft::complex_t[m_iFftLength]();
-    pfIRTemp = new float[2*m_iBlockLength];
-    pfIFFTTemp= new float [m_iFftLength];
-    long long int ldbBlockLength = 2*m_iBlockLength;
-    m_ppfIRFeqDomainReal = new float*  [m_iIRBlockNum];
+    pfComplexTemp = new CFft::complex_t[m_iFftLength];
+    pfIRTemp = new float[m_iFftLength]();
+    pfIFFTTemp= new float [m_iFftLength]();
+    m_ppfIRFreqDomainReal = new float* [m_iIRBlockNum];
     m_ppfIRFreqDomainImag = new float* [m_iIRBlockNum];
     for(int i=0;i<m_iIRBlockNum;i++) {
-        //Set ProcessedBlock zeros
-        m_ppfProcessedBlockBuffer[i] = new float[m_iBlockLength];
-        CVectorFloat::setZero(m_ppfProcessedBlockBuffer[i], static_cast<long long int>(m_iBlockLength));
         //Impulse Processing
-        CVectorFloat::setZero(pfIRTemp, ldbBlockLength);
         //Fill IRtemp with zeros and then move blocklength of Impulseresponse into IRTemp, IR temp is now 2blockLength
         for (int j = 0; j < m_iBlockLength; j++) {
             if (i * iBlockLength + j < m_iIrLength)
@@ -150,17 +144,45 @@ Error_t CConvFFT::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLeng
                 pfIRTemp[j] = 0;
         }
         //Creat real and Imaginary memory for IR
-        m_ppfIRFeqDomainReal[i] = new float[m_iBlockLength + 1];
-        CVectorFloat::setZero(m_ppfIRFeqDomainReal[i], static_cast<long long int>(m_iBlockLength + 1));
-        m_ppfIRFreqDomainImag[i] = new float[m_iBlockLength + 1];
-        CVectorFloat::setZero(m_ppfIRFreqDomainImag[i], static_cast<long long int>(m_iBlockLength + 1));
+        m_ppfIRFreqDomainReal[i] = new float[m_iBlockLength + 1]();
+        m_ppfIRFreqDomainImag[i] = new float[m_iBlockLength + 1]();
         m_pcFFT->doFft(pfComplexTemp, pfIRTemp);
-        CVectorFloat::mulC_I(pfComplexTemp, m_iFftLength, m_iFftLength);
-        m_pcFFT->splitRealImag(m_ppfIRFeqDomainReal[i], m_ppfIRFreqDomainImag[i], pfComplexTemp);
-
-
+        m_pcFFT->splitRealImag(m_ppfIRFreqDomainReal[i], m_ppfIRFreqDomainImag[i], pfComplexTemp);
     }
 
+//////
+//////            ppfBlockedIR[i] = new float[(ldbBlockLength)];
+//////            CVectorFloat::setZero(ppfBlockedIR[i],ldbBlockLength); //Zero padding so the size of each block is 2M
+//////            CVectorFloat::copy(ppfBlockedIR[i],m_pImpulseResponse+(i*m_BlockLength),sBlockLength);
+//////            ppFreqBlockedIR[i]=new CFft::complex_t[(ldbBlockLength)];
+//////            m_pCFft->doFft(ppFreqBlockedIR[i], ppfBlockedIR[i]);
+//////            CVectorFloat::mulC_I(ppFreqBlockedIR[i], ldbBlockLength, ldbBlockLength);
+//////            CFft::complex_t* pfcheckBlockedIR;
+//////            pfcheckBlockedIR = new CFft::complex_t[ldbBlockLength];
+//////            m_pCFft->doInvFft(pfcheckBlockedIR,ppFreqBlockedIR[i]);
+//////            ppfRealBlockedIR[i] = new float[(m_BlockLength+1)];
+//////            ppfImagBlockedIR[i]= new float[(m_BlockLength+1)];
+//////            m_pCFft->splitRealImag(ppfRealBlockedIR[i],ppfImagBlockedIR[i],ppFreqBlockedIR[i]);
+// }
+////    for (int i = 0; i < m_iIRBlockNum; i++) {
+////        m_ppfIRFeqDomainReal[i] = new float[m_iBlockLength + 1];
+////        CVectorFloat::setZero(m_ppfIRFeqDomainReal[i], static_cast<long long int>(m_iBlockLength + 1));
+////        m_ppfIRFreqDomainImag[i] = new float[m_iBlockLength + 1];
+////        CVectorFloat::setZero(m_ppfIRFreqDomainImag[i], static_cast<long long int>(m_iBlockLength + 1));
+////        m_ppfProcessedBlockBuffer[i] = new float[m_iBlockLength];
+////        CVectorFloat::setZero(m_ppfProcessedBlockBuffer[i], static_cast<long long int>(m_iBlockLength));
+////        for (int j = 0; j < m_iBlockLength; j++) {
+////            if (i * iBlockLength + j < m_iIrLength)
+////                pfIRTemp[j] = pfImpulseResponse[i * iBlockLength + j];
+////            else
+////                pfIRTemp[j] = 0;
+////        }
+////
+////        for (int j = m_iBlockLength; j < 2 * m_iBlockLength; j++)
+////            pfIRTemp[j] = 0;
+////        m_pcFFT->doFft(pfComplexTemp, pfIRTemp);
+////        m_pcFFT->splitRealImag(m_ppfIRFeqDomainReal[i], m_ppfIRFreqDomainImag[i], pfComplexTemp);
+////    }
     m_bIsInitialized=true;
     return Error_t::kNoError;
 }
@@ -171,18 +193,17 @@ Error_t CConvFFT::reset()
         return Error_t::kNotInitializedError;
     for (int i =0; i<m_iBlockLength;i++)
     {
-        delete[] m_ppfIRFeqDomainReal[i];
+        delete[] m_ppfIRFreqDomainReal[i];
         delete[] m_ppfIRFreqDomainImag[i];
-        delete[] m_ppfProcessedBlockBuffer[i];
     }
     delete[] m_ppfIRFreqDomainImag;
-    delete[] m_ppfIRFeqDomainReal;
+    delete[] m_ppfIRFreqDomainReal;
     delete[] m_pfInputBlockBuffer;
-    delete[] m_ppfProcessedBlockBuffer;
+    delete[] m_pfProcessedBlockBuffer;
 
-    m_ppfIRFeqDomainReal=0;
+    m_ppfIRFreqDomainReal=0;
     m_ppfIRFreqDomainImag=0;
-    m_ppfProcessedBlockBuffer=0;
+    m_pfProcessedBlockBuffer=0;
     m_pfInputBlockBuffer=0;
 
     delete[] pfIRTemp;
@@ -225,26 +246,14 @@ Error_t CConvFFT::process(float *pfOutputBuffer, const float *pfInputBuffer, int
 
     if (iLengthBuffers <= 0)
         return Error_t::kFunctionInvalidArgsError;
-    int WriteIdx = 0;
-    //Set a writeIdx to zero, to fill the inputprocessing buffer until the minimum length (blockLength)
+
+    const int mod = (m_iIRBlockNum + 1) * m_iBlockLength;
+
+    // fill the inputprocessing buffer until the minimum length (blockLength)
     for (int i=0; i<iLengthBuffers;i++)
     {
-        //Check if the iLengthBuffers or iBlockLength is smaller
-        int processLength = std::min<int>(iLengthBuffers, m_iBlockLength);
-        //Set zeros to m_pfInputProcess buffer
-        CVectorFloat::setZero(m_pfInputBlockBuffer,m_iFftLength);
-        //fill the inputblockbuffer of size 2BlockSize until the processing size is met
-        m_pfInputBlockBuffer[WriteIdx]= pfInputBuffer[i];
-        //Fill the output buffer with values from the current readBlock
-        pfOutputBuffer[i] = m_ppfProcessedBlockBuffer[m_iReadBlockNo][WriteIdx];
-        WriteIdx++;
-        if(WriteIdx==processLength)
+        if(!m_iInputWriteIdx) // one block full
         {
-            WriteIdx=0;
-            //Set the processBlock that is read by the output to zero to make room for new convolved block
-            CVectorFloat::setZero(m_ppfProcessedBlockBuffer[m_iReadBlockNo],static_cast<long long int>(m_iBlockLength));
-            //Set the tempComplex array to zero
-            CVectorFloat::setZero(pfComplexTemp, m_iFftLength);
             //Perform FFT on the blocked Input Buffer
             m_pcFFT->doFft(pfComplexTemp, m_pfInputBlockBuffer);
             //Split the Real and Imaginary parts
@@ -255,42 +264,41 @@ Error_t CConvFFT::process(float *pfOutputBuffer, const float *pfInputBuffer, int
                 //perform complex multiplication
                 complexMultiplication(pfFFTRealTemp, pfFFTImagTemp,
                                       pfCurrentBlockFFTReal, pfCurrentBlockFFTImag,
-                                      m_ppfIRFeqDomainReal[iIrBlock], m_ppfIRFreqDomainImag[iIrBlock]);
-                //Reusing complexTemp
-                CVectorFloat::setZero(pfComplexTemp, m_iFftLength);
-                //Merge Real and Imaginary parts
+                                      m_ppfIRFreqDomainReal[iIrBlock], m_ppfIRFreqDomainImag[iIrBlock]);
+                //Reusing complexTemp: Merge Real and Imaginary parts
                 m_pcFFT->mergeRealImag(pfComplexTemp, pfFFTRealTemp, pfFFTImagTemp);
 
                 m_pcFFT->doInvFft(pfIFFTTemp, pfComplexTemp);
-                //Normalize ifft output
-                CVectorFloat::mulC_I(pfIFFTTemp, 1.0f / m_iFftLength, m_iFftLength);
                 //Overlap and add into the ptocessedBlock buffer
                 //for h1,h2,h3,h4
                 // --> x1*h1 -->WriteIdx, ReadIdx   --> 0+x2*h4                                 --> x2*h4+x3*h3                                     -->x2*h4+x3*h3+x4*h2
                 //     x1*h2                            x1*h2+x2*h1 --> WriteBlockIdx, ReadIdx      0+x3*h4                                            x3*h4+x4*h3
                 //     x1*h3                            x1*h3+x2*h2                                 x1*h3+x2*h2+x3*h1 -->WriteBlocIdx, ReadBlockIdx    0+x4*h4
                 //     x1*h4                            x1*h4+x2*h3                                 x1*h4+x2*h3+x3*h2                                  x1*h4+x2*h3+x3*h2+x4*h1
-                int process_iWriteBlockNum = (m_iWriteBlockNo + iIrBlock) % m_iIRBlockNum;
-                for (int k = 0; k < m_iBlockLength; k++)
+                for (int k = 0; k < m_iFftLength; k++)
                 {
-                    m_ppfProcessedBlockBuffer[process_iWriteBlockNum][k] += pfIFFTTemp[k];
+                    m_pfProcessedBlockBuffer[(iIrBlock * m_iBlockLength + m_iOutputWriteIdx + k) % mod] += pfIFFTTemp[k];
                 }
-
             }
-            m_iReadBlockNo = m_iWriteBlockNo;
-            m_iWriteBlockNo = (m_iWriteBlockNo + 1) % m_iIRBlockNum;
-
-
+            (m_iOutputWriteIdx += m_iBlockLength) %= mod;
         }
 
+        //Set zeros to m_pfInputProcess buffer
+        //fill the inputblockbuffer of size 2BlockSize until the processing size is met
+        m_pfInputBlockBuffer[m_iInputWriteIdx++]= pfInputBuffer[i];
+        if (m_iInputWriteIdx == m_iBlockLength) m_iInputWriteIdx = 0;
 
-        }
+        //Fill the output buffer with values from the current readBlock
+        pfOutputBuffer[i] = m_pfProcessedBlockBuffer[m_iOutputReadIdx];
+        m_pfProcessedBlockBuffer[m_iOutputReadIdx++] = 0;
+        if (m_iOutputReadIdx == mod) m_iOutputReadIdx = 0;
+    }
 
     return Error_t::kNoError;
 }
 Error_t CConvFFT::flushBuffer(float *pfOutputBuffer)
 {
-    float* pfFlushInputBuffer = new float[m_iBlockLength + m_iIrLength - 1]();
+    float* pfFlushInputBuffer = new float[m_iBlockLength + m_iIrLength - 1];
     CVectorFloat::setZero(pfFlushInputBuffer,static_cast<long long int>(m_iBlockLength + m_iIrLength - 1));
     process(pfOutputBuffer, pfFlushInputBuffer, m_iBlockLength + m_iIrLength - 1);
     delete[] pfFlushInputBuffer;

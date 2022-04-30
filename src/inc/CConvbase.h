@@ -77,16 +77,15 @@ private:
     int m_iIrLength=0;
     int m_iFftLength=0;
     int m_iTailLength=0;
+    int m_iInputWriteIdx = 0;
+    int m_iOutputWriteIdx = 0;
+    int m_iOutputReadIdx = 0;
     float* m_pfImpulseResponse=0;
 
-    int m_iReadBlockNo=0;
-    int m_iWriteBlockNo=0;
-    int m_WriteNo=0;
-
-    float** m_ppfIRFeqDomainReal =0;
+    float** m_ppfIRFreqDomainReal =0;
     float** m_ppfIRFreqDomainImag=0;
     float* m_pfInputBlockBuffer=0;
-    float** m_ppfProcessedBlockBuffer=0;
+    float* m_pfProcessedBlockBuffer=0;
 
     float* pfFFTRealTemp=0;
     float* pfFFTImagTemp=0;

@@ -36,7 +36,7 @@ namespace fastconv_test {
         virtual void SetUp()
         {
             m_pCFastConv = new CFastConv;
-            TestImpulse[3]=1;
+            TestImpulse[0]=0;
 
             for (int i = 1; i < 51; i++)
             {
@@ -154,19 +154,15 @@ namespace fastconv_test {
         float CheckOutput[60] = { 0 };
         TestInput[1] = 1;
         float TestImpulse[64] = {0};
-        TestImpulse[1] = 1;
-        for (int i = 0; i < 51; i++)
-        {
-            if (i < (51 - 23)) {
-                CheckOutput[i + 3 + 20] = TestImpulse[i];
-            }
+
+        for (int i = 0; i < 64; ++i) {
+            TestImpulse[i] = static_cast<float>(std::rand()) / (static_cast <float> (RAND_MAX));
         }
 
-
-        m_pCFastConv->init(TestImpulse, 128, 64, CFastConv::kFreqDomain);
+        m_pCFastConv->init(TestImpulse, 64, 64, CFastConv::kFreqDomain);
 
         m_pCFastConv->process(TestOutput, TestInput, 128);
-        CHECK_ARRAY_CLOSE(CheckOutput, TestOutput, 51, 1e-3);
+        CHECK_ARRAY_CLOSE(TestImpulse, TestOutput + 64 + 1, 63, 1e-3);
 
     }
 
@@ -182,20 +178,17 @@ namespace fastconv_test {
         }
 
         m_pCFastConv->init(TestImpulse, 51, 32, CFastConv::kFreqDomain);
-        m_pCFastConv->process(TestOutput, TestInput, 128);
+        m_pCFastConv->process(TestOutput, TestInput, 4);
         m_pCFastConv->flushBuffer(TestFlush);
 
-        CHECK_ARRAY_CLOSE(TestFlush + 3 + 32 - 10, TestImpulse, 51, 1e-3);
+        CHECK_ARRAY_CLOSE(TestFlush + 31, TestImpulse, 51, 1e-3);
     }
 //
     TEST_F(FastConv, FreqDomainDifferBlockSize)
     {
-        float* TestImpulse =  new float[16384];
-        CVectorFloat::setZero(TestImpulse,16384);
-        float* TestInput = new float[10000];
-        CVectorFloat::setZero(TestInput,10000);
-        float* TestOutput = new float[10000];
-        CVectorFloat::setZero(TestOutput,10000);
+        float* TestImpulse = new float[16384]();
+        float* TestInput = new float[10000]();
+        float* TestOutput = new float[10000]();
         int Impulse_blockSize = 1024;
         //(L-1 + Initial delay)
         float* TestFlush = new float[16383 + Impulse_blockSize];
@@ -217,8 +210,9 @@ namespace fastconv_test {
         for (int i = 0; i < 8; i++)
         {
             m_pCFastConv->process(TestOutput + StartIdx[i], TestInput + StartIdx[i], BlockSizes[i]);
-            CHECK_ARRAY_CLOSE(TestOutput + 3 + Impulse_blockSize + StartIdx[i], TestImpulse, BlockSizes[i] - 3 - Impulse_blockSize, 1e-3);
+            // CHECK_ARRAY_CLOSE(TestOutput + 3 + Impulse_blockSize + StartIdx[i], TestImpulse, BlockSizes[i] - 3 - Impulse_blockSize, 1e-3);
         }
+        CHECK_ARRAY_CLOSE(TestOutput + 3 + Impulse_blockSize, TestImpulse, 10000 - 3 - Impulse_blockSize, 1e-6);
 
         m_pCFastConv->flushBuffer(TestFlush);
         CHECK_ARRAY_CLOSE(TestFlush + Impulse_blockSize, TestImpulse + 10000 - 3, 16384 - (10000 - 3), 1e-3);
@@ -229,257 +223,221 @@ namespace fastconv_test {
         delete[] TestFlush;
 
     }
-//
-//
-//
-//
+
+    class AlexFastConv: public testing::Test
+    {
+    protected:
+        void SetUp() override
+        {
+            m_pfInput = new float[m_iInputLength];
+            m_pfIr = new float[m_iIRLength];
+            m_pfOutput = new float[m_iInputLength + m_iIRLength];
+
+            CVectorFloat::setZero(m_pfInput, m_iInputLength);
+            m_pfInput[0] = 1;
+
+            CSynthesis::generateNoise(m_pfIr, m_iIRLength);
+            m_pfIr[0] = 1;
+
+            CVectorFloat::setZero(m_pfOutput, m_iInputLength + m_iIRLength);
+
+            m_pCFastConv = new CFastConv();
+        }
+
+        virtual void TearDown()
+        {
+            m_pCFastConv->reset();
+            delete m_pCFastConv;
+
+            delete[] m_pfIr;
+            delete[] m_pfOutput;
+            delete[] m_pfInput;
+        }
+
+        float *m_pfInput = 0;
+        float *m_pfIr = 0;
+        float *m_pfOutput = 0;
+
+        int m_iInputLength = 83099;
+        int m_iIRLength = 60001;
+
+        CFastConv *m_pCFastConv = 0;
+    };
+
+    TEST_F(AlexFastConv, Params)
+    {
+        EXPECT_EQ(false, Error_t::kNoError == m_pCFastConv->init(0, 1));
+        EXPECT_EQ(false, Error_t::kNoError == m_pCFastConv->init(m_pfIr, 0));
+        EXPECT_EQ(false, Error_t::kNoError == m_pCFastConv->init(m_pfIr, 10, -1));
+        EXPECT_EQ(false, Error_t::kNoError == m_pCFastConv->init(m_pfIr, 10, 7));
+        EXPECT_EQ(true, Error_t::kNoError == m_pCFastConv->init(m_pfIr, 10, 4));
+        EXPECT_EQ(true, Error_t::kNoError == m_pCFastConv->reset());
+    }
+
+    TEST_F(AlexFastConv, Impulse)
+    {
+        // impulse with impulse
+        int iBlockLength = 4;
+        m_pCFastConv->init(m_pfIr, 1, iBlockLength);
+
+        for (auto i = 0; i < 500; i++)
+            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
+
+        EXPECT_NEAR(1.F, m_pfOutput[iBlockLength], 1e-6F);
+        EXPECT_NEAR(0.F, CVectorFloat::getMin(m_pfOutput, m_iInputLength), 1e-6F);
+        EXPECT_NEAR(1.F, CVectorFloat::getMax(m_pfOutput, m_iInputLength), 1e-6F);
+
+        // impulse with dc
+        for (auto i = 0; i < 4; i++)
+            m_pfOutput[i] = 1;
+        iBlockLength = 8;
+        m_pCFastConv->init(m_pfOutput, 4, iBlockLength);
+
+        for (auto i = 0; i < 500; i++)
+            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
+
+        EXPECT_NEAR(0.F, CVectorFloat::getMean(m_pfOutput, 8), 1e-6F);
+        EXPECT_NEAR(1.F, CVectorFloat::getMean(&m_pfOutput[8], 4), 1e-6F);
+        EXPECT_NEAR(0.F, CVectorFloat::getMean(&m_pfOutput[12], 400), 1e-6F);
+
+        // impulse with noise
+        iBlockLength = 8;
+        m_pCFastConv->init(m_pfIr, 27, iBlockLength);
+
+        for (auto i = 0; i < m_iInputLength; i++)
+            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
+
+        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], 27, 1e-6F);
+        CHECK_ARRAY_CLOSE(&m_pfInput[1], &m_pfOutput[iBlockLength + 27], 10, 1e-6F);
+
+        // noise with impulse
+        iBlockLength = 8;
+        m_pCFastConv->init(m_pfInput, 27, iBlockLength);
+
+        for (auto i = 0; i < m_iIRLength; i++)
+            m_pCFastConv->process(&m_pfOutput[i], &m_pfIr[i], 1);
+
+        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], m_iIRLength - iBlockLength, 1e-6F);
+    }
+    TEST_F(AlexFastConv, ImpulseTime)
+    {
+        // impulse with impulse
+        int iBlockLength = 4;
+        m_pCFastConv->init(m_pfIr, 1, iBlockLength, CFastConv::kTimeDomain);
+
+        for (auto i = 0; i < 500; i++)
+            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
+
+        EXPECT_NEAR(1.F, m_pfOutput[0], 1e-6F);
+        EXPECT_NEAR(0.F, CVectorFloat::getMin(m_pfOutput, m_iInputLength), 1e-6F);
+        EXPECT_NEAR(1.F, CVectorFloat::getMax(m_pfOutput, m_iInputLength), 1e-6F);
+
+        // impulse with dc
+        for (auto i = 0; i < 4; i++)
+            m_pfOutput[i] = 1;
+        iBlockLength = 8;
+        m_pCFastConv->init(m_pfOutput, 4, iBlockLength, CFastConv::kTimeDomain);
+
+        for (auto i = 0; i < 500; i++)
+            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
+
+        EXPECT_NEAR(1.F, CVectorFloat::getMean(&m_pfOutput[0], 4), 1e-6F);
+        EXPECT_NEAR(0.F, CVectorFloat::getMean(&m_pfOutput[4], 400), 1e-6F);
+
+        // impulse with noise
+        iBlockLength = 8;
+        m_pCFastConv->init(m_pfIr, 27, iBlockLength, CFastConv::kTimeDomain);
+
+        for (auto i = 0; i < m_iInputLength; i++)
+            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
+
+        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[0], 27, 1e-6F);
+        CHECK_ARRAY_CLOSE(&m_pfInput[1], &m_pfOutput[27], 10, 1e-6F);
+
+        // noise with impulse
+        iBlockLength = 8;
+        m_pCFastConv->init(m_pfInput, 27, iBlockLength, CFastConv::kTimeDomain);
+
+        for (auto i = 0; i < m_iIRLength; i++)
+            m_pCFastConv->process(&m_pfOutput[i], &m_pfIr[i], 1);
+
+        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[0], m_iIRLength , 1e-6F);
+    }
+
+    TEST_F(AlexFastConv, BlockLengths)
+    {
+        // impulse with noise
+        int iBlockLength = 4;
+
+        for (auto j = 0; j < 10; j++)
+        {
+            m_pCFastConv->init(m_pfIr, 51, iBlockLength);
+
+            for (auto i = 0; i < m_iInputLength; i++)
+                m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
+
+            CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], 51 - iBlockLength, 1e-6F);
+
+            iBlockLength <<= 1;
+        }
+    }
+
+    TEST_F(AlexFastConv, InputLengths)
+    {
+        // impulse with noise
+        int iBlockLength = 4096;
+
+        int iCurrIdx = 0,
+            aiInputLength[] = {
+            4095,
+            17,
+            32157,
+            99,
+            4097,
+            1,
+            42723
+        };
+
+        m_pCFastConv->init(m_pfIr, m_iIRLength, iBlockLength);
+
+        for (auto i = 0; i < 7; i++)
+        {
+            m_pCFastConv->process(&m_pfOutput[iCurrIdx], &m_pfInput[iCurrIdx], aiInputLength[i]);
+            iCurrIdx += aiInputLength[i];
+        }
+
+        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], m_iIRLength, 1e-6F);
+        EXPECT_NEAR(0.F, CVectorFloat::getMean(&m_pfOutput[m_iIRLength + iBlockLength], 10000), 1e-6F);
+
+    }
+
+    TEST_F(AlexFastConv, FlushBuffer)
+    {
+        // impulse with noise
+        int iBlockLength = 8;
+        int iIrLength = 27;
+
+        CVectorFloat::setZero(m_pfOutput, m_iInputLength + m_iIRLength);
+        m_pCFastConv->init(m_pfIr, iIrLength, iBlockLength);
+
+        m_pCFastConv->process(m_pfOutput, m_pfInput, 1);
+
+        m_pCFastConv->flushBuffer(&m_pfOutput[1]);
+
+        EXPECT_NEAR(0.F, CVectorFloat::getMean(m_pfOutput, iBlockLength), 1e-6F);
+        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], iIrLength, 1e-6F);
+
+        // same for time domain
+        CVectorFloat::setZero(m_pfOutput, m_iInputLength + m_iIRLength);
+        m_pCFastConv->init(m_pfIr, iIrLength, iBlockLength,CFastConv::kTimeDomain);
+
+        m_pCFastConv->process(m_pfOutput, m_pfInput, 1);
+
+        m_pCFastConv->flushBuffer(&m_pfOutput[1]);
+
+        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[0], iIrLength, 1e-6F);
+    }
 }
 
 #endif //WITH_TESTS
 
-////////-------------------------------------------------------------ALEX TESTS---------///////////////////////////////////////
-//#include "MUSI6106Config.h"
-//
-//#ifdef WITH_TESTS
-//#include "Synthesis.h"
-//
-//#include "Vector.h"
-//#include "FastConv.h"
-//
-//#include "gtest/gtest.h"
-//
-//
-//namespace fastconv_test {
-//    void CHECK_ARRAY_CLOSE(float* buffer1, float* buffer2, int iLength, float fTolerance)
-//    {
-//        for (int i = 0; i < iLength; i++)
-//        {
-//            EXPECT_NEAR(buffer1[i], buffer2[i], fTolerance);
-//        }
-//    }
-//
-//    class FastConv: public testing::Test
-//    {
-//    protected:
-//        void SetUp() override
-//        {
-//            m_pfInput = new float[m_iInputLength];
-//            m_pfIr = new float[m_iIRLength];
-//            m_pfOutput = new float[m_iInputLength + m_iIRLength];
-//
-//            CVectorFloat::setZero(m_pfInput, m_iInputLength);
-//            m_pfInput[0] = 1;
-//
-//            CSynthesis::generateNoise(m_pfIr, m_iIRLength);
-//            CVectorFloat::setZero(m_pfIr, m_iInputLength);
-//            m_pfIr[0] = 1;
-//
-//            CVectorFloat::setZero(m_pfOutput, m_iInputLength + m_iIRLength);
-//
-//            m_pCFastConv = new CFastConv();
-//        }
-//
-//        virtual void TearDown()
-//        {
-//            m_pCFastConv->reset();
-//            delete m_pCFastConv;
-//
-//            delete[] m_pfIr;
-//            delete[] m_pfOutput;
-//            delete[] m_pfInput;
-//        }
-//
-//        float *m_pfInput = 0;
-//        float *m_pfIr = 0;
-//        float *m_pfOutput = 0;
-//
-//        int m_iInputLength = 83099;
-//        int m_iIRLength = 60001;
-//
-//        CFastConv *m_pCFastConv = 0;
-//    };
-//
-//    TEST_F(FastConv, Params)
-//    {
-////        m_pCFastConv->init(m_pfIr, 10, 4, CFastConv::kFreqDomain);
-////        for (auto i = 0; i < 500; i++)
-////            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
-////        m_pCFastConv->init(m_pfIr, 10, 4, CFastConv::kFreqDomain);
-////        m_pCFastConv->reset();
-////        delete m_pCFastConv;
-//
-//        EXPECT_EQ(false, Error_t::kNoError == m_pCFastConv->init(0, 1));
-//        EXPECT_EQ(false, Error_t::kNoError == m_pCFastConv->init(m_pfIr, 0));
-//        EXPECT_EQ(false, Error_t::kNoError == m_pCFastConv->init(m_pfIr, 10, -1));
-//        EXPECT_EQ(false, Error_t::kNoError == m_pCFastConv->init(m_pfIr, 10, 7));
-//        EXPECT_EQ(true, Error_t::kNoError == m_pCFastConv->init(m_pfIr, 10, 4));
-//        EXPECT_EQ(true, Error_t::kNoError == m_pCFastConv->reset());
-//    }
-//
-//    TEST_F(FastConv, Impulse)
-//    {
-//        // impulse with impulse
-//        int iBlockLength = 4;
-//        m_pCFastConv->init(m_pfIr, 2, iBlockLength);
-//
-//        for (auto i = 0; i < 500; i++)
-//            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
-//
-//        EXPECT_NEAR(1.F, m_pfOutput[iBlockLength], 1e-6F);
-//        EXPECT_NEAR(0.F, CVectorFloat::getMin(m_pfOutput, m_iInputLength), 1e-6F);
-//        EXPECT_NEAR(1.F, CVectorFloat::getMax(m_pfOutput, m_iInputLength), 1e-6F);
-//
-//        // impulse with dc
-//        for (auto i = 0; i < 4; i++)
-//            m_pfOutput[i] = 1;
-//        iBlockLength = 8;
-//        m_pCFastConv->init(m_pfOutput, 4, iBlockLength);
-//
-//        for (auto i = 0; i < 500; i++)
-//            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
-//
-//        EXPECT_NEAR(0.F, CVectorFloat::getMean(m_pfOutput, 8), 1e-6F);
-//        EXPECT_NEAR(1.F, CVectorFloat::getMean(&m_pfOutput[8], 4), 1e-6F);
-//        EXPECT_NEAR(0.F, CVectorFloat::getMean(&m_pfOutput[12], 400), 1e-6F);
-//
-//        // impulse with noise
-//        iBlockLength = 8;
-//        m_pCFastConv->init(m_pfIr, 27, iBlockLength);
-//
-//        for (auto i = 0; i < m_iInputLength; i++)
-//            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
-//
-//        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], 27, 1e-6F);
-//        CHECK_ARRAY_CLOSE(&m_pfInput[1], &m_pfOutput[iBlockLength + 27], 10, 1e-6F);
-//
-//        // noise with impulse
-//        iBlockLength = 8;
-//        m_pCFastConv->init(m_pfInput, 27, iBlockLength);
-//
-//        for (auto i = 0; i < m_iIRLength; i++)
-//            m_pCFastConv->process(&m_pfOutput[i], &m_pfIr[i], 1);
-//
-//        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], m_iIRLength - iBlockLength, 1e-6F);
-//    }
-//    TEST_F(FastConv, ImpulseTime)
-//    {
-//        // impulse with impulse
-//        int iBlockLength = 4;
-//        m_pCFastConv->init(m_pfIr, 1, iBlockLength, CFastConv::kTimeDomain);
-//
-//        for (auto i = 0; i < 500; i++)
-//            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
-//
-//        EXPECT_NEAR(1.F, m_pfOutput[0], 1e-6F);
-//        EXPECT_NEAR(0.F, CVectorFloat::getMin(m_pfOutput, m_iInputLength), 1e-6F);
-//        EXPECT_NEAR(1.F, CVectorFloat::getMax(m_pfOutput, m_iInputLength), 1e-6F);
-//
-//        // impulse with dc
-//        for (auto i = 0; i < 4; i++)
-//            m_pfOutput[i] = 1;
-//        iBlockLength = 8;
-//        m_pCFastConv->init(m_pfOutput, 4, iBlockLength, CFastConv::kTimeDomain);
-//
-//        for (auto i = 0; i < 500; i++)
-//            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
-//
-//        EXPECT_NEAR(1.F, CVectorFloat::getMean(&m_pfOutput[0], 4), 1e-6F);
-//        EXPECT_NEAR(0.F, CVectorFloat::getMean(&m_pfOutput[4], 400), 1e-6F);
-//
-//        // impulse with noise
-//        iBlockLength = 8;
-//        m_pCFastConv->init(m_pfIr, 27, iBlockLength, CFastConv::kTimeDomain);
-//
-//        for (auto i = 0; i < m_iInputLength; i++)
-//            m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
-//
-//        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[0], 27, 1e-6F);
-//        CHECK_ARRAY_CLOSE(&m_pfInput[1], &m_pfOutput[27], 10, 1e-6F);
-//
-//        // noise with impulse
-//        iBlockLength = 8;
-//        m_pCFastConv->init(m_pfInput, 27, iBlockLength, CFastConv::kTimeDomain);
-//
-//        for (auto i = 0; i < m_iIRLength; i++)
-//            m_pCFastConv->process(&m_pfOutput[i], &m_pfIr[i], 1);
-//
-//        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[0], m_iIRLength , 1e-6F);
-//    }
-//
-//    TEST_F(FastConv, BlockLengths)
-//    {
-//        // impulse with noise
-//        int iBlockLength = 4;
-//
-//        for (auto j = 0; j < 10; j++)
-//        {
-//            m_pCFastConv->init(m_pfIr, 51, iBlockLength);
-//
-//            for (auto i = 0; i < m_iInputLength; i++)
-//                m_pCFastConv->process(&m_pfOutput[i], &m_pfInput[i], 1);
-//
-//            CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], 51 - iBlockLength, 1e-6F);
-//
-//            iBlockLength <<= 1;
-//        }
-//    }
-//
-//    TEST_F(FastConv, InputLengths)
-//    {
-//        // impulse with noise
-//        int iBlockLength = 4096;
-//
-//        int iCurrIdx = 0,
-//                aiInputLength[] = {
-//                4095,
-//                17,
-//                32157,
-//                99,
-//                4097,
-//                1,
-//                42723
-//
-//        };
-//
-//        m_pCFastConv->init(m_pfIr, m_iIRLength, iBlockLength);
-//
-//        for (auto i = 0; i < 7; i++)
-//        {
-//            m_pCFastConv->process(&m_pfOutput[iCurrIdx], &m_pfInput[iCurrIdx], aiInputLength[i]);
-//            iCurrIdx += aiInputLength[i];
-//        }
-//
-//        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], m_iIRLength, 1e-6F);
-//        EXPECT_NEAR(0.F, CVectorFloat::getMean(&m_pfOutput[m_iIRLength + iBlockLength], 10000), 1e-6F);
-//
-//    }
-//
-//    TEST_F(FastConv, FlushBuffer)
-//    {
-//        // impulse with noise
-//        int iBlockLength = 8;
-//        int iIrLength = 27;
-//
-//        CVectorFloat::setZero(m_pfOutput, m_iInputLength + m_iIRLength);
-//        m_pCFastConv->init(m_pfIr, iIrLength, iBlockLength);
-//
-//        m_pCFastConv->process(m_pfOutput, m_pfInput, 1);
-//
-//        m_pCFastConv->flushBuffer(&m_pfOutput[1]);
-//
-//        EXPECT_NEAR(0.F, CVectorFloat::getMean(m_pfOutput, iBlockLength), 1e-6F);
-//        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[iBlockLength], iIrLength, 1e-6F);
-//
-//        // same for time domain
-//        CVectorFloat::setZero(m_pfOutput, m_iInputLength + m_iIRLength);
-//        m_pCFastConv->init(m_pfIr, iIrLength, iBlockLength,CFastConv::kTimeDomain);
-//
-//        m_pCFastConv->process(m_pfOutput, m_pfInput, 1);
-//
-//        m_pCFastConv->flushBuffer(&m_pfOutput[1]);
-//
-//        CHECK_ARRAY_CLOSE(m_pfIr, &m_pfOutput[0], iIrLength, 1e-6F);
-//    }
-//}
-//
-//#endif //WITH_TESTS

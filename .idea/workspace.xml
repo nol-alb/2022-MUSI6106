@@ -22,8 +22,90 @@
   <component name="ChangeListManager">
     <list default="true" id="ae03ac04-c42d-406e-b250-785254538fe0" name="Changes" comment="Refactored+Test working some">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AudioFileIO/AudioFile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/AudioFileIO/AudioFile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AudioFileIO/AudioFile.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/AudioFileIO/AudioFile.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AudioFileIO/AudioFileIf.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/AudioFileIO/AudioFileIf.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AudioFileIO/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/AudioFileIO/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CombFilter/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CombFilter/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CombFilter/CombFilter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CombFilter/CombFilter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CombFilter/CombFilterIf.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CombFilter/CombFilterIf.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FastConv/CConvBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/CConvBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FastConv/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FastConv/FastConv2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastConv/FastConv2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Fft/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fft/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Fft/Fft.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fft/Fft.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MUSI6106Config.h.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/MUSI6106Config.h.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MUSI6106Exec/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/MUSI6106Exec/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/TestExec/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/TestExec/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/TestExec/Test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/TestExec/Test.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_AudioIO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_AudioIO.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_CombFilter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_CombFilter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_Fft.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_Fft.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/Tests/Test_Vibrato.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests/Test_Vibrato.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vibrato/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vibrato/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vibrato/Vibrato.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vibrato/Vibrato.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doxy.config.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/doxy.config.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/AudioFileIf.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/AudioFileIf.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/CConvbase.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/CConvbase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/CombFilter.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/CombFilter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/CombFilterIf.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/CombFilterIf.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/FastConv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/FastConv.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/Fft.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/Fft.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/Lfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/Lfo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/RingBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/RingBuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/Synthesis.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/Synthesis.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/Util.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/Util.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/Vector.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/Vector.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inc/Vibrato.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/inc/Vibrato.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/Gnu_style.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/Gnu_style.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/allman_style.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/allman_style.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/api_readablecode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/api_readablecode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/class.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/class.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/class2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/class2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/class_order.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/class_order.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/comment.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/comment.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/constcast.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/constcast.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/copy_constructor_1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/copy_constructor_1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/copy_constructor_2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/copy_constructor_2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/critical_section.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/critical_section.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/critical_section_2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/critical_section_2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/declaration.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/declaration.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/descriptive_variable_names.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/descriptive_variable_names.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/doublepointer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/doublepointer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/doxygen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/doxygen.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/dynamiccast.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/dynamiccast.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/error.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/error.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/error2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/error2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/functionargs.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/functionargs.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/functionargsMain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/functionargsMain.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/helloworld.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/helloworld.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/implicitcast.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/implicitcast.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/indent_error.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/indent_error.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/indent_kernel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/indent_kernel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/indent_styles.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/indent_styles.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/loops.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/loops.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/namespace.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/namespace.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/one_true_brace.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/one_true_brace.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/operator_overloading.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/operator_overloading.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/pointer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/pointer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/polymorphism.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/polymorphism.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/polymorphism_example.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/polymorphism_example.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/polymorphism_example_1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/polymorphism_example_1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/polymorphism_example_2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/polymorphism_example_2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/polymorphism_example_3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/polymorphism_example_3.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/preproc1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/preproc1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/preproc2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/preproc2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/preproc3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/preproc3.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/scope.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/scope.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/scopedpointer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/scopedpointer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/singleton.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/singleton.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/spaces.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/spaces.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/staticcast.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/staticcast.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/vertical_alignment.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/vertical_alignment.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slide-examples/whitesmiths_style.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/slide-examples/whitesmiths_style.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,19 +165,19 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FastConv.FreqDomainIdentityTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="FreqDomainIdentityTest" TEST_MODE="SUITE_TEST">
+    <configuration name="FastConv.FreqDomainIdentityTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="FreqDomainIdentityTest" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FastConv.ImpulseTime" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="ImpulseTime" TEST_MODE="SUITE_TEST">
+    <configuration name="FastConv.ImpulseTime" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="ImpulseTime" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FastConv.InputLengths" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="InputLengths" TEST_MODE="SUITE_TEST">
+    <configuration name="FastConv.InputLengths" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MUSI6106" TARGET_NAME="TestExec" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MUSI6106" RUN_TARGET_NAME="TestExec" TEST_CLASS="FastConv" TEST_METHOD="InputLengths" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -204,11 +286,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/MUSI6106Exec/MUSI6106Exec.cpp</url>
-          <line>19</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
           <line>80</line>
           <option name="timeStamp" value="204" />
@@ -222,26 +299,6 @@
           <url>file://$PROJECT_DIR$/src/FastConv/FastConv.cpp</url>
           <line>128</line>
           <option name="timeStamp" value="206" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
-          <line>321</line>
-          <option name="timeStamp" value="222" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
-          <line>184</line>
-          <option name="timeStamp" value="233" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Tests/Tests/Test_FastConv.cpp</url>
-          <line>165</line>
-          <option name="timeStamp" value="235" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/FastConv/CConvBase.cpp</url>
-          <line>158</line>
-          <option name="timeStamp" value="237" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
